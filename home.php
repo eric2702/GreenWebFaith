@@ -23,6 +23,10 @@
 
     <!-- Chart -->
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.8.0/chart.min.js" integrity="sha512-sW/w8s4RWTdFFSduOTGtk4isV1+190E/GghVffMA9XczdJ2MDzSzLEubKAs5h0wzgSJOQTRYyaz73L3d6RtJSg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script> -->
+    
 
 
 </head>
@@ -431,27 +435,40 @@ background-image: url("assets/brick-wall.png");
 		<img src="assets/bird1.png" id=bird1>
 		<img src="assets/bird2.png" id=bird2>
 		<img style="z-index: -40;" src="assets/forest.jpg" id=forest>
-		<a href="#" id="btn">About</a>
+		<a href="#about" id="btn">About</a>
 		<img style="z-index: 500;" src="assets/sew.png" id=rocks>
 		<img src="assets/water.png" id=water>
 	</section>
-	<div class="sec">
+	<div class="sec" id="about">
 
 		<h1 style="text-align: center; color: white;" class="effect">Why we have to renew our clothes?</h1>
-		<div class="container">
+		<div class="container mt-3">
 			<div class="row">
 				<div class="col-12 col-lg-7">
-					<div id="myChart" style="width:100%;height:300px; background-color: transparent; padding: 10px;"></div>
+          <br>
+					<canvas id="myChart" style="max-width:100%;height:300px; background-color: #fff; padding: 10px;"></canvas>
 				</div>
 				<div class="col-12 col-lg-5">
 					<p style="color:white;" class="text-center"></p>
-
-<p class="text-center align-middle" style="color:white;"><br><br>The fashion industry, which is the second most polluting industry in the world, is responsible for 10% of all greenhouse gas emissions, with textile production alone is estimated to release 1.2 billion tonnes of greenhouse gases into the atmosphere every year</p>
-
-
-
+          <p class="text-center align-middle" style="color:white;">The fashion industry, which is the second most polluting industry in the world, is responsible for 10% of all greenhouse gas emissions, with textile production alone is estimated to release 1.2 billion tonnes of greenhouse gases into the atmosphere every year. </p>
+          <p class="text-center align-middle" style="color:white;">One of our solution's main objectives is to reduce these emissions through reusing unwanted clothes by reforming them. Once this model gets more attention, we are confident that people will keep on using it. Why? Firstly, they can save money by reusing their unwanted clothes. Secondly, they are able to customize their clothes based on their preferences. Lastly, they gain the satisfaction from knowing that they are doing something good for the environment and supporting the fashion designers community.</p>
 				</div>
 			</div>
+      <div class="row mt-5">
+        <div class="col-12 col-lg-8">
+          <p style="color:white;" class="text-center">
+          <p class="text-center align-middle" style="color:white;">
+          In the long run, people would be able to develop sustainable fashion habits, hence causing the demand for new clothes to decrease. Eventually, clothing companies will decrease their production as there is less demand for new clothes. With less clothes produced, there will be less greenhouse gas emissions. 
+          </p>
+          <p class="text-center align-middle" style="color:white;">
+          The possibility to realize our proposed idea is quite high as there is an increasing trend of socially conscious consumers. In a survey of more than 10,000 consumers conducted by Shopkick, more than two-thirds of shoppers said that the pandemic has made them more socially conscious consumers. Hence, with the increase in the number of socially conscious people, we believe that our solution which is aligned with their values, would be popular among them. 
+          </p>
+          </p>
+        </div>
+        <div class="col-12 col-lg-4">
+          <img src="assets/recycle.png" alt="" style="max-width:100%; max-height:100%;">
+        </div>
+      </div>
 
 		</div>
 			</div>
@@ -487,29 +504,84 @@ background-image: url("assets/brick-wall.png");
 			header.style.top = val*0.5+'px';
 		});
 
-		google.charts.load('current', {'packages':['corechart']});
-google.charts.setOnLoadCallback(drawChart);
+// 		google.charts.load('current', {'packages':['corechart']});
+// google.charts.setOnLoadCallback(drawChart);
 
-function drawChart() {
-var data = google.visualization.arrayToDataTable([
-  ['Waste', 'Tons (%)'],
-  ['Overall Waste',10],
-  ['Food & Yard',20],
-  ['Textiles',43],
-  ['Rubber & Leather',15],
-  ['Plastics',24],
-  ['Metals',27]
-]);
+// function drawChart() {
+// var data = google.visualization.arrayToDataTable([
+//   ['Waste', 'Tons (%)'],
+//   ['Overall Waste',10],
+//   ['Food & Yard',20],
+//   ['Textiles',43],
+//   ['Rubber & Leather',15],
+//   ['Plastics',24],
+//   ['Metals',27]
+// ]);
 
-var options = {
-  title:'Change in Tons of Waste',
-  backgroundColor: '#ffffff8a'
+// var options = {
+//   title:'Change in Tons of Waste',
+//   backgroundColor: '#ffffff8a'
 
-};
+// };
 
-var chart = new google.visualization.BarChart(document.getElementById('myChart'));
-  chart.draw(data, options);
-}
+// var chart = new google.visualization.BarChart(document.getElementById('myChart2'));
+//   chart.draw(data, options);
+// }
+
+const ctx = document.getElementById('myChart').getContext('2d');
+const myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: [ ['Overall Waste'],
+                  ['Food & Yard'],
+                  ['Textiles'],
+                  ['Rubber & Leather'],
+                  ['Plastics'],
+                  ['Metals']],
+        datasets: [{
+            label: 'Tons (%)',
+            data: [10, 20, 43, 15, 24, 27],
+            backgroundColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(255, 99, 132, 1)',
+                'rgba(255, 99, 132, 1)',
+                'rgba(255, 99, 132, 1)',
+                'rgba(255, 99, 132, 1)',
+                'rgba(255, 99, 132, 1'
+            ],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(255, 99, 132, 1)',
+                'rgba(255, 99, 132, 1)',
+                'rgba(255, 99, 132, 1)',
+                'rgba(255, 99, 132, 1)',
+                'rgba(255, 99, 132, 1'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        plugins: {
+            legend: {
+              labels: {
+                fill: "rgba(0,255,255,1)"
+              }
+            },
+            title: {
+                display: true,
+                text: 'Change in Tons of Waste'
+            }
+        },
+        indexAxis: 'y',
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        }
+    }
+    
+});
 	</script>
 </body>
+
 </html>
