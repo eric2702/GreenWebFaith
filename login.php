@@ -20,7 +20,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
   			echo "6";}
   		else{
 		$password = $con->real_escape_string(test_input($_POST['password']));
-		$check = "SELECT `email`, `password` FROM `user_data` WHERE email='".$email."'";
+		$check = "SELECT * FROM `user_data` WHERE email='".$email."'";
 		$result = $con->query($check);
 		$count = $result->num_rows;
 				if($count > 0){
@@ -30,6 +30,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
 							$_SESSION['email'] = $email;
 							$_SESSION['role'] = $role['role'];
 							$_SESSION['namaUser'] = $role['name'];
+							$_SESSION['id_user'] = $row['id'];
 							if($_SESSION['role'] == 0){
 								echo "0";
 							}  elseif ($_SESSION['role'] == 2){

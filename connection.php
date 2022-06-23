@@ -4,9 +4,9 @@ $username = "root";
 $password = "";
 
 // Create connection
-$con = mysqli_connect($servername, $username, $password,"projecttekweb");
+//$con = mysqli_connect($servername, $username, $password,"projecttekweb");
 
-$con2 = mysqli_connect($servername, $username, $password,"proyekdl");
+$con = mysqli_connect($servername, $username, $password,"proyekdl");
 
 
 // Check connection
