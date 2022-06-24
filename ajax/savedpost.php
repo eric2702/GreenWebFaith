@@ -1,4 +1,4 @@
-            <?php
+<?php
             include '../connection.php';
             
             if (isset($_SESSION['email'])) {
@@ -19,7 +19,7 @@
 
 
 
-            $post = "SELECT text_post.id as idPost, total_like,text_content, image, date(date_uploaded) as date_only, username, name FROM text_post JOIN user_data  ON user_data.id = text_post.id_user ORDER BY RAND()";
+            $post = "SELECT text_post.id as idPost, total_like,text_content, image, date(date_uploaded) as date_only, username, name FROM like_post JOIN text_post ON like_post.id_post = text_post.id JOIN user_data  ON user_data.id = text_post.id_user WHERE like_post.id_user= '$id' ";
 
             $code = '';
             $continue = '';

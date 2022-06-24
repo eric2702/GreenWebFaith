@@ -424,9 +424,17 @@ while ($res= mysqli_fetch_assoc($result5)){
                         <li class="nav-item">
                             <a class="nav-link" href="myprofile.php"><i class="fas fa-user-circle"></i></a>
                         </li>
+                        
+                        <?php if ($_SESSION['role'] == '2') { ?>
                         <li class="nav-item">
                             <a class="nav-link" href="orders.php"><i class="far fa-clipboard"></i></a>
                         </li>
+                        <?php } ?>
+                        <?php if ($_SESSION['role'] == '0') { ?>
+                        <li class="nav-item">
+                            <a class="nav-link" href="customerOrders.php"><i class="far fa-clipboard"></i></a>
+                        </li>
+                        <?php } ?>
                         <?php if ($_SESSION['role'] == '1') { ?>
                         <li class="nav-item">
                             <a style="color: #4A4A4B; text-decoration: none;"
@@ -603,6 +611,17 @@ if ($_SESSION['role'] == '2') { ?>
             </div>
         </div>
 
+        <div class="row">
+            <h3 style="text-align:center">Saved Portofolio</h3>
+        <div class="col-12">
+            <div class="row" style="justify-content: center;" id="tampilansaved">
+
+            </div>
+        </div>
+
+
+    </div>
+
 
         <?php } ?>
 
@@ -754,6 +773,7 @@ var position;
 
 $(document).ready(function() {
     reset();
+    saved();
 
 
 
@@ -851,7 +871,24 @@ $("#savetext").on("click", function() {
 
 
 });
+function saved() {
+   
 
+$.ajax({
+    url: "ajax/savedpost.php",
+    type: "POST",
+    cache: false,
+    data: {
+
+    },
+    success: function(dataResult) {
+     
+
+        $("#tampilansaved").html(dataResult);
+    },
+});
+
+}
 
 function reset() {
 
@@ -1202,12 +1239,14 @@ $(document).on("click", ".maulike", function() {
             dataResult = dataResult.split("-");
 
             if (dataResult[0] == "1") {
-                $('#' + idnya).css('color', 'black');
-                $('#likenih-' + id).html(' ' + dataResult[1] + ' Likes');
+                $('#' + idnya).removeClass('fa-solid fa-bookmark').addClass(
+                    'fa-regular fa-bookmark');
+                $('#likenih-' + id).html(' ' + dataResult[1] + ' Saved');
 
             } else if (dataResult[0] == "2") {
-                $('#' + idnya).css('color', 'red');
-                $('#likenih-' + id).html(' ' + dataResult[1] + ' Likes');
+                $('#' + idnya).removeClass('fa-regular fa-bookmark').addClass(
+                    'fa-solid fa-bookmark');
+                $('#likenih-' + id).html(' ' + dataResult[1] + ' Saved');
             }
         },
     });
