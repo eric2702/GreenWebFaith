@@ -19,18 +19,20 @@ foreach ($result as $row) {
     $sql = "SELECT * FROM user_data WHERE id = $other_user";
     $result2 = mysqli_query($con, $sql);
     $result2 = $result2->fetch_all(MYSQLI_ASSOC);
-    $other_user_username = $result2[0]['name'];
+    $other_user_name = $result2[0]['name'];
+    $other_user_username = $result2[0]['username'];
+    $other_user_img = $result2[0]['profileImg'];
     $message="hello";
     //echo as clickable buttons
     echo "<li style='cursor: pointer' onclick='getChat(".$row['id_room'].")' class=''>
     <div class='d-flex bd-highlight'>
         <div class='img_cont'>
-            <img src='https://static.turbosquid.com/Preview/001292/481/WV/_D.jpg'
+            <img src='$other_user_img'
                 class='rounded-circle user_img'>
-            <span class='online_icon'></span>
+            
         </div>
         <div class='user_info'>
-            <span>".$other_user_username."</span>
+            <span>".$other_user_name."</span>
             <p>".$other_user_username."</p>
         </div>
     </div>

@@ -115,272 +115,272 @@ if ($result2->num_rows > 0) {
     </script> -->
     <link rel="icon" href="assets\logo.png" sizes="20">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
-    integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+        integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 
-         <!-- SWEET ALERT -->
+    <!-- SWEET ALERT -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.min.js"></script>
 
 
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
-            overflow-x: hidden;
-        }
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Poppins', sans-serif;
+        overflow-x: hidden;
+    }
 
-        nav {
-            overflow: hidden;
-        }
+    nav {
+        overflow: hidden;
+    }
 
-        h2 {
-            overflow: hidden;
-        }
+    h2 {
+        overflow: hidden;
+    }
 
-        div.row.main {
-            margin-top: 5%;
-        }
+    div.row.main {
+        margin-top: 5%;
+    }
 
-        div.col-12 {
-            margin-bottom: 2%;
-        }
+    div.col-12 {
+        margin-bottom: 2%;
+    }
 
-        div.heading {
-            margin-top: 1%;
-        }
+    div.heading {
+        margin-top: 1%;
+    }
 
-        p.main_heading {
-            margin-bottom: 0;
+    p.main_heading {
+        margin-bottom: 0;
 
-        }
+    }
 
-        p.sub_heading {
-            margin-bottom: 0;
-            font-size: smaller;
-        }
+    p.sub_heading {
+        margin-bottom: 0;
+        font-size: smaller;
+    }
 
-        p.subrightheading {
-            font-size: smaller;
-            margin: auto;
-        }
-
-
-        div.card {
-            background: white;
-            padding: 1em;
-            border-radius: 20px;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.089);
-        }
-
-        img.profileimg {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.432);
-        }
-
-        img.post_img {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.432);
-        }
-
-        img.post_imagemodal {
-            width: 10%;
-            height: auto;
-            border-radius: 50px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.432);
-            margin-right: 4%;
-        }
-
-        div.post_content {
-            margin-top: 3%;
-            margin-left: 3%;
-        }
+    p.subrightheading {
+        font-size: smaller;
+        margin: auto;
+    }
 
 
+    div.card {
+        background: white;
+        padding: 1em;
+        border-radius: 20px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.089);
+    }
+
+    img.profileimg {
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.432);
+    }
+
+    img.post_img {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.432);
+    }
+
+    img.post_imagemodal {
+        width: 10%;
+        height: auto;
+        border-radius: 50px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.432);
+        margin-right: 4%;
+    }
+
+    div.post_content {
+        margin-top: 3%;
+        margin-left: 3%;
+    }
+
+
+    div.card.post {
+        background: white;
+        padding: 1em;
+        border-radius: 20px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.089);
+        width: 39%;
+    }
+
+    @media screen and (max-width: 960px) {
         div.card.post {
-            background: white;
-            padding: 1em;
-            border-radius: 20px;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.089);
-            width: 39%;
+            width: 50%;
         }
+    }
 
-        @media screen and (max-width: 960px) {
-            div.card.post {
-                width: 50%;
-            }
+
+    @media screen and (max-width: 670px) {
+        div.card.post {
+            width: 70%;
         }
+    }
 
-
-        @media screen and (max-width: 670px) {
-            div.card.post {
-                width: 70%;
-            }
-        }
-
-        @media screen and (max-width: 767px) {
-            .special_justify {
-                display: flex;
-                justify-content: center;
-            }
-        }
-
-        @media screen and (max-width: 550px) {
-            div.card.post {
-                width: 100%;
-            }
-
-            div.card.post .special_padding {
-                padding-left: 0;
-            }
-
-        }
-
-        div.modal-content {
-            border-radius: 20px;
-        }
-
-        textarea.inputarea,
-        textarea.inputareaupdate {
-            border: none;
-            width: 95%;
-        }
-
-        .post_header {
+    @media screen and (max-width: 767px) {
+        .special_justify {
             display: flex;
-            align-items: center;
-            margin-bottom: 0.4em;
-            position: relative;
+            justify-content: center;
         }
+    }
 
-        div.modal-footer.insert {
-            display: block;
-        }
-
-        img.outputimg,
-        img.postimage {
-            width: 90%;
-            padding-top: 2%;
-            padding-bottom: 2%;
-            margin: auto;
-            border-radius: 20px;
-        }
-
-
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
-        }
-
-
-
-        ::selection {
-            color: #fff;
-            background: #664AFF;
-        }
-
-        .wrapper {
-            max-width: 450px;
-            margin: 150px auto;
-        }
-
-        .wrapper .search-input {
-            background: #fff;
+    @media screen and (max-width: 550px) {
+        div.card.post {
             width: 100%;
-            border-radius: 5px;
-            position: relative;
-            box-shadow: 0px 1px 5px 3px rgba(0, 0, 0, 0.12);
         }
 
-        .search-input input {
-            height: 55px;
-            width: 100%;
-            outline: none;
-            border: none;
-            border-radius: 5px;
-            padding: 0 60px 0 20px;
-            font-size: 18px;
-            box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.1);
+        div.card.post .special_padding {
+            padding-left: 0;
         }
 
-        .search-input.active input {
-            border-radius: 5px 5px 0 0;
-        }
+    }
 
-        .search-input .autocom-box {
-            padding: 0;
-            opacity: 0;
-            pointer-events: none;
-            max-height: 280px;
-            overflow-y: auto;
-        }
+    div.modal-content {
+        border-radius: 20px;
+    }
 
-        .autocom-box2 {
-            padding: 0;
-            opacity: 0;
-            pointer-events: none;
-            max-height: 280px;
-            overflow-y: auto;
-        }
+    textarea.inputarea,
+    textarea.inputareaupdate {
+        border: none;
+        width: 95%;
+    }
 
-        .search-input.active .autocom-box {
-            padding: 10px 8px;
-            opacity: 1;
-            pointer-events: auto;
-        }
+    .post_header {
+        display: flex;
+        align-items: center;
+        margin-bottom: 0.4em;
+        position: relative;
+    }
 
-        .active.autocom-box2 {
-            padding: 10px 8px;
-            opacity: 1;
-            pointer-events: auto;
-        }
+    div.modal-footer.insert {
+        display: block;
+    }
 
-        .autocom-box li {
-            list-style: none;
-            padding: 8px 12px;
-            display: none;
-            width: 100%;
-            cursor: default;
-            border-radius: 3px;
-        }
+    img.outputimg,
+    img.postimage {
+        width: 90%;
+        padding-top: 2%;
+        padding-bottom: 2%;
+        margin: auto;
+        border-radius: 20px;
+    }
 
-        .autocom-box2 li {
-            list-style: none;
-            padding: 8px 12px;
-            display: none;
-            width: 100%;
-            cursor: default;
-            border-radius: 3px;
-        }
 
-        .search-input.active .autocom-box li {
-            display: block;
-        }
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
 
-        .active.autocom-box2 li {
-            display: block;
-        }
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Poppins', sans-serif;
+    }
 
-        .autocom-box li:hover {
-            background: #efefef;
-        }
 
-        .autocom-box2 li:hover {
-            background: #efefef;
-        }
+
+    ::selection {
+        color: #fff;
+        background: #664AFF;
+    }
+
+    .wrapper {
+        max-width: 450px;
+        margin: 150px auto;
+    }
+
+    .wrapper .search-input {
+        background: #fff;
+        width: 100%;
+        border-radius: 5px;
+        position: relative;
+        box-shadow: 0px 1px 5px 3px rgba(0, 0, 0, 0.12);
+    }
+
+    .search-input input {
+        height: 55px;
+        width: 100%;
+        outline: none;
+        border: none;
+        border-radius: 5px;
+        padding: 0 60px 0 20px;
+        font-size: 18px;
+        box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .search-input.active input {
+        border-radius: 5px 5px 0 0;
+    }
+
+    .search-input .autocom-box {
+        padding: 0;
+        opacity: 0;
+        pointer-events: none;
+        max-height: 280px;
+        overflow-y: auto;
+    }
+
+    .autocom-box2 {
+        padding: 0;
+        opacity: 0;
+        pointer-events: none;
+        max-height: 280px;
+        overflow-y: auto;
+    }
+
+    .search-input.active .autocom-box {
+        padding: 10px 8px;
+        opacity: 1;
+        pointer-events: auto;
+    }
+
+    .active.autocom-box2 {
+        padding: 10px 8px;
+        opacity: 1;
+        pointer-events: auto;
+    }
+
+    .autocom-box li {
+        list-style: none;
+        padding: 8px 12px;
+        display: none;
+        width: 100%;
+        cursor: default;
+        border-radius: 3px;
+    }
+
+    .autocom-box2 li {
+        list-style: none;
+        padding: 8px 12px;
+        display: none;
+        width: 100%;
+        cursor: default;
+        border-radius: 3px;
+    }
+
+    .search-input.active .autocom-box li {
+        display: block;
+    }
+
+    .active.autocom-box2 li {
+        display: block;
+    }
+
+    .autocom-box li:hover {
+        background: #efefef;
+    }
+
+    .autocom-box2 li:hover {
+        background: #efefef;
+    }
 
     /* .search-input .icon {
         position: absolute;
@@ -396,359 +396,366 @@ if ($result2->num_rows > 0) {
     } */
 
     /*Login*/
-    .login-box {
-
-    }
+    .login-box {}
 
     .login-box h2 {
-      margin: 0 0 30px;
-      padding: 0;
-      color: #fff;
-      text-align: center;
-  }
+        margin: 0 0 30px;
+        padding: 0;
+        color: #fff;
+        text-align: center;
+    }
 
-  .login-box .user-box {
-      position: relative;
-  }
+    .login-box .user-box {
+        position: relative;
+    }
 
-  .login-box .user-box input {
-      width: 100%;
-      padding: 10px 0;
-      font-size: 16px;
-      color: #fff;
-      margin-bottom: 30px;
-      border: none;
-      border-bottom: 1px solid #fff;
-      outline: none;
-      background: transparent;
-  }
-  .login-box .user-box label {
-      position: absolute;
-      top:0;
-      left: 0;
-      padding: 10px 0;
-      font-size: 16px;
-      color: #fff;
-      pointer-events: none;
-      transition: .5s;
-  }
+    .login-box .user-box input {
+        width: 100%;
+        padding: 10px 0;
+        font-size: 16px;
+        color: #fff;
+        margin-bottom: 30px;
+        border: none;
+        border-bottom: 1px solid #fff;
+        outline: none;
+        background: transparent;
+    }
 
-  .login-box .user-box input:focus ~ label,
-  .login-box .user-box input:valid ~ label {
-      top: -20px;
-      left: 0;
-      color: #03e9f4;
-      font-size: 12px;
-  }
+    .login-box .user-box label {
+        position: absolute;
+        top: 0;
+        left: 0;
+        padding: 10px 0;
+        font-size: 16px;
+        color: #fff;
+        pointer-events: none;
+        transition: .5s;
+    }
 
-  .login-box a {
-      position: relative;
-      display: inline-block;
-      padding: 10px 20px;
-      color: #03e9f4;
-      font-size: 16px;
-      text-decoration: none;
-      text-transform: uppercase;
-      overflow: hidden;
-      transition: .5s;
-      margin-top: 40px;
-      letter-spacing: 4px;
+    .login-box .user-box input:focus~label,
+    .login-box .user-box input:valid~label {
+        top: -20px;
+        left: 0;
+        color: #03e9f4;
+        font-size: 12px;
+    }
 
-  }
+    .login-box a {
+        position: relative;
+        display: inline-block;
+        padding: 10px 20px;
+        color: #03e9f4;
+        font-size: 16px;
+        text-decoration: none;
+        text-transform: uppercase;
+        overflow: hidden;
+        transition: .5s;
+        margin-top: 40px;
+        letter-spacing: 4px;
 
-  .login-box a:hover {
-      background: #03e9f4;
-      color: #fff;
-      border-radius: 5px;
-      box-shadow: 0 0 5px #03e9f4,
-      0 0 25px #03e9f4,
-      0 0 50px #03e9f4,
-      0 0 100px #03e9f4;
-  }
+    }
 
-  .login-box a span {
-      position: absolute;
-      display: block;
-  }
+    .login-box a:hover {
+        background: #03e9f4;
+        color: #fff;
+        border-radius: 5px;
+        box-shadow: 0 0 5px #03e9f4,
+            0 0 25px #03e9f4,
+            0 0 50px #03e9f4,
+            0 0 100px #03e9f4;
+    }
 
-  .login-box a span:nth-child(1) {
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 2px;
-      background: linear-gradient(90deg, transparent, #03e9f4);
-      animation: btn-anim1 1s linear infinite;
-  }
+    .login-box a span {
+        position: absolute;
+        display: block;
+    }
 
-  @keyframes btn-anim1 {
-      0% {
+    .login-box a span:nth-child(1) {
+        top: 0;
         left: -100%;
+        width: 100%;
+        height: 2px;
+        background: linear-gradient(90deg, transparent, #03e9f4);
+        animation: btn-anim1 1s linear infinite;
     }
-    50%,100% {
-        left: 100%;
+
+    @keyframes btn-anim1 {
+        0% {
+            left: -100%;
+        }
+
+        50%,
+        100% {
+            left: 100%;
+        }
     }
-}
 
-.login-box a span:nth-child(2) {
-  top: -100%;
-  right: 0;
-  width: 2px;
-  height: 100%;
-  background: linear-gradient(180deg, transparent, #03e9f4);
-  animation: btn-anim2 1s linear infinite;
-  animation-delay: .25s
-}
+    .login-box a span:nth-child(2) {
+        top: -100%;
+        right: 0;
+        width: 2px;
+        height: 100%;
+        background: linear-gradient(180deg, transparent, #03e9f4);
+        animation: btn-anim2 1s linear infinite;
+        animation-delay: .25s
+    }
 
-@keyframes btn-anim2 {
-  0% {
-    top: -100%;
-}
-50%,100% {
-    top: 100%;
-}
-}
+    @keyframes btn-anim2 {
+        0% {
+            top: -100%;
+        }
 
-.login-box a span:nth-child(3) {
-  bottom: 0;
-  right: -100%;
-  width: 100%;
-  height: 2px;
-  background: linear-gradient(270deg, transparent, #03e9f4);
-  animation: btn-anim3 1s linear infinite;
-  animation-delay: .5s
-}
+        50%,
+        100% {
+            top: 100%;
+        }
+    }
 
-@keyframes btn-anim3 {
-  0% {
-    right: -100%;
-}
-50%,100% {
-    right: 100%;
-}
-}
+    .login-box a span:nth-child(3) {
+        bottom: 0;
+        right: -100%;
+        width: 100%;
+        height: 2px;
+        background: linear-gradient(270deg, transparent, #03e9f4);
+        animation: btn-anim3 1s linear infinite;
+        animation-delay: .5s
+    }
 
-.login-box a span:nth-child(4) {
-  bottom: -100%;
-  left: 0;
-  width: 2px;
-  height: 100%;
-  background: linear-gradient(360deg, transparent, #03e9f4);
-  animation: btn-anim4 1s linear infinite;
-  animation-delay: .75s
-}
+    @keyframes btn-anim3 {
+        0% {
+            right: -100%;
+        }
 
-@keyframes btn-anim4 {
-  0% {
-    bottom: -100%;
-}
-50%,100% {
-    bottom: 100%;
-}
-}
+        50%,
+        100% {
+            right: 100%;
+        }
+    }
+
+    .login-box a span:nth-child(4) {
+        bottom: -100%;
+        left: 0;
+        width: 2px;
+        height: 100%;
+        background: linear-gradient(360deg, transparent, #03e9f4);
+        animation: btn-anim4 1s linear infinite;
+        animation-delay: .75s
+    }
+
+    @keyframes btn-anim4 {
+        0% {
+            bottom: -100%;
+        }
+
+        50%,
+        100% {
+            bottom: 100%;
+        }
+    }
 
 
-/*button*/
-.button-82-pushable {
-  position: relative;
-  border: none;
-  background: transparent;
-  padding: 0;
-  cursor: pointer;
-  outline-offset: 4px;
-  transition: filter 250ms;
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
-}
+    /*button*/
+    .button-82-pushable {
+        position: relative;
+        border: none;
+        background: transparent;
+        padding: 0;
+        cursor: pointer;
+        outline-offset: 4px;
+        transition: filter 250ms;
+        user-select: none;
+        -webkit-user-select: none;
+        touch-action: manipulation;
+    }
 
-.button-82-shadow {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  border-radius: 12px;
-  background: hsl(0deg 0% 0% / 0.25);
-  will-change: transform;
-  transform: translateY(2px);
-  transition:
-  transform
-  600ms
-  cubic-bezier(.3, .7, .4, 1);
-}
+    .button-82-shadow {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border-radius: 12px;
+        background: hsl(0deg 0% 0% / 0.25);
+        will-change: transform;
+        transform: translateY(2px);
+        transition:
+            transform 600ms cubic-bezier(.3, .7, .4, 1);
+    }
 
-.button-82-edge {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  border-radius: 12px;
-  background: linear-gradient(
-    to left,
-    hsl(340deg 100% 16%) 0%,
-    hsl(340deg 100% 32%) 8%,
-    hsl(340deg 100% 32%) 92%,
-    hsl(340deg 100% 16%) 100%
-);
-}
+    .button-82-edge {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border-radius: 12px;
+        background: linear-gradient(to left,
+                hsl(340deg 100% 16%) 0%,
+                hsl(340deg 100% 32%) 8%,
+                hsl(340deg 100% 32%) 92%,
+                hsl(340deg 100% 16%) 100%);
+    }
 
-.button-82-front {
-  display: block;
-  position: relative;
-  padding: 12px 12px;
-  border-radius: 12px;
-  
-  color: white;
-  background: hsl(345deg 100% 47%);
-  will-change: transform;
-  transform: translateY(-4px);
-  transition:
-  transform
-  600ms
-  cubic-bezier(.3, .7, .4, 1);
-}
+    .button-82-front {
+        display: block;
+        position: relative;
+        padding: 12px 12px;
+        border-radius: 12px;
 
-@media (min-width: 768px) {
-  .button-82-front {
+        color: white;
+        background: hsl(345deg 100% 47%);
+        will-change: transform;
+        transform: translateY(-4px);
+        transition:
+            transform 600ms cubic-bezier(.3, .7, .4, 1);
+    }
 
-    padding: 12px 12px;
-}
-}
+    @media (min-width: 768px) {
+        .button-82-front {
 
-.button-82-pushable:hover {
-  filter: brightness(110%);
-  -webkit-filter: brightness(110%);
-}
+            padding: 12px 12px;
+        }
+    }
 
-.button-82-pushable:hover .button-82-front {
-  transform: translateY(-6px);
-  transition:
-  transform
-  250ms
-  cubic-bezier(.3, .7, .4, 1.5);
-}
+    .button-82-pushable:hover {
+        filter: brightness(110%);
+        -webkit-filter: brightness(110%);
+    }
 
-.button-82-pushable:active .button-82-front {
-  transform: translateY(-2px);
-  transition: transform 34ms;
-}
+    .button-82-pushable:hover .button-82-front {
+        transform: translateY(-6px);
+        transition:
+            transform 250ms cubic-bezier(.3, .7, .4, 1.5);
+    }
 
-.button-82-pushable:hover .button-82-shadow {
-  transform: translateY(4px);
-  transition:
-  transform
-  250ms
-  cubic-bezier(.3, .7, .4, 1.5);
-}
+    .button-82-pushable:active .button-82-front {
+        transform: translateY(-2px);
+        transition: transform 34ms;
+    }
 
-.button-82-pushable:active .button-82-shadow {
-  transform: translateY(1px);
-  transition: transform 34ms;
-}
+    .button-82-pushable:hover .button-82-shadow {
+        transform: translateY(4px);
+        transition:
+            transform 250ms cubic-bezier(.3, .7, .4, 1.5);
+    }
 
-.button-82-pushable:focus:not(:focus-visible) {
-  outline: none;
-}
+    .button-82-pushable:active .button-82-shadow {
+        transform: translateY(1px);
+        transition: transform 34ms;
+    }
+
+    .button-82-pushable:focus:not(:focus-visible) {
+        outline: none;
+    }
 
 
 
-.txt_field{
-    overflow-x: visible;
-    position: relative;
-    border-bottom: 2px solid #adadad;
-    margin: 30px 0;
-}
-.txt_field input{
-  width: 100%;
-  padding: 0 5px;
-  height: 40px;
-  font-size: 16px;
-  border: none;
-  background: none;
-  outline: none;
-  color: white;
-}
-.txt_field label{
-  position: absolute;
-  top: 50%;
-  left: 5px;
-  color: #adadad;
-  transform: translateY(-50%);
-  font-size: 16px;
-  pointer-events: none;
-  transition: .5s;
-}
-.txt_field span::before{
-  content: '';
-  position: absolute;
-  top: 40px;
-  left: 0;
-  width: 0%;
-  height: 2px;
-  background: #2691d9;
-  transition: .5s;
-}
-.txt_field input:focus ~ label,
-.txt_field input:valid ~ label{
-  top: -5px;
-  color: #2691d9;
-}
-.txt_field input:focus ~ span::before,
-.txt_field input:valid ~ span::before{
-  width: 100%;
-}
-.pass{
-  margin: -5px 0 20px 5px;
-  color: #a6a6a6;
-  cursor: pointer;
-}
-.pass:hover{
-  text-decoration: underline;
-}
-input[type="submit"]{
-  width: 100%;
-  height: 50px;
-  border: 1px solid;
-  background: #2691d9;
-  border-radius: 25px;
-  font-size: 18px;
-  color: #e9f4fb;
-  font-weight: 700;
-  cursor: pointer;
-  outline: none;
-}
-input[type="submit"]:hover{
-  border-color: #2691d9;
-  transition: .5s;
+    .txt_field {
+        overflow-x: visible;
+        position: relative;
+        border-bottom: 2px solid #adadad;
+        margin: 30px 0;
+    }
 
-}
-.signup_link{
-  margin: 30px 0;
-  text-align: center;
-  font-size: 16px;
-  color: #666666;
-}
-.signup_link a{
-  color: #2691d9;
-  text-decoration: none;
-}
-.signup_link a:hover{
-  text-decoration: underline;
-}
+    .txt_field input {
+        width: 100%;
+        padding: 0 5px;
+        height: 40px;
+        font-size: 16px;
+        border: none;
+        background: none;
+        outline: none;
+        color: white;
+    }
 
-.lal {
-  background-color: indigo;
-  color: white;
-  padding: 0.5rem;
-  font-family: sans-serif;
-  border-radius: 0.3rem;
-  cursor: pointer;
-  margin-top: 1rem;
-}
+    .txt_field label {
+        position: absolute;
+        top: 50%;
+        left: 5px;
+        color: #adadad;
+        transform: translateY(-50%);
+        font-size: 16px;
+        pointer-events: none;
+        transition: .5s;
+    }
 
+    .txt_field span::before {
+        content: '';
+        position: absolute;
+        top: 40px;
+        left: 0;
+        width: 0%;
+        height: 2px;
+        background: #2691d9;
+        transition: .5s;
+    }
 
-</style>
+    .txt_field input:focus~label,
+    .txt_field input:valid~label {
+        top: -5px;
+        color: #2691d9;
+    }
+
+    .txt_field input:focus~span::before,
+    .txt_field input:valid~span::before {
+        width: 100%;
+    }
+
+    .pass {
+        margin: -5px 0 20px 5px;
+        color: #a6a6a6;
+        cursor: pointer;
+    }
+
+    .pass:hover {
+        text-decoration: underline;
+    }
+
+    input[type="submit"] {
+        width: 100%;
+        height: 50px;
+        border: 1px solid;
+        background: #2691d9;
+        border-radius: 25px;
+        font-size: 18px;
+        color: #e9f4fb;
+        font-weight: 700;
+        cursor: pointer;
+        outline: none;
+    }
+
+    input[type="submit"]:hover {
+        border-color: #2691d9;
+        transition: .5s;
+
+    }
+
+    .signup_link {
+        margin: 30px 0;
+        text-align: center;
+        font-size: 16px;
+        color: #666666;
+    }
+
+    .signup_link a {
+        color: #2691d9;
+        text-decoration: none;
+    }
+
+    .signup_link a:hover {
+        text-decoration: underline;
+    }
+
+    .lal {
+        background-color: indigo;
+        color: white;
+        padding: 0.5rem;
+        font-family: sans-serif;
+        border-radius: 0.3rem;
+        cursor: pointer;
+        margin-top: 1rem;
+    }
+    </style>
 </head>
 
 <body>
@@ -756,8 +763,8 @@ input[type="submit"]:hover{
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container-fluid">
                 <a class="navbar-brand" href="Home.php"><img src="assets\logo.png" alt="" width="30" height="24"
-                    class="d-inline-block align-text-top">Twister</a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                        class="d-inline-block align-text-top">Twister</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -776,69 +783,75 @@ input[type="submit"]:hover{
                                 </div>
                                 <div id="cariID" class="col-lg-2 col-1">
                                     <div class="icon d-flex"
-                                    style="align-items: center; justify-content: center; height: 55px;">
-                                    <i class="fas fa-search"></i>
+                                        style="align-items: center; justify-content: center; height: 55px;">
+                                        <i class="fas fa-search"></i>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="autocom-box d-block d-lg-none">
+                            <div class="autocom-box d-block d-lg-none">
+
+                            </div>
 
                         </div>
 
-                    </div>
-
-                </ul>
-                <ul class="navbar-nav d-flex">
-                    <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="Home.php"><i class="fas fa-home"></i></a>
-                    </li>
-                    <li class="nav-item">
-                        <a id="notifliat" type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop3"
-                        class="nav-link" href="#"><i class="fa-regular fa-bookmark"></i>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="myprofile.php"><i class="fas fa-user-circle"></i></a>
-                    </li>
-                    <?php if ($_SESSION['role'] == '1') { ?>
+                    </ul>
+                    <ul class="navbar-nav d-flex">
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href="explore.php"><i class="fas fa-home"></i></a>
+                        </li>
+                        <li class="nav-item">
+                            <a id="notifliat" type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop3"
+                                class="nav-link" href="#"><i class="fas fa-heart"></i></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="myprofile.php"><i class="fas fa-user-circle"></i></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="orders.php"><i class="far fa-clipboard"></i></a>
+                        </li>
+                        <?php if ($_SESSION['role'] == '1') { ?>
                         <li class="nav-item">
                             <a style="color: #4A4A4B; text-decoration: none;"
-                            class="btn btn-primary text-white mx-lg-1 mt-1 mt-lg-0" href="admin.php">Admin</a>
+                                class="btn btn-primary text-white mx-lg-1 mt-1 mt-lg-0" href="admin.php">Admin</a>
                         </li>
-                    <?php } ?>
-                    <li class="nav-item">
-                        <button id="logout" class="btn bg-danger text-white mx-lg-1 mt-1 mt-lg-0">Logout</button>
-                    </li>
+                        <?php } ?>
+                        <li class="nav-item">
+                            <a class="nav-link" href="chat.php"><i class="fas fa-comment"></i></a>
+                        </li>
+                        <li class="nav-item">
+                            <button id="logout" class="btn bg-danger text-white mx-lg-1 mt-1 mt-lg-0">Logout</button>
+                        </li>
 
-                </ul>
+                    </ul>
 
+                </div>
             </div>
+        </nav>
+        <div class="autocom-box2 d-lg-block d-none text-center">
+
         </div>
-    </nav>
-    <div class="autocom-box2 d-lg-block d-none text-center">
-
     </div>
-</div>
 
 
 
 
-<div class="row main" align="center">
-    <div class="col-12">
-        <div class="row">
-            <div class="col-2"></div>
-            <div class="col-md-3 col-12">
-                <img class="profileimg" src="<?php echo $profileImg?>" alt="">
-            </div>
-            <div class="col-md-5 col-12">
-                <div class="row">
-                    <div class="col-md-7 col-9">
-                        <b>
-                            <p class="main_heading" align="left"><?php echo $nama?></p>
-                        </b>
-                        <p class="main_heading" align="left"><?php echo $profile?></p>
-                        <p class="main_heading" align="left"><i><?php echo $bio?></i></p>
-                    </div>
-                    <?php
+    <div class="row main" align="center">
+        <div class="col-12">
+            <div class="row">
+                <div class="col-2"></div>
+                <div class="col-md-3 col-12">
+                    <img class="profileimg" src="<?php echo $profileImg?>" alt="">
+                </div>
+                <div class="col-md-5 col-12">
+                    <div class="row">
+                        <div class="col-md-7 col-9">
+                            <b>
+                                <p class="main_heading" align="left"><?php echo $nama?></p>
+                            </b>
+                            <p class="main_heading" align="left"><?php echo $profile?></p>
+                            <p class="main_heading" align="left"><i><?php echo $bio?></i></p>
+                        </div>
+                        <?php
                     if ($role == 0){
                         echo 
                         '<div class="col-3">
@@ -847,36 +860,61 @@ input[type="submit"]:hover{
                     }
                     ?>
 
-                </div>
-                <div class="col-2"></div>
-                <div class="row">
-                    <div class="col-3 col-md-3 special_justify">
-                        <br>
-                        <p class="main_heading" align="left"><?php echo $countpost?> post</p>
-                        <br>
-                        <p id="req" data-bs-toggle="modal" data-bs-target="#modalReq" align="left" style="cursor:pointer; text-decoration:underline;">Request Order</p>
                     </div>
-                    <div class="col-5 col-md-4 special_justify">
-                        <br>
-                        <p style="cursor:pointer" id="bykfollowing" class="main_heading" align="left">
-                            <?php echo $following?> following</p>
+                    <div class="col-2"></div>
+                    <div class="row">
+                        <div class="col-3 col-md-3 special_justify">
+                            <br>
+                            <p class="main_heading" align="left"><?php echo $countpost?> post</p>
+                            <br>
+                            <p id="req" data-bs-toggle="modal" data-bs-target="#modalReq" align="left"
+                                style="cursor:pointer; text-decoration:underline;">Request Order</p>
+                        </div>
+                        <div class="col-5 col-md-4 special_justify">
+                            <br>
+                            <p style="cursor:pointer" id="bykfollowing" class="main_heading" align="left">
+                                <?php echo $following?> following</p>
                         </div>
                         <div class="col-4 col-md-4 special_justify">
                             <br>
                             <p style="cursor:pointer" id="bykfollower" class="main_heading" align="left">
                                 <?php echo $followers?> followers</p>
 
-                            </div>
                         </div>
-
                     </div>
-                </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <?php
+                             $sql = "SELECT * FROM user_data WHERE email='$profile'";
+                             $result = mysqli_query($con, $sql);
+                             if ($result->num_rows > 0) {
+                                 $row = mysqli_fetch_assoc($result);
+                                 $nama = $row['name'];
+                                 $id = $row['id'];
+                                 $profileImg = $row['profileImg'];
+                                 $bio = $row['bio'];
+                             } else{
+                                 /*header('Location: home.php');*/
+                                 
+                             }
+                             echo "<div onclick='createRoom(".$id.")' style='cursor: pointer;' class='border'>
 
+                             <i class='fas fa-comment-dots'></i>
+                             chat
+                         </div>"
+                             ?>
+
+                        </div>
+                    </div>
+
+                </div>
             </div>
 
-            <div class="col-12">
-                <div class="row" style="justify-content: center;" id="tampilan">
-                    <?php
+        </div>
+
+        <div class="col-12">
+            <div class="row" style="justify-content: center;" id="tampilan">
+                <?php
 
                     $email = $_SESSION['email'];
                     $post = "SELECT text_post.id as idPost, total_like,text_content, image, date(date_uploaded) as date_only, name FROM text_post JOIN user_data  ON user_data.id = text_post.id_user WHERE email= '$profile' ORDER BY date_uploaded DESC ";
@@ -1001,136 +1039,142 @@ input[type="submit"]:hover{
 
 
 
-                </div>
             </div>
-
-
         </div>
 
 
+    </div>
 
-        <div class="modal fade" id="modalReq" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+
+
+    <div class="modal fade" id="modalReq" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
         aria-labelledby="staticBackdrop3Label" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
-          <div class="modal-content" style=" background: rgba(0,0,0,.7); backdrop-filter: blur(20px); 
+            <div class="modal-content" style=" background: rgba(0,0,0,.7); backdrop-filter: blur(20px); 
           box-shadow: 0 15px 25px rgba(0,0,0,.6);
           border-radius: 10px; padding: 10px; ">
 
-          <div class="modal-body" style="">
+                <div class="modal-body" style="">
 
 
-            <div class="container login-box">
+                    <div class="container login-box">
 
-             <button type="button" style="float:right;" id="closeRe" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-             <h2>Request Order</h2>
-
-
-
-             <div class="txt_field">
-                <input id="namaIn" type="text" required>
-              <span></span>
-              <label>Nama</label>
-          </div>
-          <div class="txt_field">
-              <input id="alamat"  type="text" required>
-              <span></span>
-              <label>Alamat</label>
-          </div>
-          <div class="txt_field">
-              <input id="jenis" type="text" required>
-              <span></span>
-              <label>Jenis Pakaian</label>
-          </div>
-          <div class="image input" id="imageinput">
-            <img class="outputimg" align="center" id="outputImage">
-        </div>
-        <div>
-          <input type="file" onchange="previewImg(this);" id="uploadimg" name="uploadimg"
-          style="display:none;">
-          <span></span>
-          <label for="uploadimg" class="lal">Input Before Picture</label>
-      </div>
-
-      <div class="image input" id="imageinput">
-        <img class="outputimg" align="center" id="outputImage2">
-    </div>
-    <div>
+                        <button type="button" style="float:right;" id="closeRe" class="btn-close btn-close-white"
+                            data-bs-dismiss="modal" aria-label="Close"></button>
+                        <h2>Request Order</h2>
 
 
 
-       <div>
-          <input type="file" onchange="previewImg2(this);" id="uploadimg2" name="uploadimg2"
-          style="display:none;">
-          <span></span>
-          <label for="uploadimg2" class="lal">Input After Picture</label>
-      </div>
+                        <div class="txt_field">
+                            <input id="namaIn" type="text" required>
+                            <span></span>
+                            <label>Nama</label>
+                        </div>
+                        <div class="txt_field">
+                            <input id="alamat" type="text" required>
+                            <span></span>
+                            <label>Alamat</label>
+                        </div>
+                        <div class="txt_field">
+                            <input id="jenis" type="text" required>
+                            <span></span>
+                            <label>Jenis Pakaian</label>
+                        </div>
+                        <div class="image input" id="imageinput">
+                            <img class="outputimg" align="center" id="outputImage">
+                        </div>
+                        <div>
+                            <input type="file" onchange="previewImg(this);" id="uploadimg" name="uploadimg"
+                                style="display:none;">
+                            <span></span>
+                            <label for="uploadimg" class="lal">Input Before Picture</label>
+                        </div>
 
-
-      <div class="row">
-          <div class="col-4"></div>
-          <div class="col-4">
-            <button id="request" style="width: 100%; height:100%; overflow-y: hidden;" class="button-82-pushable" role="button">
-              <span class="button-82-shadow"></span>
-              <span class="button-82-edge"></span>
-              <span class="button-82-front text">
-                  Order
-              </span>
-          </button>
-      </div>
-      <div class="col-4"></div>
-  </div>
-
-
-</div>
-</div>
-
-</div>
-</div>
-</div>
-
-<div class="modal fade" id="staticBackdrop3" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-aria-labelledby="staticBackdrop3Label" aria-hidden="true">
-<div class="modal-dialog modal-dialog-centered">
-
-    <div class="modal-content">
-        <div class="modal-header">
-            <h5 class="modal-title" id="staticBackdropLabel">Notification</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div id="notifbody" class="modal-body">
+                        <div class="image input" id="imageinput">
+                            <img class="outputimg" align="center" id="outputImage2">
+                        </div>
+                        <div>
 
 
 
+
+       
+
+                            <div>
+                                <input type="file" onchange="previewImg2(this);" id="uploadimg2" name="uploadimg2"
+                                    style="display:none;">
+                                <span></span>
+                                <label for="uploadimg2" class="lal">Input After Picture</label>
+                            </div>
+
+
+
+                            <div class="row">
+                                <div class="col-4"></div>
+                                <div class="col-4">
+                                    <button id="request" style="width: 100%; height:100%; overflow-y: hidden;"
+                                        class="button-82-pushable" role="button">
+                                        <span class="button-82-shadow"></span>
+                                        <span class="button-82-edge"></span>
+                                        <span class="button-82-front text">
+                                            Order
+                                        </span>
+                                    </button>
+                                </div>
+                                <div class="col-4"></div>
+                            </div>
+
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
         </div>
 
+        <div class="modal fade" id="staticBackdrop3" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+            aria-labelledby="staticBackdrop3Label" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
 
-    </div>
-</div>
-</div>
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="staticBackdropLabel">Notification</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div id="notifbody" class="modal-body">
 
 
 
+                    </div>
 
-<div class="modal fade" id="staticBackdrop4" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-aria-labelledby="staticBackdrop4Label" aria-hidden="true">
-<div class="modal-dialog modal-dialog-centered">
 
-    <div class="modal-content">
-        <div class="modal-header">
-            <h5 class="modal-title" id="staticBackdropLabel">Following</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div id="bodyfollowing" class="modal-body">
-
+                </div>
+            </div>
         </div>
 
 
-    </div>
-</div>
-</div>
 
 
-    <!-- <div class="modal fade" id="staticBackdrop4" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdrop4Label" aria-hidden="true">
+        <div class="modal fade" id="staticBackdrop4" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+            aria-labelledby="staticBackdrop4Label" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="staticBackdropLabel">Following</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div id="bodyfollowing" class="modal-body">
+
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+
+
+        <!-- <div class="modal fade" id="staticBackdrop4" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdrop4Label" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
          
     <div class="modal-content">
@@ -1152,193 +1196,195 @@ aria-labelledby="staticBackdrop4Label" aria-hidden="true">
 
 </html>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
+    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
 </script>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
 </script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://use.fontawesome.com/releases/v5.15.1/js/all.js" crossorigin="anonymous"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+    integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 <script>
-    var position;
+var position;
 
 
-    $(document).ready(function() {
-        $("#logout").click(function() {
-            $.ajax({
-                url: "../api/logout.php",
-                type: "POST",
-                data: {
-                    logout: 1
-                },
-                success: function(data) {
-                    window.location.href = "login.php";
-                }
-            });
-        });
-    });
-
-    function previewImgDelete(input) {
-
-        $("#outputImage").hide();
-
-    }
-
-    function previewImg(input) {
-        $("#outputImage").show();
-        var file = $("#uploadimg").get(0).files[0];
-        if (file) {
-            var reader = new FileReader();
-
-            reader.onload = function() {
-                $("#outputImage").attr("src", reader.result);
+$(document).ready(function() {
+    $("#logout").click(function() {
+        $.ajax({
+            url: "../api/logout.php",
+            type: "POST",
+            data: {
+                logout: 1
+            },
+            success: function(data) {
+                window.location.href = "login.php";
             }
+        });
+    });
+});
 
-            reader.readAsDataURL(file);
+function previewImgDelete(input) {
+
+    $("#outputImage").hide();
+
+}
+
+function previewImg(input) {
+    $("#outputImage").show();
+    var file = $("#uploadimg").get(0).files[0];
+    if (file) {
+        var reader = new FileReader();
+
+        reader.onload = function() {
+            $("#outputImage").attr("src", reader.result);
         }
+
+        reader.readAsDataURL(file);
+    }
+}
+
+
+
+function previewImgDelete2(input) {
+
+    $("#outputImage2").hide();
+
+}
+
+function previewImg2(input) {
+    $("#outputImage2").show();
+    var file = $("#uploadimg2").get(0).files[0];
+    if (file) {
+        var reader = new FileReader();
+
+        reader.onload = function() {
+            $("#outputImage2").attr("src", reader.result);
+        }
+
+        reader.readAsDataURL(file);
+    }
+}
+
+$(document).ready(function() {
+    var follow = <?php echo $follow ?>;
+
+    if (follow == 1) {
+        $('#follow').css('background-color', 'pink');
+        $('#follow').html('Follow <i class="fas fa-check"></i>');
+
     }
 
 
+});
 
-    function previewImgDelete2(input) {
 
-        $("#outputImage2").hide();
+$(document).on("click", "#follow", function() {
 
-    }
+    var id = <?php echo $id ?>;
 
-    function previewImg2(input) {
-        $("#outputImage2").show();
-        var file = $("#uploadimg2").get(0).files[0];
-        if (file) {
-            var reader = new FileReader();
+    $.ajax({
+        url: "../api/follow.php",
+        type: "POST",
+        cache: false,
+        data: {
+            id,
+            id
+        },
+        success: function(dataResult) {
+            dataResult = dataResult.split("-");
+            if (dataResult[0] == "1") {
+                $('#bykfollower').html(dataResult[1] + " followers");
+                $('#bykfollowing').html(dataResult[2] + " following");
+                $('#follow').css('background-color', 'black');
+                $('#follow').html('Follow');
 
-            reader.onload = function() {
-                $("#outputImage2").attr("src", reader.result);
+            } else if (dataResult[0] == "2") {
+                $('#bykfollower').html(dataResult[1] + " followers");
+                $('#bykfollowing').html(dataResult[2] + " following");
+                $('#follow').css('background-color', 'pink');
+                $('#follow').html('Follow <i class="fas fa-check"></i>');
             }
-
-            reader.readAsDataURL(file);
-        }
-    }
-
-    $(document).ready(function() {
-        var follow = <?php echo $follow ?>;
-
-        if (follow == 1) {
-            $('#follow').css('background-color', 'pink');
-            $('#follow').html('Follow <i class="fas fa-check"></i>');
-
-        }
-
-
+        },
     });
 
+});
 
-    $(document).on("click", "#follow", function() {
 
-        var id = <?php echo $id ?>;
+$(document).on("click", "#notifliat", function() {
 
-        $.ajax({
-            url: "../api/follow.php",
-            type: "POST",
-            cache: false,
-            data: {
-                id,
-                id
-            },
-            success: function(dataResult) {
-                dataResult = dataResult.split("-");
-                if (dataResult[0] == "1") {
-                    $('#bykfollower').html(dataResult[1] + " followers");
-                    $('#bykfollowing').html(dataResult[2] + " following");
-                    $('#follow').css('background-color', 'black');
-                    $('#follow').html('Follow');
+    var id = <?php echo $iduser ?>;
+    var code = 0;
 
-                } else if (dataResult[0] == "2") {
-                    $('#bykfollower').html(dataResult[1] + " followers");
-                    $('#bykfollowing').html(dataResult[2] + " following");
-                    $('#follow').css('background-color', 'pink');
-                    $('#follow').html('Follow <i class="fas fa-check"></i>');
-                }
-            },
-        });
+    $.ajax({
+        url: "ajax/lihatnotif.php",
+        type: "POST",
+        cache: false,
+        data: {
+            id,
+            id
+        },
+        success: function(dataResult) {
+            $('#notifbody').html(dataResult);
+            $('#staticBackdrop3').modal('show');
 
+        },
     });
 
+});
 
-    $(document).on("click", "#notifliat", function() {
 
-        var id = <?php echo $iduser ?>;
-        var code = 0;
+$(document).on("click", "#bykfollowing", function() {
 
-        $.ajax({
-            url: "ajax/lihatnotif.php",
-            type: "POST",
-            cache: false,
-            data: {
-                id,
-                id
-            },
-            success: function(dataResult) {
-                $('#notifbody').html(dataResult);
-                $('#staticBackdrop3').modal('show');
+    var id = <?php echo $id ?>;
+    var code = 0;
 
-            },
-        });
+    $.ajax({
+        url: "../api/cekfollow.php",
+        type: "POST",
+        cache: false,
+        data: {
+            id,
+            id,
+            code: code
+        },
+        success: function(dataResult) {
+            $('#bodyfollowing').html(dataResult);
+            $('#staticBackdrop4').modal('show');
 
+        },
     });
 
+});
 
-    $(document).on("click", "#bykfollowing", function() {
 
-        var id = <?php echo $id ?>;
-        var code = 0;
 
-        $.ajax({
-            url: "../api/cekfollow.php",
-            type: "POST",
-            cache: false,
-            data: {
-                id,
-                id,
-                code: code
-            },
-            success: function(dataResult) {
-                $('#bodyfollowing').html(dataResult);
-                $('#staticBackdrop4').modal('show');
+$(document).on("click", "#bykfollower", function() {
 
-            },
-        });
+    var id = <?php echo $id ?>;
+    var code = 1;
 
+    $.ajax({
+        url: "../api/cekfollow.php",
+        type: "POST",
+        cache: false,
+        data: {
+            id,
+            id,
+            code: code
+        },
+        success: function(dataResult) {
+            $('#bodyfollowing').html(dataResult);
+            $('#staticBackdrop4').modal('show');
+
+        },
     });
 
+});
 
-
-    $(document).on("click", "#bykfollower", function() {
-
-        var id = <?php echo $id ?>;
-        var code = 1;
-
-        $.ajax({
-            url: "../api/cekfollow.php",
-            type: "POST",
-            cache: false,
-            data: {
-                id,
-                id,
-                code: code
-            },
-            success: function(dataResult) {
-                $('#bodyfollowing').html(dataResult);
-                $('#staticBackdrop4').modal('show');
-
-            },
-        });
-
-    });
-
-    $("#request").on("click", function() {
+$("#request").on("click", function() {
     var formData = new FormData();
     var name = $('#namaIn').val();
     var alamat = $('#alamat').val();
@@ -1352,43 +1398,49 @@ integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRk
     formData.append("alamat", alamat);
     formData.append("jenis", jenis);
 
-            $.ajax({
-            url: "ajax/request.php",
-            type: "POST",
-            data: formData,
-            contentType: false,
-            processData: false,
-            success: function(data) {
+    $.ajax({
+        url: "ajax/request.php",
+        type: "POST",
+        data: formData,
+        contentType: false,
+        processData: false,
+        success: function(data) {
             alert(data);
-              
-                if (data == "failed") {
-                    swal.fire({
-                        title: "Error",
-                        text: "Error",
-                        icon: "error",
-                        confirmButtonText: "OK"
-                    });
-                } else if (data == "success") {
-                    swal.fire({
-                        title: "Success",
-                        text: "Success",
-                        icon: "success",
-                        confirmButtonText: "OK"
-                    })
-                    $('#namaIn').val('');
-                    $('#alamat').val('');
-                    $('#jenis').val('');
-                    $("#closeRe").click();
-                    
-                    previewImgDelete();
-                    previewImgDelete2();
-                }
+
+            if (data == "failed") {
+                swal.fire({
+                    title: "Error",
+                    text: "Error",
+                    icon: "error",
+                    confirmButtonText: "OK"
+                });
+            } else if (data == "success") {
+                swal.fire({
+                    title: "Success",
+                    text: "Success",
+                    icon: "success",
+                    confirmButtonText: "OK"
+                })
+                $('#namaIn').val('');
+                $('#alamat').val('');
+                $('#jenis').val('');
+                $("#closeRe").click();
+
+                previewImgDelete();
+                previewImgDelete2();
             }
-        });
+        }
+    });
+
+
+
+
+    /*    location.reload();*/
 
 
 
 });
+
 
 
 
@@ -1401,13 +1453,25 @@ integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRk
     let linkTag = searchWrapper.querySelector("a");
     let webLink;
 
-    let suggestions = <?php echo json_encode($arr); ?>;
 
 
 
 
 
-    inputBox.onkeyup = (e) => {
+
+
+
+
+
+
+
+let suggestions = <?php echo json_encode($arr); ?>;
+
+
+
+
+
+inputBox.onkeyup = (e) => {
     let userData = e.target.value; //user enetered data
     let emptyArray = [];
     if (userData) {
@@ -1416,7 +1480,7 @@ integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRk
             var email = $('#searchID').val();
 
             $.ajax({
-                url: "findprofile.php",
+                url: "ajax/findprofile.php",
                 type: "POST",
                 cache: false,
                 data: {
@@ -1463,7 +1527,7 @@ function select(element) {
         var email = $('#searchID').val();
 
         $.ajax({
-            url: "../api/findprofile.php",
+            url: "ajax/findprofile.php",
             type: "POST",
             cache: false,
             data: {
@@ -1479,6 +1543,19 @@ function select(element) {
     searchWrapper.classList.remove("active");
     suggBox2.classList.remove("active");
 
+}
+
+function createRoom(id_user) {
+    $.ajax({
+        url: 'api/createRoom.php',
+        type: 'POST',
+        data: {
+            id_user2: id_user
+        },
+        success: function(data) {
+            window.location.href = "chat.php?id_room=" + data;
+        }
+    });
 }
 
 function showSuggestions(list) {
@@ -1500,7 +1577,7 @@ $(document).on("click", "#cariID", function() {
     var email = $('#searchID').val();
 
     $.ajax({
-        url: "../api/findprofile.php",
+        url: "ajax/findprofile.php",
         type: "POST",
         cache: false,
         data: {
@@ -1531,11 +1608,13 @@ $(document).on("click", ".maulike", function() {
             dataResult = dataResult.split("-");
 
             if (dataResult[0] == "1") {
-                $('#' + idnya).removeClass('fa-solid fa-bookmark').addClass('fa-regular fa-bookmark');
+                $('#' + idnya).removeClass('fa-solid fa-bookmark').addClass(
+                    'fa-regular fa-bookmark');
                 $('#likenih-' + id).html(' ' + dataResult[1] + ' Saved');
 
             } else if (dataResult[0] == "2") {
-                $('#' + idnya).removeClass('fa-regular fa-bookmark').addClass('fa-solid fa-bookmark');
+                $('#' + idnya).removeClass('fa-regular fa-bookmark').addClass(
+                    'fa-solid fa-bookmark');
                 $('#likenih-' + id).html(' ' + dataResult[1] + ' Saved');
             }
         },
