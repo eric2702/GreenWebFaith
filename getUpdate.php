@@ -5,8 +5,7 @@
 	$alamat = $_POST['alamat'];
 	$namabank = $_POST['namabank'];
 	$rekening = $_POST['rekening'];
-	$role = 2;
-	
+
 	$quser = "SELECT * FROM user_data";
 	$stmt = mysqli_query($con, $quser);
 
@@ -17,13 +16,11 @@
 			$id = $row['id'];
 			break;
 		}
-		
 	}
 
-	$sql = "INSERT INTO designer(idUser, phoneNumber, designerAddress, bankName, bankAccount) VALUES ('$id', '$nohp', '$alamat', '$namabank', '$rekening')";
-	$sql2 = "UPDATE user_data SET role= $role WHERE id=$id";
+	$sql = "UPDATE designer SET phoneNumber='$nohp', designerAddress='$alamat', bankName='$namabank', bankAccount='$rekening' WHERE idUser=$id;";
 
-	if (mysqli_query($con, $sql2) == TRUE && mysqli_query($con, $sql) == TRUE) {
+	if (mysqli_query($con, $sql) == TRUE) {
 		echo 1;
 	} 
 	else {
