@@ -103,7 +103,7 @@ while ($res= mysqli_fetch_assoc($result5)){
         padding: 0;
         box-sizing: border-box;
         font-family: 'Poppins', sans-serif;
-        overflow-x: auto;
+        /* overflow-x: auto; */
     }
 
     nav {
@@ -378,229 +378,231 @@ while ($res= mysqli_fetch_assoc($result5)){
 
 
     .tab {
-  overflow: hidden;
-  border: 1px solid #ccc;
-  background-color: #f1f1f1;
-}
+        overflow: hidden;
+        border: 1px solid #ccc;
+        background-color: #f1f1f1;
+    }
 
-/* Style the buttons inside the tab */
-.tab button {
-  background-color: inherit;
-  float: left;
-  border: none;
-  outline: none;
-  cursor: pointer;
-  padding: 14px 16px;
-  transition: 0.3s;
-  font-size: 17px;
-}
+    /* Style the buttons inside the tab */
+    .tab button {
+        background-color: inherit;
+        float: left;
+        border: none;
+        outline: none;
+        cursor: pointer;
+        padding: 14px 16px;
+        transition: 0.3s;
+        font-size: 17px;
+    }
 
-/* Change background color of buttons on hover */
-.tab button:hover {
-  background-color: #ddd;
-}
+    /* Change background color of buttons on hover */
+    .tab button:hover {
+        background-color: #ddd;
+    }
 
-/* Create an active/current tablink class */
-.tab button.active {
-  background-color: #ccc;
-}
+    /* Create an active/current tablink class */
+    .tab button.active {
+        background-color: #ccc;
+    }
 
-/* Style the tab content */
-.tabcontent {
-  display: none;
-  padding: 6px 12px;
-  border: 1px solid #ccc;
-  border-top: none;
-}
+    /* Style the tab content */
+    .tabcontent {
+        display: none;
+        padding: 6px 12px;
+        border: 1px solid #ccc;
+        border-top: none;
+    }
 
-.button-82-pushable {
-  position: relative;
-  border: none;
-  background: transparent;
-  padding: 0;
-  cursor: pointer;
-  outline-offset: 4px;
-  transition: filter 250ms;
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
-}
+    .button-82-pushable {
+        position: relative;
+        border: none;
+        background: transparent;
+        padding: 0;
+        cursor: pointer;
+        outline-offset: 4px;
+        transition: filter 250ms;
+        user-select: none;
+        -webkit-user-select: none;
+        touch-action: manipulation;
+    }
 
-.button-82-shadow {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  border-radius: 12px;
-  background: hsl(0deg 0% 0% / 0.25);
-  will-change: transform;
-  transform: translateY(2px);
-  transition:
-  transform
-  600ms
-  cubic-bezier(.3, .7, .4, 1);
-}
+    .button-82-shadow {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border-radius: 12px;
+        background: hsl(0deg 0% 0% / 0.25);
+        will-change: transform;
+        transform: translateY(2px);
+        transition:
+            transform 600ms cubic-bezier(.3, .7, .4, 1);
+    }
 
-.button-82-edge {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  border-radius: 12px;
-  background: linear-gradient(
-    to left,
-    hsl(340deg 100% 16%) 0%,
-    hsl(340deg 100% 32%) 8%,
-    hsl(340deg 100% 32%) 92%,
-    hsl(340deg 100% 16%) 100%
-);
-}
+    .button-82-edge {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border-radius: 12px;
+        background: linear-gradient(to left,
+                hsl(340deg 100% 16%) 0%,
+                hsl(340deg 100% 32%) 8%,
+                hsl(340deg 100% 32%) 92%,
+                hsl(340deg 100% 16%) 100%);
+    }
 
-.button-82-front {
-  display: block;
-  position: relative;
-  padding: 12px 12px;
-  border-radius: 12px;
-  
-  color: white;
-  background: hsl(345deg 100% 47%);
-  will-change: transform;
-  transform: translateY(-4px);
-  transition:
-  transform
-  600ms
-  cubic-bezier(.3, .7, .4, 1);
-}
+    .button-82-front {
+        display: block;
+        position: relative;
+        padding: 12px 12px;
+        border-radius: 12px;
 
-@media (min-width: 768px) {
-  .button-82-front {
+        color: white;
+        background: hsl(345deg 100% 47%);
+        will-change: transform;
+        transform: translateY(-4px);
+        transition:
+            transform 600ms cubic-bezier(.3, .7, .4, 1);
+    }
 
-    padding: 12px 12px;
-}
-}
+    @media (min-width: 768px) {
+        .button-82-front {
 
-.button-82-pushable:hover {
-  filter: brightness(110%);
-  -webkit-filter: brightness(110%);
-}
+            padding: 12px 12px;
+        }
+    }
 
-.button-82-pushable:hover .button-82-front {
-  transform: translateY(-6px);
-  transition:
-  transform
-  250ms
-  cubic-bezier(.3, .7, .4, 1.5);
-}
+    .button-82-pushable:hover {
+        filter: brightness(110%);
+        -webkit-filter: brightness(110%);
+    }
 
-.button-82-pushable:active .button-82-front {
-  transform: translateY(-2px);
-  transition: transform 34ms;
-}
+    .button-82-pushable:hover .button-82-front {
+        transform: translateY(-6px);
+        transition:
+            transform 250ms cubic-bezier(.3, .7, .4, 1.5);
+    }
 
-.button-82-pushable:hover .button-82-shadow {
-  transform: translateY(4px);
-  transition:
-  transform
-  250ms
-  cubic-bezier(.3, .7, .4, 1.5);
-}
+    .button-82-pushable:active .button-82-front {
+        transform: translateY(-2px);
+        transition: transform 34ms;
+    }
 
-.button-82-pushable:active .button-82-shadow {
-  transform: translateY(1px);
-  transition: transform 34ms;
-}
+    .button-82-pushable:hover .button-82-shadow {
+        transform: translateY(4px);
+        transition:
+            transform 250ms cubic-bezier(.3, .7, .4, 1.5);
+    }
 
-.button-82-pushable:focus:not(:focus-visible) {
-  outline: none;
-}
+    .button-82-pushable:active .button-82-shadow {
+        transform: translateY(1px);
+        transition: transform 34ms;
+    }
+
+    .button-82-pushable:focus:not(:focus-visible) {
+        outline: none;
+    }
 
 
 
-.txt_field{
-    overflow-x: visible;
-    position: relative;
-    border-bottom: 2px solid #adadad;
-    margin: 30px 0;
-}
-.txt_field input{
-  width: 100%;
-  padding: 0 5px;
-  height: 40px;
-  font-size: 16px;
-  border: none;
-  background: none;
-  outline: none;
-  color: white;
-}
-.txt_field label{
-  position: absolute;
-  top: 50%;
-  left: 5px;
-  color: #adadad;
-  transform: translateY(-50%);
-  font-size: 16px;
-  pointer-events: none;
-  transition: .5s;
-}
-.txt_field span::before{
-  content: '';
-  position: absolute;
-  top: 40px;
-  left: 0;
-  width: 0%;
-  height: 2px;
-  background: #2691d9;
-  transition: .5s;
-}
-.txt_field input:focus ~ label,
-.txt_field input:valid ~ label{
-  top: -5px;
-  color: #2691d9;
-}
-.txt_field input:focus ~ span::before,
-.txt_field input:valid ~ span::before{
-  width: 100%;
-}
-.pass{
-  margin: -5px 0 20px 5px;
-  color: #a6a6a6;
-  cursor: pointer;
-}
-.pass:hover{
-  text-decoration: underline;
-}
-input[type="submit"]{
-  width: 100%;
-  height: 50px;
-  border: 1px solid;
-  background: #2691d9;
-  border-radius: 25px;
-  font-size: 18px;
-  color: #e9f4fb;
-  font-weight: 700;
-  cursor: pointer;
-  outline: none;
-}
-input[type="submit"]:hover{
-  border-color: #2691d9;
-  transition: .5s;
+    .txt_field {
+        overflow-x: visible;
+        position: relative;
+        border-bottom: 2px solid #adadad;
+        margin: 30px 0;
+    }
 
-}
-.signup_link{
-  margin: 30px 0;
-  text-align: center;
-  font-size: 16px;
-  color: #666666;
-}
-.signup_link a{
-  color: #2691d9;
-  text-decoration: none;
-}
-.signup_link a:hover{
-  text-decoration: underline;
-}
+    .txt_field input {
+        width: 100%;
+        padding: 0 5px;
+        height: 40px;
+        font-size: 16px;
+        border: none;
+        background: none;
+        outline: none;
+        color: white;
+    }
+
+    .txt_field label {
+        position: absolute;
+        top: 50%;
+        left: 5px;
+        color: #adadad;
+        transform: translateY(-50%);
+        font-size: 16px;
+        pointer-events: none;
+        transition: .5s;
+    }
+
+    .txt_field span::before {
+        content: '';
+        position: absolute;
+        top: 40px;
+        left: 0;
+        width: 0%;
+        height: 2px;
+        background: #2691d9;
+        transition: .5s;
+    }
+
+    .txt_field input:focus~label,
+    .txt_field input:valid~label {
+        top: -5px;
+        color: #2691d9;
+    }
+
+    .txt_field input:focus~span::before,
+    .txt_field input:valid~span::before {
+        width: 100%;
+    }
+
+    .pass {
+        margin: -5px 0 20px 5px;
+        color: #a6a6a6;
+        cursor: pointer;
+    }
+
+    .pass:hover {
+        text-decoration: underline;
+    }
+
+    input[type="submit"] {
+        width: 100%;
+        height: 50px;
+        border: 1px solid;
+        background: #2691d9;
+        border-radius: 25px;
+        font-size: 18px;
+        color: #e9f4fb;
+        font-weight: 700;
+        cursor: pointer;
+        outline: none;
+    }
+
+    input[type="submit"]:hover {
+        border-color: #2691d9;
+        transition: .5s;
+
+    }
+
+    .signup_link {
+        margin: 30px 0;
+        text-align: center;
+        font-size: 16px;
+        color: #666666;
+    }
+
+    .signup_link a {
+        color: #2691d9;
+        text-decoration: none;
+    }
+
+    .signup_link a:hover {
+        text-decoration: underline;
+    }
 
     .category {
         overflow: hidden;
@@ -687,139 +689,140 @@ input[type="submit"]:hover{
     </div>
 
 
+    <div class="container">
+        <div class="row" style="">
 
-    <div class="row">
-       
-        <div class="col-1"></div>
-        <div class="col-10" align="center">
-        <br> <br>   
-        <div class="tab">
-  <button class="tablinks" onclick="openCategory(event, 'Requested Orders')" id="defaultOpen">Requested Orders</button>
-  <button class="tablinks" onclick="openCategory(event, 'Accept Orders')">Accept Orders</button>
-  <button class="tablinks" onclick="openCategory(event, 'Ongoing Orders')">Ongoing Orders</button>
-  <button class="tablinks" onclick="openCategory(event, 'Completed Orders')">Completed Orders</button>
-  <button class="tablinks" onclick="openCategory(event, 'Cancel Orders')">Cancel Orders</button>
-  <button class="tablinks" onclick="openCategory(event, 'Rejected Orders')">Rejected Orders</button>
-</div>
+            <div class="col-12" align="center">
+                <br> <br>
+                <div class="tab">
+                    <button class="tablinks" onclick="openCategory(event, 'Requested Orders')"
+                        id="defaultOpen">Requested
+                        Orders</button>
+                    <button class="tablinks" onclick="openCategory(event, 'Accept Orders')">Accept Orders</button>
+                    <button class="tablinks" onclick="openCategory(event, 'Ongoing Orders')">Ongoing Orders</button>
+                    <button class="tablinks" onclick="openCategory(event, 'Completed Orders')">Completed Orders</button>
+                    <button class="tablinks" onclick="openCategory(event, 'Cancel Orders')">Cancel Orders</button>
+                    <button class="tablinks" onclick="openCategory(event, 'Rejected Orders')">Rejected Orders</button>
+                </div>
 
-<div id="Requested Orders" class="tabcontent">
- 
-  <div class="container text-center mb-5">
-    <br>    
-  <h3>Requested Orders</h3>
-        <div class="table_wrapper mt-5">
-            <table class="text-center" id="tableReq">
-                <thead>    
-                    <tr>
-                        <th>No.</th>
-                        <th>Tanggal Order</th>
-                        <th>username</th>
-                        <th>Name</th>
-                        <th>Alamat</th>
-                        <th>Jenis Baju</th>
-                        <th>Before Clothes</th>
-                        <th>After Clothes</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>    
-                <tbody id="daftarReq" >
+                <div id="Requested Orders" class="tabcontent">
 
-                </tbody>
-            </table>
-        </div>
-    </div>
-</div>
+                    <div class="container text-center mb-5">
+                        <br>
+                        <h3>Requested Orders</h3>
+                        <div class="table_wrapper mt-5" style="overflow-x:auto;">
+                            <table class="text-center" id="tableReq">
+                                <thead>
+                                    <tr>
+                                        <th>No.</th>
+                                        <th>Tanggal Order</th>
+                                        <th>username</th>
+                                        <th>Name</th>
+                                        <th>Alamat</th>
+                                        <th>Jenis Baju</th>
+                                        <th>Before Clothes</th>
+                                        <th>After Clothes</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="daftarReq">
 
-<div id="Accept Orders" class="tabcontent">
-<div class="container text-center mb-5">
-    <br>    
-  <h3>Accepted Orders</h3>
-        <div class="table_wrapper mt-5">
-            <table class="text-center" id="tableAcc">
-                <thead>    
-                    <tr>
-                        <th>No.</th>
-                        <th>Tanggal Order</th>
-                        <th>username</th>
-                        <th>Name</th>
-                        <th>Alamat</th>
-                        <th>Jenis Baju</th>
-                        <th>Before Clothes</th>
-                        <th>After Clothes</th>
-                        <th>Status</th>
-                    </tr>
-                </thead>    
-                <tbody id="daftarAcc" >
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
 
-                </tbody>
-            </table>
-        </div>
-    </div>
-</div>
+                <div id="Accept Orders" class="tabcontent">
+                    <div class="container text-center mb-5">
+                        <br>
+                        <h3>Accepted Orders</h3>
+                        <div class="table_wrapper mt-5" style="overflow-x: auto;">
+                            <table class="text-center" id="tableAcc">
+                                <thead>
+                                    <tr>
+                                        <th>No.</th>
+                                        <th>Tanggal Order</th>
+                                        <th>username</th>
+                                        <th>Name</th>
+                                        <th>Alamat</th>
+                                        <th>Jenis Baju</th>
+                                        <th>Before Clothes</th>
+                                        <th>After Clothes</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="daftarAcc">
 
-<div id="Ongoing Orders" class="tabcontent">
-  <h3>Ongoing Orders</h3>
-  <p>Ongoing Orders is the capital of Japan.</p>
-</div>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
 
-<div id="Completed Orders" class="tabcontent">
-<div class="container text-center mb-5">
-    <br>    
-  <h3>Completed Orders</h3>
-        <div class="table_wrapper mt-5">
-            <table class="text-center" id="tableComp">
-                <thead>    
-                    <tr>
-                        <th>No.</th>
-                        <th>Tanggal Order</th>
-                        <th>username</th>
-                        <th>Name</th>
-                        <th>Alamat</th>
-                        <th>Jenis Baju</th>
-                        <th>Before Clothes</th>
-                        <th>After Clothes</th>
-                       
-                    </tr>
-                </thead>    
-                <tbody id="daftarCom" >
+                <div id="Ongoing Orders" class="tabcontent">
+                    <h3>Ongoing Orders</h3>
+                    <p>Ongoing Orders is the capital of Japan.</p>
+                </div>
 
-                </tbody>
-            </table>
-        </div>
-    </div>
-</div>
+                <div id="Completed Orders" class="tabcontent">
+                    <div class="container text-center mb-5">
+                        <br>
+                        <h3>Completed Orders</h3>
+                        <div class="table_wrapper mt-5" style="overflow-x: auto;">
+                            <table class="text-center" id="tableComp">
+                                <thead>
+                                    <tr>
+                                        <th>No.</th>
+                                        <th>Tanggal Order</th>
+                                        <th>username</th>
+                                        <th>Name</th>
+                                        <th>Alamat</th>
+                                        <th>Jenis Baju</th>
+                                        <th>Before Clothes</th>
+                                        <th>After Clothes</th>
 
-<div id="Cancel Orders" class="tabcontent">
-  <h3>Accept Orders</h3>
-  <p>Accept Orders is the capital of France.</p> 
-</div>
+                                    </tr>
+                                </thead>
+                                <tbody id="daftarCom">
 
-<div id="Rejected Orders" class="tabcontent">
-<div class="container text-center mb-5">
-    <br>    
-  <h3>Rejected Orders</h3>
-        <div class="table_wrapper mt-5">
-            <table class="text-center" id="tableReject">
-                <thead>    
-                    <tr>
-                        <th>No.</th>
-                        <th>Tanggal Order</th>
-                        <th>username</th>
-                        <th>Name</th>
-                        <th>Alamat</th>
-                        <th>Jenis Baju</th>
-                        <th>Before Clothes</th>
-                        <th>After Clothes</th>
-                        
-                    </tr>
-                </thead>    
-                <tbody id="daftarRejected" >
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
 
-                </tbody>
-            </table>
-        </div>
-    </div>
-</div>
+                <div id="Cancel Orders" class="tabcontent">
+                    <h3>Accept Orders</h3>
+                    <p>Accept Orders is the capital of France.</p>
+                </div>
+
+                <div id="Rejected Orders" class="tabcontent">
+                    <div class="container text-center mb-5">
+                        <br>
+                        <h3>Rejected Orders</h3>
+                        <div class="table_wrapper mt-5" style="overflow-x: auto;">
+                            <table class="text-center" id="tableReject">
+                                <thead>
+                                    <tr>
+                                        <th>No.</th>
+                                        <th>Tanggal Order</th>
+                                        <th>username</th>
+                                        <th>Name</th>
+                                        <th>Alamat</th>
+                                        <th>Jenis Baju</th>
+                                        <th>Before Clothes</th>
+                                        <th>After Clothes</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody id="daftarRejected">
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
 
 
                 <p class="category" style=" display: inline;" href="">Request Orders</p>
@@ -828,81 +831,87 @@ input[type="submit"]:hover{
             </div>
 
         </div>
-
-
     </div>
+
+
+
+
 
 
 
     <div class="modal fade" id="modalAfter" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered modal-lg">
-    <div class="modal-content">
-      
-      <div class="modal-body">
-      <button type="button" class="btn-close" style="float:right" data-bs-dismiss="modal" aria-label="Close"></button>
-      <img style="width: 100%; height:auto;" id="imgAf" src="" alt="">
-      </div>
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
 
+                <div class="modal-body">
+                    <button type="button" class="btn-close" style="float:right" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                    <img style="width: 100%; height:auto;" id="imgAf" src="" alt="">
+                </div>
+
+            </div>
+        </div>
     </div>
-  </div>
-</div>
-    
 
-<div class="modal fade" id="modalBefore" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered modal-lg">
-    <div class="modal-content">
-     
-      <div class="modal-body">
-      <button type="button" class="btn-close" style="float:right" data-bs-dismiss="modal" aria-label="Close"></button>
-      <img style="width: 100%; height:auto;" id="imgBef" src="" alt="">
-      </div>
-     
+
+    <div class="modal fade" id="modalBefore" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+
+                <div class="modal-body">
+                    <button type="button" class="btn-close" style="float:right" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                    <img style="width: 100%; height:auto;" id="imgBef" src="" alt="">
+                </div>
+
+            </div>
+        </div>
     </div>
-  </div>
-</div>
 
 
-<div class="modal fade" id="modalAccept" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content" style=" background: rgba(0,0,0,.7); backdrop-filter: blur(20px); 
+    <div class="modal fade" id="modalAccept" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content" style=" background: rgba(0,0,0,.7); backdrop-filter: blur(20px); 
           box-shadow: 0 15px 25px rgba(0,0,0,.6);
           border-radius: 10px; padding: 10px; ">
-     
-      <div class="modal-body">
-      <div class="container login-box">
 
-             <button type="button" style="float:right;" id="closeAcc" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-             <h2 style="color:white; text-align:center;">Accept Order</h2>
-             <div class="txt_field">
-                <input id="lama" type="text" required>
-              <span></span>
-              <label>Long (days)</label>
+                <div class="modal-body">
+                    <div class="container login-box">
+
+                        <button type="button" style="float:right;" id="closeAcc" class="btn-close btn-close-white"
+                            data-bs-dismiss="modal" aria-label="Close"></button>
+                        <h2 style="color:white; text-align:center;">Accept Order</h2>
+                        <div class="txt_field">
+                            <input id="lama" type="text" required>
+                            <span></span>
+                            <label>Long (days)</label>
+                        </div>
+                        <div class="txt_field">
+                            <input id="biaya" type="text" required>
+                            <span></span>
+                            <label>Cost</label>
+                        </div>
+                        <div class="row">
+                            <div class="col-4"></div>
+                            <div class="col-4">
+                                <button id="acc" style="width: 100%; height:100%; overflow-y: hidden;"
+                                    class="button-82-pushable" role="button">
+                                    <span class="button-82-shadow"></span>
+                                    <span class="button-82-edge"></span>
+                                    <span class="button-82-front text">
+                                        Accept
+                                    </span>
+                                </button>
+                            </div>
+                            <div class="col-4"></div>
+                        </div>
+
+                    </div>
+                </div>
+
             </div>
-            <div class="txt_field">
-                <input id="biaya" type="text" required>
-              <span></span>
-              <label>Cost</label>
-            </div>
-            <div class="row">
-          <div class="col-4"></div>
-          <div class="col-4">
-            <button id="acc" style="width: 100%; height:100%; overflow-y: hidden;" class="button-82-pushable" role="button">
-              <span class="button-82-shadow"></span>
-              <span class="button-82-edge"></span>
-              <span class="button-82-front text">
-                  Accept
-              </span>
-          </button>
-      </div>
-      <div class="col-4"></div>
-  </div>
-        
         </div>
-      </div>
-     
     </div>
-  </div>
-</div>
 
 
 </body>
@@ -919,26 +928,28 @@ input[type="submit"]:hover{
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://use.fontawesome.com/releases/v5.15.1/js/all.js" crossorigin="anonymous"></script>
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <!-- Data Table -->
-  <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+    integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+<!-- Data Table -->
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
 
 
 <script>
 var position;
 
 function openCategory(evt, cityName) {
-  var i, tabcontent, tablinks;
-  tabcontent = document.getElementsByClassName("tabcontent");
-  for (i = 0; i < tabcontent.length; i++) {
-    tabcontent[i].style.display = "none";
-  }
-  tablinks = document.getElementsByClassName("tablinks");
-  for (i = 0; i < tablinks.length; i++) {
-    tablinks[i].className = tablinks[i].className.replace(" active", "");
-  }
-  document.getElementById(cityName).style.display = "block";
-  evt.currentTarget.className += " active";
+    var i, tabcontent, tablinks;
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+    }
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+    document.getElementById(cityName).style.display = "block";
+    evt.currentTarget.className += " active";
 }
 
 // Get the element with id="defaultOpen" and click on it
@@ -948,19 +959,20 @@ document.getElementById("defaultOpen").click();
 
 $(document).ready(function() {
     reset();
-    $('#tableReq').DataTable( {
-                "ordering": false
-    } );
+    $('#tableReq').DataTable({
+        "ordering": false,
 
-    $('#tableReject').DataTable( {
-                "ordering": false
-    } );
-    $('#tableComp').DataTable( {
-                "ordering": false
-    } );
-    $('#tableAcc').DataTable( {
-                "ordering": false
-    } );
+    });
+
+    $('#tableReject').DataTable({
+        "ordering": false
+    });
+    $('#tableComp').DataTable({
+        "ordering": false
+    });
+    $('#tableAcc').DataTable({
+        "ordering": false
+    });
 
     reqTable();
     comTable();
@@ -972,7 +984,7 @@ $(document).ready(function() {
 
 
 
-function reqTable(){
+function reqTable() {
     $.ajax({
         url: "ajax/getTable.php",
         type: "POST",
@@ -985,7 +997,8 @@ function reqTable(){
         },
     });
 }
-function accTable(){
+
+function accTable() {
     $.ajax({
         url: "ajax/getTableAcc.php",
         type: "POST",
@@ -998,7 +1011,8 @@ function accTable(){
         },
     });
 }
-function comTable(){
+
+function comTable() {
     $.ajax({
         url: "ajax/getTableCompleted.php",
         type: "POST",
@@ -1011,7 +1025,8 @@ function comTable(){
         },
     });
 }
-function rejTable(){
+
+function rejTable() {
     $.ajax({
         url: "ajax/getTableRejected.php",
         type: "POST",
@@ -1041,58 +1056,60 @@ $(document).ready(function() {
 });
 
 $(document).on("click", ".befores", function() {
-    
-    id=$(this).attr('id');
-    $("#imgBef").attr("src",id);
+
+    id = $(this).attr('id');
+    $("#imgBef").attr("src", id);
     $("#modalBefore").modal("show");
 });
 
 $(document).on("click", ".after", function() {
-    
-    id=$(this).attr('id');
-    $("#imgAf").attr("src",id);
+
+    id = $(this).attr('id');
+    $("#imgAf").attr("src", id);
     $("#modalAfter").modal("show");
 });
 var id;
 $(document).on("click", ".accdong", function() {
     id = $(this).parent().parent().attr('id');
-   
+
 });
 
 $(document).on("click", "#acc", function() {
-    
+
     var lama = $('#lama').val();
     var biaya = $('#biaya').val();
-    
-   
+
+
     $.ajax({
         url: "ajax/accOrder.php",
         type: "POST",
         cache: false,
         data: {
-            lama:lama, biaya:biaya, id:id
+            lama: lama,
+            biaya: biaya,
+            id: id
         },
         success: function(dataResult) {
             alert(dataResult);
             if (dataResult == "failed") {
-                    swal.fire({
-                        title: "Error",
-                        text: "Error",
-                        icon: "error",
-                        confirmButtonText: "OK"
-                    });
-                } else if (dataResult == "success") {
-                    swal.fire({
-                        title: "Success",
-                        text: "Success",
-                        icon: "success",
-                        confirmButtonText: "OK"
-                    })
-                    $('#lama').val('');
-                    $('#biaya').val('');
-                    $("#closeAcc").click();
-                    $("#action"+id).html('Accepted');
-                }
+                swal.fire({
+                    title: "Error",
+                    text: "Error",
+                    icon: "error",
+                    confirmButtonText: "OK"
+                });
+            } else if (dataResult == "success") {
+                swal.fire({
+                    title: "Success",
+                    text: "Success",
+                    icon: "success",
+                    confirmButtonText: "OK"
+                })
+                $('#lama').val('');
+                $('#biaya').val('');
+                $("#closeAcc").click();
+                $("#action" + id).html('Accepted');
+            }
         },
     });
 });
@@ -1100,47 +1117,47 @@ $(document).on("click", "#acc", function() {
 $(document).on("click", ".reject", function() {
     id = $(this).parent().parent().attr('id');
     Swal.fire({
-  title: 'Are you sure want to reject it?',
-  showCancelButton: true,
-  confirmButtonText: 'Save'
-}).then((result) => {
- 
-  if (result.isConfirmed) {
-    $.ajax({
-        url: "ajax/rejectOrder.php",
-        type: "POST",
-        cache: false,
-        data: {
-            id:id
-        },
-        success: function(dataResult) {
-            alert(dataResult);
-            if (dataResult == "failed") {
-                    swal.fire({
-                        title: "Error",
-                        text: "Error",
-                        icon: "error",
-                        confirmButtonText: "OK"
-                    });
-                } else if (dataResult == "success") {
-                    swal.fire({
-                        title: "Success",
-                        text: "Success",
-                        icon: "success",
-                        confirmButtonText: "OK"
-                    })
-                    $('#lama').val('');
-                    $('#biaya').val('');
-                    $("#closeAcc").click();
-                    $("#action"+id).html('Accepted');
-                }
-        },
-    });
+        title: 'Are you sure want to reject it?',
+        showCancelButton: true,
+        confirmButtonText: 'Save'
+    }).then((result) => {
+
+        if (result.isConfirmed) {
+            $.ajax({
+                url: "ajax/rejectOrder.php",
+                type: "POST",
+                cache: false,
+                data: {
+                    id: id
+                },
+                success: function(dataResult) {
+                    alert(dataResult);
+                    if (dataResult == "failed") {
+                        swal.fire({
+                            title: "Error",
+                            text: "Error",
+                            icon: "error",
+                            confirmButtonText: "OK"
+                        });
+                    } else if (dataResult == "success") {
+                        swal.fire({
+                            title: "Success",
+                            text: "Success",
+                            icon: "success",
+                            confirmButtonText: "OK"
+                        })
+                        $('#lama').val('');
+                        $('#biaya').val('');
+                        $("#closeAcc").click();
+                        $("#action" + id).html('Accepted');
+                    }
+                },
+            });
 
 
 
-  } 
-})
+        }
+    })
 });
 
 $("#savetext").on("click", function() {
