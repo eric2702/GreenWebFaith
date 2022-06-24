@@ -733,9 +733,11 @@ input[type="submit"]:hover{
                         <th>Name</th>
                         <th>Alamat</th>
                         <th>Jenis Baju</th>
+                        <th>Work Day</th>
+                        <th>Cost</th>
                         <th>Before Clothes</th>
                         <th>After Clothes</th>
-                        <th>Status</th>
+                        <th>Action</th>
                     </tr>
                 </thead>    
                 <tbody id="daftarAcc" >
@@ -857,15 +859,19 @@ input[type="submit"]:hover{
              <button type="button" style="float:right;" id="closeAcc" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
              <h2 style="color:white; text-align:center;">Accept Order</h2>
              <div class="txt_field">
-                <input id="lama" type="text" required>
+                <input id="telp" type="text" required>
               <span></span>
-              <label>Long (days)</label>
+              <label>No Telpon</label>
             </div>
-            <div class="txt_field">
-                <input id="biaya" type="text" required>
-              <span></span>
-              <label>Cost</label>
-            </div>
+            <div class="image input" id="imageinput">
+            <img class="outputimg" align="center" id="outputImage">
+        </div>
+        <div>
+          <input type="file" onchange="previewImg(this);" id="uploadimg" name="uploadimg"
+          style="display:none;">
+          <span></span>
+          <label for="uploadimg" class="lal">Input Before Picture</label>
+      </div>
             <div class="row">
           <div class="col-4"></div>
           <div class="col-4">
@@ -943,6 +949,7 @@ $(document).ready(function() {
                 "ordering": false
     } );
 
+
     reqTable();
     comTable();
     rejTable();
@@ -955,7 +962,7 @@ $(document).ready(function() {
 
 function reqTable(){
     $.ajax({
-        url: "ajax/getTable.php",
+        url: "ajax/getTableReqCus.php",
         type: "POST",
         cache: false,
         data: {
@@ -968,7 +975,7 @@ function reqTable(){
 }
 function accTable(){
     $.ajax({
-        url: "ajax/getTableAcc.php",
+        url: "ajax/getTableAccCus.php",
         type: "POST",
         cache: false,
         data: {
@@ -994,7 +1001,7 @@ function comTable(){
 }
 function rejTable(){
     $.ajax({
-        url: "ajax/getTableRejected.php",
+        url: "ajax/getTableRejectedCus.php",
         type: "POST",
         cache: false,
         data: {

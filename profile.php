@@ -1056,6 +1056,8 @@ input[type="submit"]:hover{
     </div>
     <div>
 
+
+
        <div>
           <input type="file" onchange="previewImg2(this);" id="uploadimg2" name="uploadimg2"
           style="display:none;">
@@ -1385,20 +1387,8 @@ integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRk
         });
 
 
-   
-/*    location.reload();*/
-
 
 });
-
-
-
-
-
-
-
-
-
 
 
 
