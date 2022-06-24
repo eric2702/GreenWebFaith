@@ -7,6 +7,7 @@ $result = mysqli_query($con, $sql);
 $row = mysqli_fetch_assoc($result);
 $profileImg = $row['profileImg'];
 $bio = $row['bio'];
+$email = $row['email'];
 ?>
 <html lang="en">
 
@@ -15,15 +16,27 @@ $bio = $row['bio'];
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Image Preview and Upload PHP</title>
-    <!-- Bootstrap CSS -->
-    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"> -->
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- JQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
+    </script>
+    <!-- AJAX -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.min.js"></script>
 
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- CSS -->
     <link rel="stylesheet" href="main.css">
     <script src="https://use.fontawesome.com/releases/v5.15.1/js/all.js" crossorigin="anonymous"></script>
     <link rel="icon" href="assets\logo.png" sizes="20">
+    <!-- SWEET ALERT -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+    
+</script>
 </head>
 
 <body>
@@ -87,7 +100,7 @@ $bio = $row['bio'];
           <label>Bank Account</label>
           <textarea id="bankacc" name="rekening" class="form-control" placeholder="Bank Account..."></textarea>
           <div class="form-group mt-3">
-                <button type="submit" name="req_dsgn" class="btn btn-primary btn-block">Submit</button>
+                <button type="submit" id="req_dsgn" class="btn btn-primary btn-block">Submit</button>
           </div>
         </div>
                     
@@ -99,9 +112,7 @@ $bio = $row['bio'];
 </body>
 
 </html>
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
-</script>
+
 <script>
 $(document).ready(function() {
     var bio = '<?php echo $bio ?>';
@@ -109,6 +120,46 @@ $(document).ready(function() {
     $("#isibio").val(bio);
 
 });
+
+$('#req_dsgn').on('click', function ()  { 
+      var email = '<?php echo $email; ?>';
+      var nohp =  $('#telpon').val();
+      var alamat = $('#address').val();
+      var namabank = $('#bankname').val();
+      var rekening = $('#bankacc').val();
+      $.ajax({
+			url: "getUpgrade.php",
+			type: "POST",
+			cache: false,
+			data:{
+				email: email,
+				nohp: nohp,
+                alamat: alamat,
+                namabank: namabank,
+                rekening: rekening
+			},
+			success: function(dataResult){
+                alert(dataResult);
+				if(dataResult == 1){
+          Swal.fire({
+            title: 'Success',
+            text: 'Data Telah Berhasil Diupdate!',
+            icon: 'success',
+            confirmButtonText: 'Ok'
+          });
+          $('#myModal').modal('hide');	
+				}
+        else{
+          Swal.fire({
+            title: 'Fail',
+            text: 'Data Gagal Diupdate!',
+            icon: 'error',
+            confirmButtonText: 'Ok'
+          });		
+        }
+			},
+		  })
+	}); 
 
 
 function triggerClick(e) {
