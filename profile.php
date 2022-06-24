@@ -1095,12 +1095,18 @@ if ($result2->num_rows > 0) {
                         </div>
                         <div>
 
+
+
+
+       
+
                             <div>
                                 <input type="file" onchange="previewImg2(this);" id="uploadimg2" name="uploadimg2"
                                     style="display:none;">
                                 <span></span>
                                 <label for="uploadimg2" class="lal">Input After Picture</label>
                             </div>
+
 
 
                             <div class="row">
@@ -1428,7 +1434,9 @@ $("#request").on("click", function() {
 
 
 
+
     /*    location.reload();*/
+
 
 
 });
@@ -1437,6 +1445,13 @@ $("#request").on("click", function() {
 
 
 
+    const searchWrapper = document.querySelector(".search-input");
+    const inputBox = searchWrapper.querySelector("input");
+    const suggBox = searchWrapper.querySelector(".autocom-box");
+    const suggBox2 = document.querySelector(".autocom-box2");
+    const icon = searchWrapper.querySelector(".icon");
+    let linkTag = searchWrapper.querySelector("a");
+    let webLink;
 
 
 
@@ -1445,13 +1460,10 @@ $("#request").on("click", function() {
 
 
 
-const searchWrapper = document.querySelector(".search-input");
-const inputBox = searchWrapper.querySelector("input");
-const suggBox = searchWrapper.querySelector(".autocom-box");
-const suggBox2 = document.querySelector(".autocom-box2");
-const icon = searchWrapper.querySelector(".icon");
-let linkTag = searchWrapper.querySelector("a");
-let webLink;
+
+
+
+
 
 let suggestions = <?php echo json_encode($arr); ?>;
 

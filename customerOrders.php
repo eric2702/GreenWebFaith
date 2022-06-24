@@ -82,14 +82,14 @@ while ($res= mysqli_fetch_assoc($result5)){
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
-
+    
     <link rel="icon" href="assets\logo.png" sizes="20">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
         integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 
-    <!-- SWEET ALERT -->
+         <!-- SWEET ALERT -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.min.js"></script>
 
@@ -376,7 +376,6 @@ while ($res= mysqli_fetch_assoc($result5)){
     } */
 
 
-
     .tab {
   overflow: hidden;
   border: 1px solid #ccc;
@@ -601,13 +600,6 @@ input[type="submit"]:hover{
 .signup_link a:hover{
   text-decoration: underline;
 }
-
-    .category {
-        overflow: hidden;
-        white-space: nowrap;
-    }
-
-
     @media screen and (max-width: 580px) {}
     </style>
 </head>
@@ -661,7 +653,7 @@ input[type="submit"]:hover{
                             <a class="nav-link" href="myprofile.php"><i class="fas fa-user-circle"></i></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="orders.php"><i class="far fa-clipboard"></i></a>
+                            <a class="nav-link" href="orders.php"><i class="fa-solid fa-clipboard-list"></i></a>
                         </li>
                         <?php if ($_SESSION['role'] == '1') { ?>
                         <li class="nav-item">
@@ -669,9 +661,6 @@ input[type="submit"]:hover{
                                 class="btn btn-primary text-white mx-lg-1 mt-1 mt-lg-0" href="admin.php">Admin</a>
                         </li>
                         <?php } ?>
-                        <li class="nav-item">
-                            <a class="nav-link" href="chat.php"><i class="fas fa-comment"></i></a>
-                        </li>
                         <li class="nav-item">
                             <button id="logout" class="btn bg-danger text-white mx-lg-1 mt-1 mt-lg-0">Logout</button>
                         </li>
@@ -744,9 +733,11 @@ input[type="submit"]:hover{
                         <th>Name</th>
                         <th>Alamat</th>
                         <th>Jenis Baju</th>
+                        <th>Work Day</th>
+                        <th>Cost</th>
                         <th>Before Clothes</th>
                         <th>After Clothes</th>
-                        <th>Status</th>
+                        <th>Action</th>
                     </tr>
                 </thead>    
                 <tbody id="daftarAcc" >
@@ -821,17 +812,11 @@ input[type="submit"]:hover{
     </div>
 </div>
 
-
-                <p class="category" style=" display: inline;" href="">Request Orders</p>
-                <p class="category" href="">Request Orders</p>
-                <p class="category" href="">Request Orders</p>
-            </div>
-
         </div>
 
 
     </div>
-
+   
 
 
     <div class="modal fade" id="modalAfter" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -874,15 +859,19 @@ input[type="submit"]:hover{
              <button type="button" style="float:right;" id="closeAcc" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
              <h2 style="color:white; text-align:center;">Accept Order</h2>
              <div class="txt_field">
-                <input id="lama" type="text" required>
+                <input id="telp" type="text" required>
               <span></span>
-              <label>Long (days)</label>
+              <label>No Telpon</label>
             </div>
-            <div class="txt_field">
-                <input id="biaya" type="text" required>
-              <span></span>
-              <label>Cost</label>
-            </div>
+            <div class="image input" id="imageinput">
+            <img class="outputimg" align="center" id="outputImage">
+        </div>
+        <div>
+          <input type="file" onchange="previewImg(this);" id="uploadimg" name="uploadimg"
+          style="display:none;">
+          <span></span>
+          <label for="uploadimg" class="lal">Input Before Picture</label>
+      </div>
             <div class="row">
           <div class="col-4"></div>
           <div class="col-4">
@@ -918,11 +907,9 @@ input[type="submit"]:hover{
 <!-- AJAX -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://use.fontawesome.com/releases/v5.15.1/js/all.js" crossorigin="anonymous"></script>
-
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <!-- Data Table -->
   <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
-
 
 <script>
 var position;
@@ -962,6 +949,7 @@ $(document).ready(function() {
                 "ordering": false
     } );
 
+
     reqTable();
     comTable();
     rejTable();
@@ -974,7 +962,7 @@ $(document).ready(function() {
 
 function reqTable(){
     $.ajax({
-        url: "ajax/getTable.php",
+        url: "ajax/getTableReqCus.php",
         type: "POST",
         cache: false,
         data: {
@@ -987,7 +975,7 @@ function reqTable(){
 }
 function accTable(){
     $.ajax({
-        url: "ajax/getTableAcc.php",
+        url: "ajax/getTableAccCus.php",
         type: "POST",
         cache: false,
         data: {
@@ -1013,7 +1001,7 @@ function comTable(){
 }
 function rejTable(){
     $.ajax({
-        url: "ajax/getTableRejected.php",
+        url: "ajax/getTableRejectedCus.php",
         type: "POST",
         cache: false,
         data: {
@@ -1151,41 +1139,41 @@ $("#savetext").on("click", function() {
     formData.append("file", image);
     formData.append("text", posting);
 
-    $.ajax({
-        url: "ajax/create.php",
-        type: "POST",
-        data: formData,
-        contentType: false,
-        processData: false,
-        success: function(data) {
+            $.ajax({
+            url: "ajax/create.php",
+            type: "POST",
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: function(data) {
             alert(data);
-
-            if (data == "failed") {
-                swal.fire({
-                    title: "Error",
-                    text: "Error",
-                    icon: "error",
-                    confirmButtonText: "OK"
-                });
-            } else if (data == "success") {
-                swal.fire({
-                    title: "Success",
-                    text: "Success",
-                    icon: "success",
-                    confirmButtonText: "OK"
-                })
-                $('#inputPost').val('');
-                $('#uploadimg').val('');
-                $("#closee").click();
-                reset();
-                previewImgDelete();
+              
+                if (data == "failed") {
+                    swal.fire({
+                        title: "Error",
+                        text: "Error",
+                        icon: "error",
+                        confirmButtonText: "OK"
+                    });
+                } else if (data == "success") {
+                    swal.fire({
+                        title: "Success",
+                        text: "Success",
+                        icon: "success",
+                        confirmButtonText: "OK"
+                    })
+                    $('#inputPost').val('');
+                    $('#uploadimg').val('');
+                    $("#closee").click();
+                    reset();
+                    previewImgDelete();
+                }
             }
-        }
-    });
+        });
 
 
-
-    /*    location.reload();*/
+   
+/*    location.reload();*/
 
 
 });
@@ -1209,9 +1197,9 @@ function reset() {
 
 
 function previewImgDelete(input) {
-
-    $("#outputImage").hide();
-
+    
+            $("#outputImage").hide();
+       
 }
 
 function previewImg(input) {
@@ -1247,44 +1235,44 @@ $(document).on("click", ".trash", function() {
     idnya = $(this).attr('id');
     num = idnya.split("-");
     id = num[1];
-    Swal.fire({
-        title: 'Are you sure want to delete this portofolio?',
-        showCancelButton: true,
-        confirmButtonText: 'Yes'
-    }).then((result) => {
-        /* Read more about isConfirmed, isDenied below */
-        if (result.isConfirmed) {
-            $.ajax({
-                url: "ajax/delete.php",
-                type: "POST",
-                cache: false,
-                data: {
-                    id: id
-                },
-                success: function(dataResult) {
+Swal.fire({
+  title: 'Are you sure want to delete this portofolio?',
+  showCancelButton: true,
+  confirmButtonText: 'Yes'
+}).then((result) => {
+  /* Read more about isConfirmed, isDenied below */
+  if (result.isConfirmed) {
+        $.ajax({
+        url: "ajax/delete.php",
+        type: "POST",
+        cache: false,
+        data: {
+            id: id
+        },
+        success: function(dataResult) {
 
-                    if (dataResult == 1) {
-                        swal.fire({
-                            title: "Error",
-                            text: "Error",
-                            icon: "error",
-                            confirmButtonText: "OK"
-                        });
-                    } else if (dataResult == "success") {
-                        swal.fire({
-                            title: "Success",
-                            text: "Success",
-                            icon: "success",
-                            confirmButtonText: "OK"
-                        })
+                            if (dataResult == 1) {
+                    swal.fire({
+                        title: "Error",
+                        text: "Error",
+                        icon: "error",
+                        confirmButtonText: "OK"
+                    });
+                } else if (dataResult == "success") {
+                    swal.fire({
+                        title: "Success",
+                        text: "Success",
+                        icon: "success",
+                        confirmButtonText: "OK"
+                    })
+                   
+                    reset();
+                }
+        },
+    });
 
-                        reset();
-                    }
-                },
-            });
-
-        }
-    })
+  } 
+})
 
 
 });
