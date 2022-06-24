@@ -82,14 +82,14 @@ while ($res= mysqli_fetch_assoc($result5)){
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
-    
+
     <link rel="icon" href="assets\logo.png" sizes="20">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
         integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 
-         <!-- SWEET ALERT -->
+    <!-- SWEET ALERT -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.min.js"></script>
 
@@ -374,7 +374,11 @@ while ($res= mysqli_fetch_assoc($result5)){
     } */
 
 
-    .category {overflow: hidden; white-space: nowrap;}
+    .category {
+        overflow: hidden;
+        white-space: nowrap;
+    }
+
     @media screen and (max-width: 580px) {}
     </style>
 </head>
@@ -428,7 +432,7 @@ while ($res= mysqli_fetch_assoc($result5)){
                             <a class="nav-link" href="myprofile.php"><i class="fas fa-user-circle"></i></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="orders.php"><i class="fa-solid fa-clipboard-list"></i></a>
+                            <a class="nav-link" href="orders.php"><i class="far fa-clipboard"></i></a>
                         </li>
                         <?php if ($_SESSION['role'] == '1') { ?>
                         <li class="nav-item">
@@ -436,6 +440,9 @@ while ($res= mysqli_fetch_assoc($result5)){
                                 class="btn btn-primary text-white mx-lg-1 mt-1 mt-lg-0" href="admin.php">Admin</a>
                         </li>
                         <?php } ?>
+                        <li class="nav-item">
+                            <a class="nav-link" href="chat.php"><i class="fas fa-comment"></i></a>
+                        </li>
                         <li class="nav-item">
                             <button id="logout" class="btn bg-danger text-white mx-lg-1 mt-1 mt-lg-0">Logout</button>
                         </li>
@@ -458,13 +465,13 @@ while ($res= mysqli_fetch_assoc($result5)){
 
                 <p class="category" style=" display: inline;" href="">Request Orders</p>
                 <p class="category" href="">Request Orders</p>
-                <p class="category"href="">Request Orders</p>
+                <p class="category" href="">Request Orders</p>
             </div>
         </div>
 
 
     </div>
-   
+
 
 
 
@@ -482,7 +489,9 @@ while ($res= mysqli_fetch_assoc($result5)){
 <!-- AJAX -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://use.fontawesome.com/releases/v5.15.1/js/all.js" crossorigin="anonymous"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+    integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 <script>
 var position;
@@ -523,41 +532,41 @@ $("#savetext").on("click", function() {
     formData.append("file", image);
     formData.append("text", posting);
 
-            $.ajax({
-            url: "ajax/create.php",
-            type: "POST",
-            data: formData,
-            contentType: false,
-            processData: false,
-            success: function(data) {
+    $.ajax({
+        url: "ajax/create.php",
+        type: "POST",
+        data: formData,
+        contentType: false,
+        processData: false,
+        success: function(data) {
             alert(data);
-              
-                if (data == "failed") {
-                    swal.fire({
-                        title: "Error",
-                        text: "Error",
-                        icon: "error",
-                        confirmButtonText: "OK"
-                    });
-                } else if (data == "success") {
-                    swal.fire({
-                        title: "Success",
-                        text: "Success",
-                        icon: "success",
-                        confirmButtonText: "OK"
-                    })
-                    $('#inputPost').val('');
-                    $('#uploadimg').val('');
-                    $("#closee").click();
-                    reset();
-                    previewImgDelete();
-                }
+
+            if (data == "failed") {
+                swal.fire({
+                    title: "Error",
+                    text: "Error",
+                    icon: "error",
+                    confirmButtonText: "OK"
+                });
+            } else if (data == "success") {
+                swal.fire({
+                    title: "Success",
+                    text: "Success",
+                    icon: "success",
+                    confirmButtonText: "OK"
+                })
+                $('#inputPost').val('');
+                $('#uploadimg').val('');
+                $("#closee").click();
+                reset();
+                previewImgDelete();
             }
-        });
+        }
+    });
 
 
-   
-/*    location.reload();*/
+
+    /*    location.reload();*/
 
 
 });
@@ -581,9 +590,9 @@ function reset() {
 
 
 function previewImgDelete(input) {
-    
-            $("#outputImage").hide();
-       
+
+    $("#outputImage").hide();
+
 }
 
 function previewImg(input) {
@@ -619,44 +628,44 @@ $(document).on("click", ".trash", function() {
     idnya = $(this).attr('id');
     num = idnya.split("-");
     id = num[1];
-Swal.fire({
-  title: 'Are you sure want to delete this portofolio?',
-  showCancelButton: true,
-  confirmButtonText: 'Yes'
-}).then((result) => {
-  /* Read more about isConfirmed, isDenied below */
-  if (result.isConfirmed) {
-        $.ajax({
-        url: "ajax/delete.php",
-        type: "POST",
-        cache: false,
-        data: {
-            id: id
-        },
-        success: function(dataResult) {
+    Swal.fire({
+        title: 'Are you sure want to delete this portofolio?',
+        showCancelButton: true,
+        confirmButtonText: 'Yes'
+    }).then((result) => {
+        /* Read more about isConfirmed, isDenied below */
+        if (result.isConfirmed) {
+            $.ajax({
+                url: "ajax/delete.php",
+                type: "POST",
+                cache: false,
+                data: {
+                    id: id
+                },
+                success: function(dataResult) {
 
-                            if (dataResult == 1) {
-                    swal.fire({
-                        title: "Error",
-                        text: "Error",
-                        icon: "error",
-                        confirmButtonText: "OK"
-                    });
-                } else if (dataResult == "success") {
-                    swal.fire({
-                        title: "Success",
-                        text: "Success",
-                        icon: "success",
-                        confirmButtonText: "OK"
-                    })
-                   
-                    reset();
-                }
-        },
-    });
+                    if (dataResult == 1) {
+                        swal.fire({
+                            title: "Error",
+                            text: "Error",
+                            icon: "error",
+                            confirmButtonText: "OK"
+                        });
+                    } else if (dataResult == "success") {
+                        swal.fire({
+                            title: "Success",
+                            text: "Success",
+                            icon: "success",
+                            confirmButtonText: "OK"
+                        })
 
-  } 
-})
+                        reset();
+                    }
+                },
+            });
+
+        }
+    })
 
 
 });

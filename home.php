@@ -1,4 +1,8 @@
-<?php include "connection.php"; ?>
+<?php include "connection.php";
+if (isset($_SESSION['id_user'])) {
+    header('location: myprofile.php');
+} 
+?>
 <!DOCTYPE html>
 <html>
 

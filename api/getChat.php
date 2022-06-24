@@ -15,10 +15,12 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
         $other_user = $id_user1;
     }
     //get other user's username
-    $sql = "SELECT name FROM user_data WHERE id = $other_user";
+    $sql = "SELECT name, username, profileImg FROM user_data WHERE id = $other_user";
     $result = mysqli_query($con, $sql);
     $result = $result->fetch_all(MYSQLI_ASSOC);
-    $other_user_username = $result[0]['name'];
+    $other_user_name = $result[0]['name'];
+    $other_user_img = $result[0]['profileImg'];
+    $other_user_username = $result[0]['username'];
 
     //get all chat where room is post id room
     $room_id = $_POST['id_room'];
@@ -62,7 +64,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
         }
     }
     //json encode other user's username and chat html
-    $json_data = json_encode(array("other_user_username" => $other_user_username, "chat_html" => $chat_html, "client_date" => $diff));
+    $json_data = json_encode(array("other_user_username" => $other_user_username, "other_user_name" => $other_user_name, "other_user_img" => $other_user_img, "chat_html" => $chat_html, "client_date" => $diff));
     echo $json_data;
 }
 
