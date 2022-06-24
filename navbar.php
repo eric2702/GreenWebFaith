@@ -1,7 +1,7 @@
 	<style>
 input:-webkit-autofill,
 input:-webkit-autofill:focus {
-    transition: background-color 0s 60000s, color 0s 60000s;
+    transition: background-color 0s 2147483647s, color 0s 2147483647s;
 }
 
 input[data-autocompleted] {
@@ -231,7 +231,7 @@ $("#login").click(function() {
                     window.location.href = "admin.php";
                 }
                 if (result == 0) {
-                    window.location.href = "home.php";
+                    window.location.href = "myprofile.php";
                 } else if (result == 3) {
                     Swal.fire({
                         title: 'Login Failed !',

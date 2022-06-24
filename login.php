@@ -1,5 +1,6 @@
 <?php
 include "connection.php";
+
 if($_SERVER['REQUEST_METHOD'] == "POST"){
 	if (empty($_POST['email'])) {
 		echo "1";
@@ -31,14 +32,14 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
 							$_SESSION['role'] = $role['role'];
 							$_SESSION['namaUser'] = $role['name'];
 							$_SESSION['id_user'] = $row['id'];
+							
 							if($_SESSION['role'] == 0){
 								echo "0";
 							}  elseif ($_SESSION['role'] == 2){
 								echo "7";
 							}
 							
-						}
-						else{
+						} else{
 							echo "3";
 						}
 					}
