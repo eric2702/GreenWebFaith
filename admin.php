@@ -26,9 +26,12 @@ if (isset($_SESSION['email'])) {
 
 if (!isset($_SESSION['email'])) {
     //redirect to login
-    header('location: ./login.php');
+    header('location: ./home.php');
 }
 
+if (!$_SESSION['role'] == 1) {
+    header('location: ./myprofile.php');
+}
 
 $sql2 = "SELECT email FROM user_data";
 $result2 = mysqli_query($con, $sql2);
@@ -638,7 +641,7 @@ while ($res= mysqli_fetch_assoc($result5)){
 
                             <div class="row">
                                 <div class="col-lg-10 col-11 p-0">
-                                    <input id="searchID" type="text" placeholder="Search..">
+                                    <input id="searchID" type="text" placeholder="Search.." autocomplete="off">
 
                                 </div>
                                 <div id="cariID" class="col-lg-2 col-1">
@@ -659,13 +662,11 @@ while ($res= mysqli_fetch_assoc($result5)){
                         <li class="nav-item">
                             <a class="nav-link" aria-current="page" href="explore.php"><i class="fas fa-home"></i></a>
                         </li>
-                        <li class="nav-item">
-                            <a id="notifliat" type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop3"
-                                class="nav-link" href="#"><i class="fas fa-heart"></i></a>
-                        </li>
+                        <?php if (!$_SESSION['role'] == '1') { ?>
                         <li class="nav-item">
                             <a class="nav-link" href="myprofile.php"><i class="fas fa-user-circle"></i></a>
                         </li>
+                        <?php } ?>
                         <li class="nav-item">
                             <a class="nav-link" href="chat.php"><i class="fas fa-comment"></i></a>
                         </li>
@@ -962,19 +963,11 @@ document.getElementById("defaultOpen").click();
 
 $(document).ready(function() {
     reset();
-    $('#tableReq').DataTable({
-        "ordering": false
-    });
 
-    $('#tableReject').DataTable({
-        "ordering": false
-    });
-    $('#tableComp').DataTable({
-        "ordering": false
-    });
-    $('#tableAcc').DataTable({
-        "ordering": false
-    });
+
+
+
+
 
 
     reqTable();
@@ -997,6 +990,9 @@ function reqTable() {
         },
         success: function(dataResult) {
             $("#daftarReq").html(dataResult);
+            $('#tableReq').DataTable({
+                "ordering": false
+            });
         },
     });
 }
@@ -1011,6 +1007,9 @@ function accTable() {
         },
         success: function(dataResult) {
             $("#daftarAcc").html(dataResult);
+            $('#tableAcc').DataTable({
+                "ordering": false
+            });
         },
     });
 }
@@ -1025,6 +1024,9 @@ function comTable() {
         },
         success: function(dataResult) {
             $("#daftarCom").html(dataResult);
+            $('#tableComp').DataTable({
+                "ordering": false
+            });
         },
     });
 }
@@ -1039,6 +1041,9 @@ function rejTable() {
         },
         success: function(dataResult) {
             $("#daftarRejected").html(dataResult);
+            $('#tableReject').DataTable({
+                "ordering": false
+            });
         },
     });
 }
