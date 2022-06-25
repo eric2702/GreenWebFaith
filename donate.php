@@ -40,11 +40,14 @@
 }
 
 body {
-    background-color: #094b65;
-    background-image: url("assets/brick-wall.png");
+    /* background-color: #094b65; */
+    background-image: url("assets/bg.png");
     justify-content: center;
     align-items: center;
     min-height: 100vh;
+    background-repeat: no-repeat;
+background-attachment: fixed;
+background-size: cover;
     /*display: flex;*/
 }
 
@@ -83,7 +86,7 @@ body {
 
 .containers .cards h1 {
     font-size: 2rem;
-    color: white;
+    color: #094b65;
 }
 
 .containers .cards .content {
@@ -92,7 +95,7 @@ body {
 }
 
 .containers .cards .content p {
-    color: white;
+    color: #094b65;
     transition: 0.5s;
 }
 
@@ -110,11 +113,11 @@ body {
 }
 
 .containers .cards:hover {
-    background-color: #dc2e69;
+    background-color: #094b65;
     color: white;
     margin-top: -30px;
-    box-shadow: 2px 20px 25px #dc2e686d;
-    border-color: #dc2e69;
+    box-shadow: 2px 20px 25px #094b65;
+    border-color: #094b65;
 }
 
 .containers .cards:hover img {
@@ -122,6 +125,9 @@ body {
 }
 
 .containers .cards:hover .content p {
+    color: white;
+}
+.containers .cards:hover h1 {
     color: white;
 }
 
