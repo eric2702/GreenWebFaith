@@ -755,6 +755,10 @@ if ($result2->num_rows > 0) {
         cursor: pointer;
         margin-top: 1rem;
     }
+
+    .swal2-icon.swal2-success.swal2-icon-show {
+        overflow-y: hidden !important;
+    }
     </style>
 </head>
 

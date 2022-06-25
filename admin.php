@@ -731,8 +731,9 @@ while ($res= mysqli_fetch_assoc($result5)){
                                     <th>Tanggal Order</th>
                                     <th>username</th>
                                     <th>Name</th>
-                                    <th>Cost</th>
                                     <th>Long Working (days)</th>
+                                    <th>Cost</th>
+
                                     <th>Transfer Proof</th>
                                     <th>Action</th>
                                 </tr>
