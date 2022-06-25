@@ -816,6 +816,7 @@ while ($res= mysqli_fetch_assoc($result5)){
                                         <th>Jenis Baju</th>
                                         <th>Before Clothes</th>
                                         <th>After Clothes</th>
+                                        <th>Status</th>
 
                                     </tr>
                                 </thead>
@@ -1257,6 +1258,7 @@ $("#send").on("click", function() {
                 $('#resi').val('');
 
                 $("#closeResi").click();
+                ongoTable();
 
 
 
@@ -1300,6 +1302,8 @@ $(document).on("click", "#acc", function() {
                 $('#biaya').val('');
                 $("#closeAcc").click();
                 $("#action" + id).html('Accepted');
+                reqTable();
+                accTable();
             }
         },
     });
@@ -1337,10 +1341,13 @@ $(document).on("click", ".reject", function() {
                             icon: "success",
                             confirmButtonText: "OK"
                         })
-                        $('#lama').val('');
-                        $('#biaya').val('');
-                        $("#closeAcc").click();
-                        $("#action" + id).html('Accepted');
+                        // $('#lama').val('');
+                        // $('#biaya').val('');
+                        // $("#closeAcc").click();
+                        // $("#action" + id).html('Accepted');
+                        reqTable();
+                        rejTable();
+                        canTable();
                     }
                 },
             });
@@ -1384,10 +1391,8 @@ $(document).on("click", ".here", function() {
                             icon: "success",
                             confirmButtonText: "OK"
                         })
-                        $('#lama').val('');
-                        $('#biaya').val('');
-                        $("#closeAcc").click();
-                        $("#action" + id).html('Accepted');
+                     
+                        ongoTable();
                     }
                 },
             });
@@ -1431,10 +1436,7 @@ $(document).on("click", ".doneProcess", function() {
                             icon: "success",
                             confirmButtonText: "OK"
                         })
-                        $('#lama').val('');
-                        $('#biaya').val('');
-                        $("#closeAcc").click();
-                        $("#action" + id).html('Accepted');
+                        ongoTable();
                     }
                 },
             });

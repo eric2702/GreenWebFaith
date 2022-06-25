@@ -1287,6 +1287,8 @@ $("#pay").on("click", function() {
                 $("#closeRe").click();
 
                 previewImgDelete();
+                ongoTable();
+                accTable();
 
             }
         }
@@ -1327,6 +1329,7 @@ $("#send").on("click", function() {
                 $('#resi').val('');
 
                 $("#closeResi").click();
+                ongoTable();
 
 
 
@@ -1369,10 +1372,12 @@ $(document).on("click", ".reject", function() {
                             icon: "success",
                             confirmButtonText: "OK"
                         })
-                        $('#lama').val('');
-                        $('#biaya').val('');
-                        $("#closeAcc").click();
-                        $("#action" + id).html('Accepted');
+                        // $('#lama').val('');
+                        // $('#biaya').val('');
+                        // $("#closeAcc").click();
+                        // $("#action" + id).html('Accepted');
+                        canTable();
+                        accTable();
                     }
                 },
             });
@@ -1419,6 +1424,8 @@ $(document).on("click", ".konfirm", function() {
                         $('#biaya').val('');
                         $("#closeAcc").click();
                         $("#action" + id).html('Accepted');
+                        ongoTable();
+                        comTable();
                     }
                 },
             });
