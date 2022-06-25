@@ -33,12 +33,12 @@ if (!$_SESSION['role'] == 1) {
     header('location: ./myprofile.php');
 }
 
-$sql2 = "SELECT email FROM user_data";
+$sql2 = "SELECT username FROM user_data";
 $result2 = mysqli_query($con, $sql2);
 
 $arr = [];
 while ($res= mysqli_fetch_assoc($result2)){
-    $temp = $res['email'];
+    $temp = $res['username'];
     array_push($arr,$temp);
 }
 
@@ -626,7 +626,7 @@ while ($res= mysqli_fetch_assoc($result5)){
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container-fluid">
                 <a class="navbar-brand" href="Home.php"><img src="assets\logo.png" alt="" width="30" height="24"
-                        class="d-inline-block align-text-top">Eco Fit</a>
+                        class="d-inline-block align-text-top">EcoFit</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="Toggle navigation">
@@ -674,6 +674,9 @@ while ($res= mysqli_fetch_assoc($result5)){
                         <?php if ($_SESSION['role'] == '2') { ?>
                         <li class="nav-item">
                             <a class="nav-link" href="orders.php"><i class="far fa-clipboard"></i></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="myprofile.php"><i class="fas fa-user-circle"></i></a>
                         </li>
                         <?php } ?>
                         <?php if ($_SESSION['role'] == '0') { ?>
@@ -802,7 +805,7 @@ while ($res= mysqli_fetch_assoc($result5)){
 
 
             <div id="Completed Orders" class="tabcontent">
-            <div class="container text-center mb-5">
+                <div class="container text-center mb-5">
                     <br>
                     <h3>Completed Orders</h3>
                     <div class="table_wrapper mt-5" style="overflow-x: auto;">
@@ -905,7 +908,7 @@ while ($res= mysqli_fetch_assoc($result5)){
                         <button type="button" style="float:right;" id="closeRe" class="btn-close btn-close-white"
                             data-bs-dismiss="modal" aria-label="Close"></button>
                         <h2 style="color:white; text-align:center;">Pay to designer</h2>
-                       
+
 
                         <div class="image input" id="imageinput">
                             <img class="outputimg" align="center" id="outputImage">
@@ -1011,7 +1014,7 @@ function completeTable() {
 
         },
         success: function(dataResult) {
-            
+
             $("#daftarComplete").html(dataResult);
         },
     });
@@ -1035,7 +1038,7 @@ function reqTable() {
 }
 
 function accTable() {
-   
+
     $.ajax({
         url: "ajax/getTableAccPaid.php",
         type: "POST",

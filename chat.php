@@ -28,12 +28,12 @@ if (!isset($_SESSION['email'])) {
 }
 
 
-$sql2 = "SELECT email FROM user_data";
+$sql2 = "SELECT username FROM user_data";
 $result2 = mysqli_query($con, $sql2);
 
 $arr = [];
 while ($res= mysqli_fetch_assoc($result2)){
-    $temp = $res['email'];
+    $temp = $res['username'];
     array_push($arr,$temp);
 }
 
@@ -180,11 +180,12 @@ while ($res= mysqli_fetch_assoc($result5)){
     .autocom-box2 li:hover {
         background: #efefef;
     }
-    body{
+
+    body {
         background-color: #fff8f1;
-opacity: 1;
-background-image: radial-gradient(#094b65 0.75px, #fff8f1 0.75px);
-background-size: 15px 15px;
+        opacity: 1;
+        background-image: radial-gradient(#094b65 0.75px, #fff8f1 0.75px);
+        background-size: 15px 15px;
     }
     </style>
 </head>
@@ -265,7 +266,7 @@ background-size: 15px 15px;
     </div> -->
     <div class="special-autocom">
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="#">Eco Fit</a>
+            <a class="navbar-brand" href="#">EcoFit</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -313,6 +314,9 @@ background-size: 15px 15px;
                     <?php if ($_SESSION['role'] == '2') { ?>
                     <li class="nav-item">
                         <a class="nav-link" href="orders.php"><i class="far fa-clipboard"></i></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="myprofile.php"><i class="fas fa-user-circle"></i></a>
                     </li>
                     <?php } ?>
                     <?php if ($_SESSION['role'] == '0') { ?>
@@ -444,7 +448,7 @@ background-size: 15px 15px;
                         <span id="action_menu_btn"><i class="fas fa-ellipsis-v"></i></span>
                         <div class="action_menu">
                             <ul>
-                                <li id="view-profile"><i class="fas fa-user-circle"></i> View profile</li>
+                                <li id="view-profile"><i class="fas fa-user-circle"></i>View profile</li>
                             </ul>
                         </div>
                     </div>
@@ -571,7 +575,7 @@ background-size: 15px 15px;
                 $('#send-button').attr('onclick', 'sendMessage(' + id_room + ')');
                 //scroll to bottom
                 $('#chat-box').scrollTop($('#chat-box')[0].scrollHeight);
-                $('#view-profile').attr('onclick', "viewProfile(\'' + other_user_email + '\')");
+                $('#view-profile').attr('onclick', "viewProfile(\'' + other_user_username + '\')");
                 //add class active not using jquery
                 //document ready function
                 $(document).ready(function() {
@@ -620,7 +624,6 @@ background-size: 15px 15px;
 
 
     function viewProfile(email) {
-        alert(email);
         $.ajax({
             url: "ajax/findprofile.php",
             type: "POST",

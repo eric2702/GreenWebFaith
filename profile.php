@@ -17,7 +17,7 @@ $email = $_SESSION['email'];
 if (isset($_SESSION['email'])) {
 
 
-    $sql = "SELECT * FROM user_data WHERE email='$profile'";
+    $sql = "SELECT * FROM user_data WHERE username='$profile'";
     $result = mysqli_query($con, $sql);
     if ($result->num_rows > 0) {
         $row = mysqli_fetch_assoc($result);
@@ -37,17 +37,17 @@ if (!isset($_SESSION['email'])) {
 }
 
 
-$sql2 = "SELECT email FROM user_data";
+$sql2 = "SELECT username FROM user_data";
 $result2 = mysqli_query($con, $sql2);
 
 $arr = [];
 while ($res= mysqli_fetch_assoc($result2)){
-    $temp = $res['email'];
-    array_push($arr,$temp);
+    $temp2 = $res['username'];
+    array_push($arr,$temp2);
 }
 
 
-$sql3 = "SELECT id FROM text_post WHERE id_user='$id'";
+$sql3 = "SELECT id FROM orders WHERE idDesigner= '$id' AND (status=9 OR status=7)";
 $result3 = mysqli_query($con, $sql3);
 
 $countpost = 0;
@@ -767,7 +767,7 @@ if ($result2->num_rows > 0) {
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container-fluid">
                 <a class="navbar-brand" href="Home.php"><img src="assets\logo.png" alt="" width="30" height="24"
-                        class="d-inline-block align-text-top">Twister</a>
+                        class="d-inline-block align-text-top">EcoFit</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="Toggle navigation">
@@ -816,6 +816,9 @@ if ($result2->num_rows > 0) {
                         <li class="nav-item">
                             <a class="nav-link" href="orders.php"><i class="far fa-clipboard"></i></a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="myprofile.php"><i class="fas fa-user-circle"></i></a>
+                        </li>
                         <?php } ?>
                         <?php if ($_SESSION['role'] == '0') { ?>
                         <li class="nav-item">
@@ -853,14 +856,14 @@ if ($result2->num_rows > 0) {
                 <div class="col-md-3 col-12">
                     <img class="profileimg" src="<?php echo $profileImg?>" alt="">
                 </div>
-                <div class="col-md-5 col-12">
+                <div class="col-md-5 col-12  text-md-start text-center">
                     <div class="row">
-                        <div class="col-md-7 col-9">
+                        <div class="col-md-7 col-12">
                             <b>
-                                <p class="main_heading" align="left"><?php echo $nama?></p>
+                                <p class="main_heading"><?php echo $nama?></p>
                             </b>
-                            <p class="main_heading" align="left"><?php echo $profile?></p>
-                            <p class="main_heading" align="left"><i><?php echo $bio?></i></p>
+                            <p class="main_heading"><?php echo $profile?></p>
+                            <p class="main_heading"><i><?php echo $bio?></i></p>
                         </div>
                         <?php
                     if ($role == 0){
@@ -874,29 +877,25 @@ if ($result2->num_rows > 0) {
                     </div>
                     <div class="col-2"></div>
                     <div class="row">
-                        <div class="col-3 col-md-3 special_justify">
-                            <br>
-                            <p class="main_heading" align="left"><?php echo $countpost?> post</p>
-                            <br>
-                            <?php 
+                        <?php 
                             if ($roleOther == 2) {
-                                echo "<p id='req' data-bs-toggle='modal' data-bs-target='#modalReq' align='left'
-                                style='cursor:pointer; text-decoration:underline;'>Request Order</p>";
+                        
+                            echo "<div class='col-12 col-md-12 '>
+                            <br>
+                            <p class='main_heading'>Completed Order : " .$countpost."</p>
+                        <br>
+                    </div>";
+                    }
+                    ?>
+
+                        <?php 
+                            if ($roleOther == 2) {
+                                echo "<br><p id='req' data-bs-toggle='modal' data-bs-target='#modalReq' 
+                                style='cursor:pointer; text-decoration:underline;' class=''>Request Order</p>";
                             }
                             ?>
 
-                        </div>
-                        <div class="col-5 col-md-4 special_justify">
-                            <br>
-                            <p style="cursor:pointer" id="bykfollowing" class="main_heading" align="left">
-                                <?php echo $following?> following</p>
-                        </div>
-                        <div class="col-4 col-md-4 special_justify">
-                            <br>
-                            <p style="cursor:pointer" id="bykfollower" class="main_heading" align="left">
-                                <?php echo $followers?> followers</p>
 
-                        </div>
                     </div>
                     <div class="row">
                         <div class="col-12">
@@ -913,7 +912,7 @@ if ($result2->num_rows > 0) {
                                  /*header('Location: home.php');*/
                                  
                              }
-                             echo "<div onclick='createRoom(".$id.")' style='cursor: pointer;' class='border'>
+                             echo "<div onclick='createRoom(".$id.")' style='cursor: pointer;' class='border text-center'>
 
                              <i class='fas fa-comment-dots'></i>
                              chat
@@ -933,12 +932,13 @@ if ($result2->num_rows > 0) {
                 <?php
 
                     $email = $_SESSION['email'];
-                    $post = "SELECT text_post.id as idPost, total_like,text_content, image, date(date_uploaded) as date_only, name FROM text_post JOIN user_data  ON user_data.id = text_post.id_user WHERE email= '$profile' ORDER BY date_uploaded DESC ";
+                    $post = "SELECT text_post.id as idPost, total_like,text_content, image, date(date_uploaded) as date_only, name FROM text_post JOIN user_data  ON user_data.id = text_post.id_user WHERE username= '$profile' ORDER BY date_uploaded DESC ";
 
                     $code = '';
                     $action = mysqli_query($con, $post);
                     $i = 1;
                     while ($result= mysqli_fetch_assoc($action)){
+
 
 
 
