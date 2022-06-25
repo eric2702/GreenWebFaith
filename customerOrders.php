@@ -1177,9 +1177,9 @@ while ($res= mysqli_fetch_assoc($result5)){
             },
             success: function(dataResult) {
                 $("#daftarRejected").html(dataResult);
-               previewImgDelete();
-                ongoTable();
-                accTable();
+                // previewImgDelete();
+                // ongoTable();
+                // accTable();
                 $('#tableReject').DataTable({
                     "ordering": false
                 });
@@ -1302,53 +1302,53 @@ while ($res= mysqli_fetch_assoc($result5)){
                     previewImgDelete();
 
 
-        }
-    })
-});
-$(document).on("click", ".konfirm", function() {
-    id = $(this).parent().parent().attr('id');
-
-    Swal.fire({
-        title: 'Are you sure?',
-        showCancelButton: true,
-        confirmButtonText: 'Save'
-    }).then((result) => {
-
-        if (result.isConfirmed) {
-            $.ajax({
-                url: "ajax/kofirm.php",
-                type: "POST",
-                cache: false,
-                data: {
-                    id: id
-                },
-                success: function(dataResult) {
-                    alert(dataResult);
-                    if (dataResult == "failed") {
-                        swal.fire({
-                            title: "Error",
-                            text: "Error",
-                            icon: "error",
-                            confirmButtonText: "OK"
-                        });
-                    } else if (dataResult == "success") {
-                        swal.fire({
-                            title: "Success",
-                            text: "Success",
-                            icon: "success",
-                            confirmButtonText: "OK"
-                        })
-                        $('#lama').val('');
-                        $('#biaya').val('');
-                        $("#closeAcc").click();
-                        $("#action" + id).html('Accepted');
-                        ongoTable();
-                        comTable();
-                    }
-                },
-            });
-
                 }
+            }
+        });
+    })
+    $(document).on("click", ".konfirm", function() {
+        id = $(this).parent().parent().attr('id');
+
+        Swal.fire({
+            title: 'Are you sure?',
+            showCancelButton: true,
+            confirmButtonText: 'Save'
+        }).then((result) => {
+
+            if (result.isConfirmed) {
+                $.ajax({
+                    url: "ajax/kofirm.php",
+                    type: "POST",
+                    cache: false,
+                    data: {
+                        id: id
+                    },
+                    success: function(dataResult) {
+                        alert(dataResult);
+                        if (dataResult == "failed") {
+                            swal.fire({
+                                title: "Error",
+                                text: "Error",
+                                icon: "error",
+                                confirmButtonText: "OK"
+                            });
+                        } else if (dataResult == "success") {
+                            swal.fire({
+                                title: "Success",
+                                text: "Success",
+                                icon: "success",
+                                confirmButtonText: "OK"
+                            })
+                            $('#lama').val('');
+                            $('#biaya').val('');
+                            $("#closeAcc").click();
+                            $("#action" + id).html('Accepted');
+                            ongoTable();
+                            comTable();
+                        }
+                    },
+                });
+
             }
         });
     });
@@ -1388,7 +1388,7 @@ $(document).on("click", ".konfirm", function() {
                     $('#resi').val('');
 
                     $("#closeResi").click();
-                    
+
                     ongoTable();
 
 
@@ -1407,42 +1407,42 @@ $(document).on("click", ".konfirm", function() {
             confirmButtonText: 'Save'
         }).then((result) => {
 
-            
-              
-              if (result.isConfirmed) {
-            $.ajax({
-                url: "ajax/rejectCost.php",
-                type: "POST",
-                cache: false,
-                data: {
-                    id: id
-                },
-                success: function(dataResult) {
-                    alert(dataResult);
-                    if (dataResult == "failed") {
-                        swal.fire({
-                            title: "Error",
-                            text: "Error",
-                            icon: "error",
-                            confirmButtonText: "OK"
-                        });
-                    } else if (dataResult == "success") {
-                        swal.fire({
-                            title: "Success",
-                            text: "Success",
-                            icon: "success",
-                            confirmButtonText: "OK"
-                        })
-                        // $('#lama').val('');
-                        // $('#biaya').val('');
-                        // $("#closeAcc").click();
-                        // $("#action" + id).html('Accepted');
-                        canTable();
-                        accTable();
-                    }
-                },
-            });
-              
+
+
+            if (result.isConfirmed) {
+                $.ajax({
+                    url: "ajax/rejectCost.php",
+                    type: "POST",
+                    cache: false,
+                    data: {
+                        id: id
+                    },
+                    success: function(dataResult) {
+                        alert(dataResult);
+                        if (dataResult == "failed") {
+                            swal.fire({
+                                title: "Error",
+                                text: "Error",
+                                icon: "error",
+                                confirmButtonText: "OK"
+                            });
+                        } else if (dataResult == "success") {
+                            swal.fire({
+                                title: "Success",
+                                text: "Success",
+                                icon: "success",
+                                confirmButtonText: "OK"
+                            })
+                            // $('#lama').val('');
+                            // $('#biaya').val('');
+                            // $("#closeAcc").click();
+                            // $("#action" + id).html('Accepted');
+                            canTable();
+                            accTable();
+                        }
+                    },
+                });
+
 
             }
         })
@@ -1809,6 +1809,7 @@ $(document).on("click", ".konfirm", function() {
                 //adding onclick attribute in all li tag
                 allList2[i].setAttribute("onclick", "select(this)");
             }
+
         } else {
             searchWrapper.classList.remove("active"); //hide autocomplete box
             suggBox2.classList.remove("active"); //hide autocomplete box
