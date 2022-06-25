@@ -26,7 +26,7 @@ if (isset($_SESSION['email'])) {
 
 if (!isset($_SESSION['email'])) {
     //redirect to login
-    header('location: ./login.php');
+    header('location: ./home.php');
 }
 
 
@@ -638,7 +638,7 @@ while ($res= mysqli_fetch_assoc($result5)){
 
                             <div class="row">
                                 <div class="col-lg-10 col-11 p-0">
-                                    <input id="searchID" type="text" placeholder="Search..">
+                                    <input id="searchID" type="text" placeholder="Search.." autocomplete="off">
 
                                 </div>
                                 <div id="cariID" class="col-lg-2 col-1">
@@ -659,13 +659,11 @@ while ($res= mysqli_fetch_assoc($result5)){
                         <li class="nav-item">
                             <a class="nav-link" aria-current="page" href="explore.php"><i class="fas fa-home"></i></a>
                         </li>
-                        <li class="nav-item">
-                            <a id="notifliat" type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop3"
-                                class="nav-link" href="#"><i class="fas fa-heart"></i></a>
-                        </li>
+                        <?php if (!$_SESSION['role'] == '1') { ?>
                         <li class="nav-item">
                             <a class="nav-link" href="myprofile.php"><i class="fas fa-user-circle"></i></a>
                         </li>
+                        <?php } ?>
                         <li class="nav-item">
                             <a class="nav-link" href="chat.php"><i class="fas fa-comment"></i></a>
                         </li>
@@ -1016,372 +1014,292 @@ while ($res= mysqli_fetch_assoc($result5)){
         </div>
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
+    </script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
+    </script>
 
-</body>
+    <!-- AJAX -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://use.fontawesome.com/releases/v5.15.1/js/all.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+        integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Data Table -->
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js">
+    </script>
 
-</html>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
-</script>
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
-</script>
+    <script>
+    var position;
 
-<!-- AJAX -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="https://use.fontawesome.com/releases/v5.15.1/js/all.js" crossorigin="anonymous"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
-    integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
-    crossorigin="anonymous" referrerpolicy="no-referrer" />
-<!-- Data Table -->
-<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
-
-<script>
-var position;
-
-function openCategory(evt, cityName) {
-    var i, tabcontent, tablinks;
-    tabcontent = document.getElementsByClassName("tabcontent");
-    for (i = 0; i < tabcontent.length; i++) {
-        tabcontent[i].style.display = "none";
-    }
-    tablinks = document.getElementsByClassName("tablinks");
-    for (i = 0; i < tablinks.length; i++) {
-        tablinks[i].className = tablinks[i].className.replace(" active", "");
-    }
-    document.getElementById(cityName).style.display = "block";
-    evt.currentTarget.className += " active";
-}
-
-// Get the element with id="defaultOpen" and click on it
-document.getElementById("defaultOpen").click();
-
-
-
-$(document).ready(function() {
-    reset();
-    $('#tableReq').DataTable({
-        "ordering": false
-    });
-
-    $('#tableReject').DataTable({
-        "ordering": false
-    });
-    $('#tableComp').DataTable({
-        "ordering": false
-    });
-    $('#tableAcc').DataTable({
-        "ordering": false
-    });
-    $('#tableOngo').DataTable({
-        "ordering": false
-    });
-    $('#tableCan').DataTable({
-        "ordering": false
-    });
-
-
-    reqTable();
-    comTable();
-    rejTable();
-    accTable();
-    ongoTable();
-    canTable();
-
-
-
-});
-
-
-
-function reqTable() {
-    $.ajax({
-        url: "ajax/getTableReqCus.php",
-        type: "POST",
-        cache: false,
-        data: {
-
-        },
-        success: function(dataResult) {
-            $("#daftarReq").html(dataResult);
-        },
-    });
-}
-
-function canTable() {
-    $.ajax({
-        url: "ajax/getTableCanCus.php",
-        type: "POST",
-        cache: false,
-        data: {
-
-        },
-        success: function(dataResult) {
-            $("#daftarCan").html(dataResult);
-        },
-    });
-}
-
-function accTable() {
-    $.ajax({
-        url: "ajax/getTableAccCus.php",
-        type: "POST",
-        cache: false,
-        data: {
-
-        },
-        success: function(dataResult) {
-            $("#daftarAcc").html(dataResult);
-        },
-    });
-}
-
-function comTable() {
-    $.ajax({
-        url: "ajax/getTableCompletedCus.php",
-        type: "POST",
-        cache: false,
-        data: {
-
-        },
-        success: function(dataResult) {
-            $("#daftarCom").html(dataResult);
-        },
-    });
-}
-
-function ongoTable() {
-    $.ajax({
-        url: "ajax/getTableOnGo.php",
-        type: "POST",
-        cache: false,
-        data: {
-
-        },
-        success: function(dataResult) {
-            $("#daftarOngo").html(dataResult);
-        },
-    });
-}
-
-function rejTable() {
-    $.ajax({
-        url: "ajax/getTableRejectedCus.php",
-        type: "POST",
-        cache: false,
-        data: {
-
-        },
-        success: function(dataResult) {
-            $("#daftarRejected").html(dataResult);
-        },
-    });
-}
-
-$("#logout").click(function() {
-    //swal logout
-    swal.fire({
-        title: 'Are you sure?',
-        text: "You want to logout?",
-        type: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#d33',
-        confirmButtonText: 'Yes, logout!'
-    }).then((result) => {
-        if (result.value) {
-            $.ajax({
-                url: "logout.php",
-                type: "POST",
-                data: {
-                    logout: 1
-                },
-                success: function(data) {
-                    window.location.href = "home.php";
-                }
-            });
+    function openCategory(evt, cityName) {
+        var i, tabcontent, tablinks;
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
         }
-    })
-
-
-});
-
-
-function previewImgDelete(input) {
-
-    $("#outputImage").hide();
-
-}
-
-function previewImg(input) {
-    $("#outputImage").show();
-    var file = $("#uploadimg").get(0).files[0];
-    if (file) {
-        var reader = new FileReader();
-
-        reader.onload = function() {
-            $("#outputImage").attr("src", reader.result);
+        tablinks = document.getElementsByClassName("tablinks");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].className = tablinks[i].className.replace(" active", "");
         }
-
-        reader.readAsDataURL(file);
+        document.getElementById(cityName).style.display = "block";
+        evt.currentTarget.className += " active";
     }
-}
+
+    // Get the element with id="defaultOpen" and click on it
+    document.getElementById("defaultOpen").click();
 
 
-$(document).on("click", ".befores", function() {
 
-    id = $(this).attr('id');
-    $("#imgBef").attr("src", id);
-    $("#modalBefore").modal("show");
-});
-
-$(document).on("click", ".after", function() {
-
-    id = $(this).attr('id');
-    $("#imgAf").attr("src", id);
-    $("#modalAfter").modal("show");
-});
-var id;
-$(document).on("click", ".accdong", function() {
-    id = $(this).parent().parent().attr('id');
-
-});
-$(document).on("click", ".noresi", function() {
-    id = $(this).parent().parent().attr('id');
-
-});
-$("#pay").on("click", function() {
-    var formData = new FormData();
-    var telp = $('#telp').val();
-    var image = $('#uploadimg').prop('files')[0];
-    var ok = "";
-    formData.append("file", image);
-    formData.append("id", id);
-    formData.append("telp", telp);
+    $(document).ready(function() {
+        // reset();
+        reqTable();
+        comTable();
+        rejTable();
+        accTable();
+        ongoTable();
+        canTable();
 
 
-    $.ajax({
-        url: "ajax/pay.php",
-        type: "POST",
-        data: formData,
-        contentType: false,
-        processData: false,
-        success: function(data) {
 
-            if (data == "failed") {
-                swal.fire({
-                    title: "Error",
-                    text: "Error",
-                    icon: "error",
-                    confirmButtonText: "OK"
+
+
+
+
+
+
+
+
+
+
+    });
+
+
+
+
+
+    function reqTable() {
+        $.ajax({
+            url: "ajax/getTableReqCus.php",
+            type: "POST",
+            cache: false,
+            data: {
+
+            },
+            success: function(dataResult) {
+                $("#daftarReq").html(dataResult);
+                $('#tableReq').DataTable({
+                    "ordering": false
                 });
-            } else if (data == "success") {
-                swal.fire({
-                    title: "Success",
-                    text: "Success",
-                    icon: "success",
-                    confirmButtonText: "OK"
-                })
-                $('#uploadimg').val('');
-                $('#telp').val('');
+            },
+        });
 
-                $("#closeRe").click();
+    }
 
-                previewImgDelete();
+    function canTable() {
+        $.ajax({
+            url: "ajax/getTableCanCus.php",
+            type: "POST",
+            cache: false,
+            data: {
+
+            },
+            success: function(dataResult) {
+                $("#daftarCan").html(dataResult);
+                $('#tableCan').DataTable({
+                    "ordering": false
+                });
+            },
+        });
+    }
+
+    function accTable() {
+        $.ajax({
+            url: "ajax/getTableAccCus.php",
+            type: "POST",
+            cache: false,
+            data: {
+
+            },
+            success: function(dataResult) {
+                $("#daftarAcc").html(dataResult);
+                $('#tableAcc').DataTable({
+                    "ordering": false
+                });
+            },
+        });
+    }
+
+    function comTable() {
+        $.ajax({
+            url: "ajax/getTableCompletedCus.php",
+            type: "POST",
+            cache: false,
+            data: {
+
+            },
+            success: function(dataResult) {
+                $("#daftarCom").html(dataResult);
+                $('#tableComp').DataTable({
+                    "ordering": false
+                });
+            },
+        });
+    }
+
+    function ongoTable() {
+        $.ajax({
+            url: "ajax/getTableOnGo.php",
+            type: "POST",
+            cache: false,
+            data: {
+
+            },
+            success: function(dataResult) {
+                $("#daftarOngo").html(dataResult);
+                $('#tableOngo').DataTable({
+                    "ordering": false
+                });
+            },
+        });
+    }
+
+    function rejTable() {
+        $.ajax({
+            url: "ajax/getTableRejectedCus.php",
+            type: "POST",
+            cache: false,
+            data: {
+
+
+            },
+            success: function(dataResult) {
+                $("#daftarRejected").html(dataResult);
+               previewImgDelete();
                 ongoTable();
                 accTable();
-
-            }
-        }
-    });
-});
-
-$("#send").on("click", function() {
-    var formData = new FormData();
-    var resi = $('#resi').val();
-    formData.append("resi", resi);
-    formData.append("id", id);
-
-
-    $.ajax({
-        url: "ajax/resiInput.php",
-        type: "POST",
-        data: formData,
-        contentType: false,
-        processData: false,
-        success: function(data) {
-            alert(data);
-
-            if (data == "failed") {
-                swal.fire({
-                    title: "Error",
-                    text: "Error",
-                    icon: "error",
-                    confirmButtonText: "OK"
+                $('#tableReject').DataTable({
+                    "ordering": false
                 });
-            } else if (data == "success") {
-                swal.fire({
-                    title: "Success",
-                    text: "Success",
-                    icon: "success",
-                    confirmButtonText: "OK"
-                })
+            },
+        });
+    }
 
-                $('#resi').val('');
-
-                $("#closeResi").click();
-                ongoTable();
-
-
-
-            }
-        }
-    });
-});
-
-
-
-$(document).on("click", ".reject", function() {
-    id = $(this).parent().parent().attr('id');
-    Swal.fire({
-        title: 'Are you sure want to reject it?',
-        showCancelButton: true,
-        confirmButtonText: 'Save'
-    }).then((result) => {
-
-        if (result.isConfirmed) {
-            $.ajax({
-                url: "ajax/rejectCost.php",
-                type: "POST",
-                cache: false,
-                data: {
-                    id: id
-                },
-                success: function(dataResult) {
-                    alert(dataResult);
-                    if (dataResult == "failed") {
-                        swal.fire({
-                            title: "Error",
-                            text: "Error",
-                            icon: "error",
-                            confirmButtonText: "OK"
-                        });
-                    } else if (dataResult == "success") {
-                        swal.fire({
-                            title: "Success",
-                            text: "Success",
-                            icon: "success",
-                            confirmButtonText: "OK"
-                        })
-                        // $('#lama').val('');
-                        // $('#biaya').val('');
-                        // $("#closeAcc").click();
-                        // $("#action" + id).html('Accepted');
-                        canTable();
-                        accTable();
+    $("#logout").click(function() {
+        //swal logout
+        swal.fire({
+            title: 'Are you sure?',
+            text: "You want to logout?",
+            type: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            confirmButtonText: 'Yes, logout!'
+        }).then((result) => {
+            if (result.value) {
+                $.ajax({
+                    url: "logout.php",
+                    type: "POST",
+                    data: {
+                        logout: 1
+                    },
+                    success: function(data) {
+                        window.location.href = "home.php";
                     }
-                },
-            });
+                });
+            }
+        })
 
+
+    });
+
+
+
+    function previewImgDelete(input) {
+
+        $("#outputImage").hide();
+
+
+    }
+
+    function previewImg(input) {
+        $("#outputImage").show();
+        var file = $("#uploadimg").get(0).files[0];
+        if (file) {
+            var reader = new FileReader();
+
+            reader.onload = function() {
+                $("#outputImage").attr("src", reader.result);
+            }
+
+            reader.readAsDataURL(file);
+        }
+    }
+
+
+    $(document).on("click", ".befores", function() {
+
+        id = $(this).attr('id');
+        $("#imgBef").attr("src", id);
+        $("#modalBefore").modal("show");
+    });
+
+    $(document).on("click", ".after", function() {
+
+        id = $(this).attr('id');
+        $("#imgAf").attr("src", id);
+        $("#modalAfter").modal("show");
+    });
+    var id;
+    $(document).on("click", ".accdong", function() {
+        id = $(this).parent().parent().attr('id');
+
+    });
+    $(document).on("click", ".noresi", function() {
+        id = $(this).parent().parent().attr('id');
+
+
+    });
+    $("#pay").on("click", function() {
+        var formData = new FormData();
+        var telp = $('#telp').val();
+        var image = $('#uploadimg').prop('files')[0];
+        var ok = "";
+        formData.append("file", image);
+        formData.append("id", id);
+        formData.append("telp", telp);
+
+
+
+        $.ajax({
+            url: "ajax/pay.php",
+            type: "POST",
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: function(data) {
+
+                if (data == "failed") {
+                    swal.fire({
+                        title: "Error",
+                        text: "Error",
+                        icon: "error",
+                        confirmButtonText: "OK"
+                    });
+                } else if (data == "success") {
+                    swal.fire({
+                        title: "Success",
+                        text: "Success",
+                        icon: "success",
+                        confirmButtonText: "OK"
+                    })
+                    $('#uploadimg').val('');
+                    $('#telp').val('');
+
+                    $("#closeRe").click();
+
+                    previewImgDelete();
 
 
         }
@@ -1430,133 +1348,78 @@ $(document).on("click", ".konfirm", function() {
                 },
             });
 
-
-
-        }
-    })
-});
-
-$("#savetext").on("click", function() {
-    var formData = new FormData();
-    var posting = $('#inputPost').val();
-    var image = $('#uploadimg').prop('files')[0];
-    var ok = "";
-    formData.append("file", image);
-    formData.append("text", posting);
-
-    $.ajax({
-        url: "ajax/create.php",
-        type: "POST",
-        data: formData,
-        contentType: false,
-        processData: false,
-        success: function(data) {
-            alert(data);
-
-            if (data == "failed") {
-                swal.fire({
-                    title: "Error",
-                    text: "Error",
-                    icon: "error",
-                    confirmButtonText: "OK"
-                });
-            } else if (data == "success") {
-                swal.fire({
-                    title: "Success",
-                    text: "Success",
-                    icon: "success",
-                    confirmButtonText: "OK"
-                })
-                $('#inputPost').val('');
-                $('#uploadimg').val('');
-                $("#closee").click();
-                reset();
-                previewImgDelete();
+                }
             }
-        }
+        });
+    });
+
+
+    $("#send").on("click", function() {
+        var formData = new FormData();
+        var resi = $('#resi').val();
+        formData.append("resi", resi);
+        formData.append("id", id);
+
+
+        $.ajax({
+            url: "ajax/resiInput.php",
+            type: "POST",
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: function(data) {
+                alert(data);
+
+                if (data == "failed") {
+                    swal.fire({
+                        title: "Error",
+                        text: "Error",
+                        icon: "error",
+                        confirmButtonText: "OK"
+                    });
+                } else if (data == "success") {
+                    swal.fire({
+                        title: "Success",
+                        text: "Success",
+                        icon: "success",
+                        confirmButtonText: "OK"
+                    })
+
+                    $('#resi').val('');
+
+                    $("#closeResi").click();
+                    
+                    ongoTable();
+
+
+                }
+            }
+        });
     });
 
 
 
-    /*    location.reload();*/
+    $(document).on("click", ".reject", function() {
+        id = $(this).parent().parent().attr('id');
+        Swal.fire({
+            title: 'Are you sure want to reject it?',
+            showCancelButton: true,
+            confirmButtonText: 'Save'
+        }).then((result) => {
 
-
-});
-
-
-function reset() {
-
-    $.ajax({
-        url: "ajax/resetpost.php",
-        type: "POST",
-        cache: false,
-        data: {
-
-        },
-        success: function(dataResult) {
-            $("#tampilan").html(dataResult);
-        },
-    });
-
-}
-
-
-function previewImgDelete(input) {
-
-    $("#outputImage").hide();
-
-}
-
-function previewImg(input) {
-    $("#outputImage").show();
-    var file = $("input[type=file]").get(0).files[0];
-    if (file) {
-        var reader = new FileReader();
-
-        reader.onload = function() {
-            $("#outputImage").attr("src", reader.result);
-        }
-
-        reader.readAsDataURL(file);
-    }
-}
-
-$("#closee").click(function() {
-    $("#outputImage").remove();
-    $("#imageinput").after("<img class='outputimg' align='center' id='outputImage'>");
-    $("#outputImage").val("");
-    $('#exampleFormControlInput2').val('');
-});
-
-/*$(".image_content").click(function(){
-  alert("The paragraph was clicked.");
-});*/
-
-
-
-
-
-$(document).on("click", ".trash", function() {
-    idnya = $(this).attr('id');
-    num = idnya.split("-");
-    id = num[1];
-    Swal.fire({
-        title: 'Are you sure want to delete this portofolio?',
-        showCancelButton: true,
-        confirmButtonText: 'Yes'
-    }).then((result) => {
-        /* Read more about isConfirmed, isDenied below */
-        if (result.isConfirmed) {
+            
+              
+              if (result.isConfirmed) {
             $.ajax({
-                url: "ajax/delete.php",
+                url: "ajax/rejectCost.php",
                 type: "POST",
                 cache: false,
                 data: {
                     id: id
                 },
                 success: function(dataResult) {
-
-                    if (dataResult == 1) {
+                    alert(dataResult);
+                    if (dataResult == "failed") {
                         swal.fire({
                             title: "Error",
                             text: "Error",
@@ -1570,149 +1433,391 @@ $(document).on("click", ".trash", function() {
                             icon: "success",
                             confirmButtonText: "OK"
                         })
-
-                        reset();
+                        // $('#lama').val('');
+                        // $('#biaya').val('');
+                        // $("#closeAcc").click();
+                        // $("#action" + id).html('Accepted');
+                        canTable();
+                        accTable();
                     }
                 },
             });
+              
 
-        }
-    })
-
-
-});
-
-temp = 0;
-
-$(document).on("click", ".editan", function() {
-    idnya = $(this).attr('id');
-    num = idnya.split("-");
-    id = num[1];
-
-    lala = $("#content-" + num[1]).html();
-
-    $('#inputPostUpdate').html($("#content-" + num[1]).html());
-    temp = id;
-
-});
-
-
-
-$(document).on("click", "#saveUpdate", function() {
-    id = temp;
-    var post_update = $('#inputPostUpdate').val();
-
-    $.ajax({
-        url: "ajax/update.php",
-        type: "POST",
-        cache: false,
-        data: {
-            updated_post: post_update,
-            id: id
-        },
-        success: function(dataResult) {
-            if (dataResult == "success") {
-                reset();
-                $("#closeedit").click();
-                alert('sukses');
-            } else {
-                alert('gagal');
             }
-        },
+        })
     });
-});
+    $(document).on("click", ".konfirm", function() {
+        id = $(this).parent().parent().attr('id');
+
+        Swal.fire({
+            title: 'Are you sure?',
+            showCancelButton: true,
+            confirmButtonText: 'Save'
+        }).then((result) => {
+
+            if (result.isConfirmed) {
+                $.ajax({
+                    url: "ajax/kofirm.php",
+                    type: "POST",
+                    cache: false,
+                    data: {
+                        id: id
+                    },
+                    success: function(dataResult) {
+                        alert(dataResult);
+                        if (dataResult == "failed") {
+                            swal.fire({
+                                title: "Error",
+                                text: "Error",
+                                icon: "error",
+                                confirmButtonText: "OK"
+                            });
+                        } else if (dataResult == "success") {
+                            swal.fire({
+                                title: "Success",
+                                text: "Success",
+                                icon: "success",
+                                confirmButtonText: "OK"
+                            })
+                            $('#lama').val('');
+                            $('#biaya').val('');
+                            $("#closeAcc").click();
+                            $("#action" + id).html('Accepted');
+                        }
+                    },
+                });
 
 
 
-$(document).on("click", "#notifliat", function() {
-
-    var id = <?php echo $id ?>;
-    var code = 0;
-
-    $.ajax({
-        url: "ajax/lihatnotif.php",
-        type: "POST",
-        cache: false,
-        data: {
-            id,
-            id
-        },
-        success: function(dataResult) {
-            $('#notifbody').html(dataResult);
-            $('#staticBackdrop3').modal('show');
-
-        },
-    });
-
-});
-
-
-
-$(document).on("click", "#bykfollowing", function() {
-
-    var id = <?php echo $id ?>;
-    var code = 0;
-
-    $.ajax({
-        url: "ajax/cekfollow.php",
-        type: "POST",
-        cache: false,
-        data: {
-            id,
-            id,
-            code: code
-        },
-        success: function(dataResult) {
-            $('#bodyfollowing').html(dataResult);
-            $('#staticBackdrop4').modal('show');
-
-        },
+            }
+        })
     });
 
-});
-$(document).on("click", "#bykfollower", function() {
+    $("#savetext").on("click", function() {
+        var formData = new FormData();
+        var posting = $('#inputPost').val();
+        var image = $('#uploadimg').prop('files')[0];
+        var ok = "";
+        formData.append("file", image);
+        formData.append("text", posting);
 
-    var id = <?php echo $id ?>;
-    var code = 1;
+        $.ajax({
+            url: "ajax/create.php",
+            type: "POST",
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: function(data) {
+                alert(data);
 
-    $.ajax({
-        url: "ajax/cekfollow.php",
-        type: "POST",
-        cache: false,
-        data: {
-            id,
-            id,
-            code: code
-        },
-        success: function(dataResult) {
-            $('#bodyfollowing').html(dataResult);
-            $('#staticBackdrop4').modal('show');
+                if (data == "failed") {
+                    swal.fire({
+                        title: "Error",
+                        text: "Error",
+                        icon: "error",
+                        confirmButtonText: "OK"
+                    });
+                } else if (data == "success") {
+                    swal.fire({
+                        title: "Success",
+                        text: "Success",
+                        icon: "success",
+                        confirmButtonText: "OK"
+                    })
+                    $('#inputPost').val('');
+                    $('#uploadimg').val('');
+                    $("#closee").click();
+                    reset();
+                    previewImgDelete();
+                }
+            }
+        });
 
-        },
+
+
+        /*    location.reload();*/
+
+
     });
 
-});
+
+    function reset() {
+
+        $.ajax({
+            url: "ajax/resetpost.php",
+            type: "POST",
+            cache: false,
+            data: {
+
+            },
+            success: function(dataResult) {
+                $("#tampilan").html(dataResult);
+            },
+        });
+
+    }
+
+
+    function previewImgDelete(input) {
+
+        $("#outputImage").hide();
+
+    }
+
+    function previewImg(input) {
+        $("#outputImage").show();
+        var file = $("input[type=file]").get(0).files[0];
+        if (file) {
+            var reader = new FileReader();
+
+            reader.onload = function() {
+                $("#outputImage").attr("src", reader.result);
+            }
+
+            reader.readAsDataURL(file);
+        }
+    }
+
+    $("#closee").click(function() {
+        $("#outputImage").remove();
+        $("#imageinput").after("<img class='outputimg' align='center' id='outputImage'>");
+        $("#outputImage").val("");
+        $('#exampleFormControlInput2').val('');
+    });
+
+    /*$(".image_content").click(function(){
+      alert("The paragraph was clicked.");
+    });*/
 
 
 
-const searchWrapper = document.querySelector(".search-input");
-const inputBox = searchWrapper.querySelector("input");
-const suggBox = searchWrapper.querySelector(".autocom-box");
-const suggBox2 = document.querySelector(".autocom-box2");
-const icon = searchWrapper.querySelector(".icon");
-let linkTag = searchWrapper.querySelector("a");
-let webLink;
-
-let suggestions = <?php echo json_encode($arr); ?>;
 
 
+    $(document).on("click", ".trash", function() {
+        idnya = $(this).attr('id');
+        num = idnya.split("-");
+        id = num[1];
+        Swal.fire({
+            title: 'Are you sure want to delete this portofolio?',
+            showCancelButton: true,
+            confirmButtonText: 'Yes'
+        }).then((result) => {
+            /* Read more about isConfirmed, isDenied below */
+            if (result.isConfirmed) {
+                $.ajax({
+                    url: "ajax/delete.php",
+                    type: "POST",
+                    cache: false,
+                    data: {
+                        id: id
+                    },
+                    success: function(dataResult) {
+
+                        if (dataResult == 1) {
+                            swal.fire({
+                                title: "Error",
+                                text: "Error",
+                                icon: "error",
+                                confirmButtonText: "OK"
+                            });
+                        } else if (dataResult == "success") {
+                            swal.fire({
+                                title: "Success",
+                                text: "Success",
+                                icon: "success",
+                                confirmButtonText: "OK"
+                            })
+
+                            reset();
+                        }
+                    },
+                });
+
+            }
+        })
+
+
+    });
+
+    temp = 0;
+
+    $(document).on("click", ".editan", function() {
+        idnya = $(this).attr('id');
+        num = idnya.split("-");
+        id = num[1];
+
+        lala = $("#content-" + num[1]).html();
+
+        $('#inputPostUpdate').html($("#content-" + num[1]).html());
+        temp = id;
+
+    });
 
 
 
-inputBox.onkeyup = (e) => {
-    let userData = e.target.value; //user enetered data
-    let emptyArray = [];
-    if (userData) {
+    $(document).on("click", "#saveUpdate", function() {
+        id = temp;
+        var post_update = $('#inputPostUpdate').val();
+
+        $.ajax({
+            url: "ajax/update.php",
+            type: "POST",
+            cache: false,
+            data: {
+                updated_post: post_update,
+                id: id
+            },
+            success: function(dataResult) {
+                if (dataResult == "success") {
+                    reset();
+                    $("#closeedit").click();
+                    alert('sukses');
+                } else {
+                    alert('gagal');
+                }
+            },
+        });
+    });
+
+
+
+    $(document).on("click", "#notifliat", function() {
+
+        var id = <?php echo $id ?>;
+        var code = 0;
+
+        $.ajax({
+            url: "ajax/lihatnotif.php",
+            type: "POST",
+            cache: false,
+            data: {
+                id,
+                id
+            },
+            success: function(dataResult) {
+                $('#notifbody').html(dataResult);
+                $('#staticBackdrop3').modal('show');
+
+            },
+        });
+
+    });
+
+
+
+    $(document).on("click", "#bykfollowing", function() {
+
+        var id = <?php echo $id ?>;
+        var code = 0;
+
+        $.ajax({
+            url: "ajax/cekfollow.php",
+            type: "POST",
+            cache: false,
+            data: {
+                id,
+                id,
+                code: code
+            },
+            success: function(dataResult) {
+                $('#bodyfollowing').html(dataResult);
+                $('#staticBackdrop4').modal('show');
+
+            },
+        });
+
+    });
+    $(document).on("click", "#bykfollower", function() {
+
+        var id = <?php echo $id ?>;
+        var code = 1;
+
+        $.ajax({
+            url: "ajax/cekfollow.php",
+            type: "POST",
+            cache: false,
+            data: {
+                id,
+                id,
+                code: code
+            },
+            success: function(dataResult) {
+                $('#bodyfollowing').html(dataResult);
+                $('#staticBackdrop4').modal('show');
+
+            },
+        });
+
+    });
+
+
+
+    const searchWrapper = document.querySelector(".search-input");
+    const inputBox = searchWrapper.querySelector("input");
+    const suggBox = searchWrapper.querySelector(".autocom-box");
+    const suggBox2 = document.querySelector(".autocom-box2");
+    const icon = searchWrapper.querySelector(".icon");
+    let linkTag = searchWrapper.querySelector("a");
+    let webLink;
+
+    let suggestions = <?php echo json_encode($arr); ?>;
+
+
+
+
+
+    inputBox.onkeyup = (e) => {
+        let userData = e.target.value; //user enetered data
+        let emptyArray = [];
+        if (userData) {
+            icon.onclick = () => {
+
+                var email = $('#searchID').val();
+
+                $.ajax({
+                    url: "ajax/findprofile.php",
+                    type: "POST",
+                    cache: false,
+                    data: {
+                        email: email
+                    },
+                    success: function(dataResult) {
+
+                    },
+                });
+                location.replace("profile.php");
+            }
+            emptyArray = suggestions.filter((data) => {
+                //filtering array value and user characters to lowercase and return only those words which are start with user enetered chars
+                return data.toLocaleLowerCase().startsWith(userData.toLocaleLowerCase());
+            });
+            emptyArray = emptyArray.map((data) => {
+                // passing return data inside li tag
+                return data = `<li>${data}</li>`;
+            });
+            searchWrapper.classList.add("active"); //show autocomplete box
+            suggBox2.classList.add("active"); //show autocomplete box
+            showSuggestions(emptyArray);
+            let allList = suggBox.querySelectorAll("li");
+            for (let i = 0; i < allList.length; i++) {
+                //adding onclick attribute in all li tag
+                allList[i].setAttribute("onclick", "select(this)");
+            }
+            let allList2 = suggBox2.querySelectorAll("li");
+            for (let i = 0; i < allList2.length; i++) {
+                //adding onclick attribute in all li tag
+                allList2[i].setAttribute("onclick", "select(this)");
+            }
+        } else {
+            searchWrapper.classList.remove("active"); //hide autocomplete box
+            suggBox2.classList.remove("active"); //hide autocomplete box
+        }
+    }
+
+    function select(element) {
+        let selectData = element.textContent;
+        inputBox.value = selectData;
         icon.onclick = () => {
 
             var email = $('#searchID').val();
@@ -1730,37 +1835,26 @@ inputBox.onkeyup = (e) => {
             });
             location.replace("profile.php");
         }
-        emptyArray = suggestions.filter((data) => {
-            //filtering array value and user characters to lowercase and return only those words which are start with user enetered chars
-            return data.toLocaleLowerCase().startsWith(userData.toLocaleLowerCase());
-        });
-        emptyArray = emptyArray.map((data) => {
-            // passing return data inside li tag
-            return data = `<li>${data}</li>`;
-        });
-        searchWrapper.classList.add("active"); //show autocomplete box
-        suggBox2.classList.add("active"); //show autocomplete box
-        showSuggestions(emptyArray);
-        let allList = suggBox.querySelectorAll("li");
-        for (let i = 0; i < allList.length; i++) {
-            //adding onclick attribute in all li tag
-            allList[i].setAttribute("onclick", "select(this)");
-        }
-        let allList2 = suggBox2.querySelectorAll("li");
-        for (let i = 0; i < allList2.length; i++) {
-            //adding onclick attribute in all li tag
-            allList2[i].setAttribute("onclick", "select(this)");
-        }
-    } else {
-        searchWrapper.classList.remove("active"); //hide autocomplete box
-        suggBox2.classList.remove("active"); //hide autocomplete box
-    }
-}
+        searchWrapper.classList.remove("active");
+        suggBox2.classList.remove("active");
 
-function select(element) {
-    let selectData = element.textContent;
-    inputBox.value = selectData;
-    icon.onclick = () => {
+    }
+
+    function showSuggestions(list) {
+        let listData;
+        if (!list.length) {
+            userValue = inputBox.value;
+            listData = `<li>${userValue}</li>`;
+        } else {
+            listData = list.join('');
+        }
+        suggBox.innerHTML = listData;
+        suggBox2.innerHTML = listData;
+    }
+
+
+
+    $(document).on("click", "#cariID", function() {
 
         var email = $('#searchID').val();
 
@@ -1776,71 +1870,38 @@ function select(element) {
             },
         });
         location.replace("profile.php");
-    }
-    searchWrapper.classList.remove("active");
-    suggBox2.classList.remove("active");
-
-}
-
-function showSuggestions(list) {
-    let listData;
-    if (!list.length) {
-        userValue = inputBox.value;
-        listData = `<li>${userValue}</li>`;
-    } else {
-        listData = list.join('');
-    }
-    suggBox.innerHTML = listData;
-    suggBox2.innerHTML = listData;
-}
-
-
-
-$(document).on("click", "#cariID", function() {
-
-    var email = $('#searchID').val();
-
-    $.ajax({
-        url: "ajax/findprofile.php",
-        type: "POST",
-        cache: false,
-        data: {
-            email: email
-        },
-        success: function(dataResult) {
-
-        },
     });
-    location.replace("profile.php");
-});
 
 
-$(document).on("click", ".maulike", function() {
-    idnya = $(this).attr('id');
-    num = idnya.split("-");
-    id = num[1];
+    $(document).on("click", ".maulike", function() {
+        idnya = $(this).attr('id');
+        num = idnya.split("-");
+        id = num[1];
 
 
-    $.ajax({
-        url: "ajax/like.php",
-        type: "POST",
-        cache: false,
-        data: {
-            id,
-            id
-        },
-        success: function(dataResult) {
-            dataResult = dataResult.split("-");
+        $.ajax({
+            url: "ajax/like.php",
+            type: "POST",
+            cache: false,
+            data: {
+                id,
+                id
+            },
+            success: function(dataResult) {
+                dataResult = dataResult.split("-");
 
-            if (dataResult[0] == "1") {
-                $('#' + idnya).css('color', 'black');
-                $('#likenih-' + id).html(' ' + dataResult[1] + ' Likes');
+                if (dataResult[0] == "1") {
+                    $('#' + idnya).css('color', 'black');
+                    $('#likenih-' + id).html(' ' + dataResult[1] + ' Likes');
 
-            } else if (dataResult[0] == "2") {
-                $('#' + idnya).css('color', 'red');
-                $('#likenih-' + id).html(' ' + dataResult[1] + ' Likes');
-            }
-        },
+                } else if (dataResult[0] == "2") {
+                    $('#' + idnya).css('color', 'red');
+                    $('#likenih-' + id).html(' ' + dataResult[1] + ' Likes');
+                }
+            },
+        });
     });
-});
-</script>
+    </script>
+</body>
+
+</html>
