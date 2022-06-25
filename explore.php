@@ -919,12 +919,14 @@ $(document).on("click", ".maulike", function() {
             dataResult = dataResult.split("-");
 
             if (dataResult[0] == "1") {
-                $('#' + idnya).css('color', 'black');
-                $('#likenih-' + id).html(' ' + dataResult[1] + ' Likes');
+                $('#' + idnya).removeClass('fa-solid fa-bookmark').addClass(
+                    'fa-regular fa-bookmark');
+                $('#likenih-' + id).html(' ' + dataResult[1] + ' Saved');
 
             } else if (dataResult[0] == "2") {
-                $('#' + idnya).css('color', 'red');
-                $('#likenih-' + id).html(' ' + dataResult[1] + ' Likes');
+                $('#' + idnya).removeClass('fa-regular fa-bookmark').addClass(
+                    'fa-solid fa-bookmark');
+                $('#likenih-' + id).html(' ' + dataResult[1] + ' Saved');
             }
         },
     });

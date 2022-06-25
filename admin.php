@@ -81,7 +81,7 @@ while ($res= mysqli_fetch_assoc($result5)){
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
+    <title>Admin</title>
 
     <link rel="icon" href="assets\logo.png" sizes="20">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -376,7 +376,6 @@ while ($res= mysqli_fetch_assoc($result5)){
     } */
 
 
-
     .tab {
         overflow: hidden;
         border: 1px solid #ccc;
@@ -604,11 +603,16 @@ while ($res= mysqli_fetch_assoc($result5)){
         text-decoration: underline;
     }
 
-    .category {
-        overflow: hidden;
-        white-space: nowrap;
+    
+    .lal {
+        background-color: indigo;
+        color: white;
+        padding: 0.5rem;
+        font-family: sans-serif;
+        border-radius: 0.3rem;
+        cursor: pointer;
+        margin-top: 1rem;
     }
-
 
     @media screen and (max-width: 580px) {}
     </style>
@@ -663,7 +667,7 @@ while ($res= mysqli_fetch_assoc($result5)){
                             <a class="nav-link" href="myprofile.php"><i class="fas fa-user-circle"></i></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="orders.php"><i class="far fa-clipboard"></i></a>
+                            <a class="nav-link" href="orders.php"><i class="fa-solid fa-clipboard-list"></i></a>
                         </li>
                         <?php if ($_SESSION['role'] == '1') { ?>
                         <li class="nav-item">
@@ -671,9 +675,6 @@ while ($res= mysqli_fetch_assoc($result5)){
                                 class="btn btn-primary text-white mx-lg-1 mt-1 mt-lg-0" href="admin.php">Admin</a>
                         </li>
                         <?php } ?>
-                        <li class="nav-item">
-                            <a class="nav-link" href="chat.php"><i class="fas fa-comment"></i></a>
-                        </li>
                         <li class="nav-item">
                             <button id="logout" class="btn bg-danger text-white mx-lg-1 mt-1 mt-lg-0">Logout</button>
                         </li>
@@ -689,200 +690,138 @@ while ($res= mysqli_fetch_assoc($result5)){
     </div>
 
 
-    <div class="container">
-        <div class="row" style="">
 
-            <div class="col-12" align="center">
-                <br> <br>
-                <div class="tab">
-                    <button class="tablinks" onclick="openCategory(event, 'Requested Orders')"
-                        id="defaultOpen">Requested
-                        Orders</button>
-                    <button class="tablinks" onclick="openCategory(event, 'Accept Orders')">Accept Orders</button>
-                    <button class="tablinks" onclick="openCategory(event, 'Ongoing Orders')">Ongoing Orders</button>
-                    <button class="tablinks" onclick="openCategory(event, 'Completed Orders')">Completed Orders</button>
-                    <button class="tablinks" onclick="openCategory(event, 'Cancel Orders')">Cancel Orders</button>
-                    <button class="tablinks" onclick="openCategory(event, 'Rejected Orders')">Rejected Orders</button>
-                </div>
+    <div class="row">
 
-                <div id="Requested Orders" class="tabcontent">
+        <div class="col-1"></div>
+        <div class="col-10" align="center">
+            <br> <br>
+            <div class="tab">
+                <button class="tablinks" onclick="openCategory(event, 'Paid Orders')" id="defaultOpen">Paid Order</button>
+                <button class="tablinks" onclick="openCategory(event, 'Approved Orders')">Approved Orders</button>
+                <button class="tablinks" onclick="openCategory(event, 'Rejected Orders')">Rejected Orders</button>
+                <!-- <button class="tablinks" onclick="openCategory(event, 'Completed Orders')">Completed Orders</button>
+                <button class="tablinks" onclick="openCategory(event, 'Cancel Orders')">Cancel Orders</button>
+                <button class="tablinks" onclick="openCategory(event, 'Rejected Orders')">Rejected Orders</button> -->
+            </div>
 
-                    <div class="container text-center mb-5">
-                        <br>
-                        <h3>Requested Orders</h3>
-                        <div class="table_wrapper mt-5" style="overflow-x:auto;">
-                            <table class="text-center" id="tableReq">
-                                <thead>
-                                    <tr>
-                                        <th>No.</th>
-                                        <th>Tanggal Order</th>
-                                        <th>username</th>
-                                        <th>Name</th>
-                                        <th>Alamat</th>
-                                        <th>Jenis Baju</th>
-                                        <th>Before Clothes</th>
-                                        <th>After Clothes</th>
-                                        <th>Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="daftarReq">
+            <div id="Paid Orders" class="tabcontent">
 
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-
-                <div id="Accept Orders" class="tabcontent">
-                    <div class="container text-center mb-5">
-                        <br>
-                        <h3>Accepted Orders</h3>
-                        <div class="table_wrapper mt-5" style="overflow-x: auto;">
-                            <table class="text-center" id="tableAcc">
-                                <thead>
-                                    <tr>
-                                        <th>No.</th>
-                                        <th>Tanggal Order</th>
-                                        <th>username</th>
-                                        <th>Name</th>
-                                        <th>Alamat</th>
-                                        <th>Jenis Baju</th>
-                                        <th>Before Clothes</th>
-                                        <th>After Clothes</th>
-                                        <th>Status</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="daftarAcc">
-
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-
-                <div id="Ongoing Orders" class="tabcontent">
                 <div class="container text-center mb-5">
                     <br>
-                    <h3>Ongoing Orders</h3>
+                    <h3>Pending Paid Orders</h3>
                     <div class="table_wrapper mt-5" style="overflow-x: auto;">
-                        <table class="text-center" id="tableOngo">
+                        <table class="text-center" id="tableReq">
+                            <thead>
+                                <tr>
+                                    <th>No.</th>
+                                    <th>Tanggal Order</th>
+                                    <th>username</th>
+                                    <th>Name</th>
+                                    <th>Cost</th>
+                                    <th>Long Working (days)</th>
+                                    <th>Transfer Proof</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody id="daftarReq">
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div id="Approved Orders" class="tabcontent">
+                <div class="container text-center mb-5">
+                    <br>
+                    <h3>Accepted Orders</h3>
+                    <div class="table_wrapper mt-5" style="overflow-x: auto;">
+                        <table class="text-center" id="tableAcc">
                             <thead>
                                 <tr>
                                 <th>No.</th>
                                     <th>Tanggal Order</th>
                                     <th>username</th>
                                     <th>Name</th>
-                                    <th>Alamat</th>
-                                    <th>Jenis Baju</th>
-                                    <th>Work Day</th>
+                                    <th>Long Working (days)</th>
                                     <th>Cost</th>
-                                    <th>Before Clothes</th>
-                                    <th>After Clothes</th>
-                                    <th>Status</th>
-                                    <th>Action</th>
-
+                                    
+                                    <th>Transfer Proof</th>
                                 </tr>
                             </thead>
-                            <tbody id="daftarOngo">
+                            <tbody id="daftarAcc">
 
                             </tbody>
                         </table>
                     </div>
                 </div>
-                </div>
+            </div>
 
-                <div id="Completed Orders" class="tabcontent">
-                    <div class="container text-center mb-5">
-                        <br>
-                        <h3>Completed Orders</h3>
-                        <div class="table_wrapper mt-5" style="overflow-x: auto;">
-                            <table class="text-center" id="tableComp">
-                                <thead>
-                                    <tr>
-                                        <th>No.</th>
-                                        <th>Tanggal Order</th>
-                                        <th>username</th>
-                                        <th>Name</th>
-                                        <th>Alamat</th>
-                                        <th>Jenis Baju</th>
-                                        <th>Before Clothes</th>
-                                        <th>After Clothes</th>
+            <div id="Rejected Orders" class="tabcontent">
+            <div class="container text-center mb-5">
+                    <br>
+                    <h3>Ongoing Orders</h3>
+                    <div class="table_wrapper mt-5" style="overflow-x: auto;">
+                        <table class="text-center" id="tableComp">
+                            <thead>
+                                <tr>
+                                    <th>No.</th>
+                                    <th>Tanggal Order</th>
+                                    <th>username</th>
+                                    <th>Name</th>
+                                    <th>Long Working (days)</th>
+                                    <th>Cost</th>
+                                    
+                                    <th>Transfer Proof</th>
 
-                                    </tr>
-                                </thead>
-                                <tbody id="daftarCom">
+                                </tr>
+                            </thead>
+                            <tbody id="daftarCom">
 
-                                </tbody>
-                            </table>
-                        </div>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
+            </div>
 
-                <div id="Cancel Orders" class="tabcontent">
+
+            <div id="Cancel Orders" class="tabcontent">
+                <h3>Accept Orders</h3>
+                <p>Accept Orders is the capital of France.</p>
+            </div>
+
+            <div id="Rejected Orders" class="tabcontent">
                 <div class="container text-center mb-5">
-                        <br>
-                        <h3>Completed Orders</h3>
-                        <div class="table_wrapper mt-5" style="overflow-x: auto;">
-                            <table class="text-center" id="tableCan">
-                                <thead>
-                                    <tr>
-                                        <th>No.</th>
-                                        <th>Tanggal Order</th>
-                                        <th>username</th>
-                                        <th>Name</th>
-                                        <th>Alamat</th>
-                                        <th>Jenis Baju</th>
-                                        <th>Before Clothes</th>
-                                        <th>After Clothes</th>
+                    <br>
+                    <h3>Rejected Orders</h3>
+                    <div class="table_wrapper mt-5" style="overflow-x: auto;">
+                        <table class="text-center" id="tableReject">
+                            <thead>
+                                <tr>
+                                    <th>No.</th>
+                                    <th>Tanggal Order</th>
+                                    <th>username</th>
+                                    <th>Name</th>
+                                    <th>Alamat</th>
+                                    <th>Jenis Baju</th>
+                                    <th>Before Clothes</th>
+                                    <th>After Clothes</th>
 
-                                    </tr>
-                                </thead>
-                                <tbody id="daftarCan">
+                                </tr>
+                            </thead>
+                            <tbody id="daftarRejected">
 
-                                </tbody>
-                            </table>
-                        </div>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
-
-                <div id="Rejected Orders" class="tabcontent">
-                    <div class="container text-center mb-5">
-                        <br>
-                        <h3>Rejected Orders</h3>
-                        <div class="table_wrapper mt-5" style="overflow-x: auto;">
-                            <table class="text-center" id="tableReject">
-                                <thead>
-                                    <tr>
-                                        <th>No.</th>
-                                        <th>Tanggal Order</th>
-                                        <th>username</th>
-                                        <th>Name</th>
-                                        <th>Alamat</th>
-                                        <th>Jenis Baju</th>
-                                        <th>Before Clothes</th>
-                                        <th>After Clothes</th>
-                                        <th>Status</th>
-
-                                    </tr>
-                                </thead>
-                                <tbody id="daftarRejected">
-
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-
-
-               
             </div>
 
         </div>
+
+
     </div>
-
-
-
-
 
 
 
@@ -925,69 +864,33 @@ while ($res= mysqli_fetch_assoc($result5)){
                 <div class="modal-body">
                     <div class="container login-box">
 
-                        <button type="button" style="float:right;" id="closeAcc" class="btn-close btn-close-white"
+                        <button type="button" style="float:right;" id="closeRe" class="btn-close btn-close-white"
                             data-bs-dismiss="modal" aria-label="Close"></button>
                         <h2 style="color:white; text-align:center;">Accept Order</h2>
                         <div class="txt_field">
-                            <input id="lama" type="text" required>
+                            <input id="telp" type="number" required>
                             <span></span>
-                            <label>Long (days)</label>
-                        </div>
-                        <div class="txt_field">
-                            <input id="biaya" type="text" required>
-                            <span></span>
-                            <label>Cost</label>
-                        </div>
-                        <div class="row">
-                            <div class="col-4"></div>
-                            <div class="col-4">
-                                <button id="acc" style="width: 100%; height:100%; overflow-y: hidden;"
-                                    class="button-82-pushable" role="button">
-                                    <span class="button-82-shadow"></span>
-                                    <span class="button-82-edge"></span>
-                                    <span class="button-82-front text">
-                                        Accept
-                                    </span>
-                                </button>
-                            </div>
-                            <div class="col-4"></div>
-                        </div>
-
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </div>
-
-    <div class="modal fade" id="modalResi" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content" style=" background: rgba(0,0,0,.7); backdrop-filter: blur(20px); 
-          box-shadow: 0 15px 25px rgba(0,0,0,.6);
-          border-radius: 10px; padding: 10px; ">
-
-                <div class="modal-body">
-                    <div class="container login-box">
-
-                        <button type="button" style="float:right;" id="closeResi" class="btn-close btn-close-white"
-                            data-bs-dismiss="modal" aria-label="Close"></button>
-                        <h2 style="color:white; text-align:center;">Send Package</h2>
-                        <div class="txt_field">
-                            <input id="resi" type="text" required>
-                            <span></span>
-                            <label>Input Resi</label>
+                            <label>Telephone number</label>
                         </div>
                        
-                        
+                        <div class="image input" id="imageinput">
+                            <img class="outputimg" align="center" id="outputImage">
+                        </div>
+                        <div>
+                            <input type="file" onchange="previewImg(this);" id="uploadimg" name="uploadimg"
+                                style="display:none;">
+                            <span></span>
+                            <label for="uploadimg" class="lal">Input Transfer Proof</label>
+                        </div>
                         <div class="row">
                             <div class="col-4"></div>
                             <div class="col-4">
-                                <button id="send" style="width: 100%; height:100%; overflow-y: hidden;"
+                                <button id="pay" style="width: 100%; height:100%; overflow-y: hidden;"
                                     class="button-82-pushable" role="button">
                                     <span class="button-82-shadow"></span>
                                     <span class="button-82-edge"></span>
                                     <span class="button-82-front text">
-                                        Send
+                                        Pay
                                     </span>
                                 </button>
                             </div>
@@ -1015,13 +918,11 @@ while ($res= mysqli_fetch_assoc($result5)){
 <!-- AJAX -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://use.fontawesome.com/releases/v5.15.1/js/all.js" crossorigin="anonymous"></script>
-
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
     integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
 <!-- Data Table -->
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
-
 
 <script>
 var position;
@@ -1048,8 +949,7 @@ document.getElementById("defaultOpen").click();
 $(document).ready(function() {
     reset();
     $('#tableReq').DataTable({
-        "ordering": false,
-
+        "ordering": false
     });
 
     $('#tableReject').DataTable({
@@ -1061,53 +961,21 @@ $(document).ready(function() {
     $('#tableAcc').DataTable({
         "ordering": false
     });
-    $('#tableOngo').DataTable({
-        "ordering": false
-    });
-    $('#tableCan').DataTable({
-        "ordering": false
-    });
+
 
     reqTable();
     comTable();
     rejTable();
     accTable();
-    ongoTable();
-    canTable();
 
 
 });
 
 
-function ongoTable() {
-    $.ajax({
-        url: "ajax/getTableOnGoDesigner.php",
-        type: "POST",
-        cache: false,
-        data: {
 
-        },
-        success: function(dataResult) {
-            $("#daftarOngo").html(dataResult);
-        },
-    });
-}
-function canTable() {
-    $.ajax({
-        url: "ajax/getTableCanDesigner.php",
-        type: "POST",
-        cache: false,
-        data: {
-
-        },
-        success: function(dataResult) {
-            $("#daftarCan").html(dataResult);
-        },
-    });
-}
 function reqTable() {
     $.ajax({
-        url: "ajax/getTable.php",
+        url: "ajax/getTablePayPending.php",
         type: "POST",
         cache: false,
         data: {
@@ -1121,7 +989,7 @@ function reqTable() {
 
 function accTable() {
     $.ajax({
-        url: "ajax/getTableAcc.php",
+        url: "ajax/getTableAccPaid.php",
         type: "POST",
         cache: false,
         data: {
@@ -1135,7 +1003,7 @@ function accTable() {
 
 function comTable() {
     $.ajax({
-        url: "ajax/getTableCompleted.php",
+        url: "ajax/getTableRejectedPaid.php",
         type: "POST",
         cache: false,
         data: {
@@ -1149,7 +1017,7 @@ function comTable() {
 
 function rejTable() {
     $.ajax({
-        url: "ajax/getTableRejected.php",
+        url: "ajax/getTableRejectedCus.php",
         type: "POST",
         cache: false,
         data: {
@@ -1176,6 +1044,29 @@ $(document).ready(function() {
     });
 });
 
+
+
+function previewImgDelete(input) {
+
+$("#outputImage").hide();
+
+}
+
+function previewImg(input) {
+$("#outputImage").show();
+var file = $("#uploadimg").get(0).files[0];
+if (file) {
+    var reader = new FileReader();
+
+    reader.onload = function() {
+        $("#outputImage").attr("src", reader.result);
+    }
+
+    reader.readAsDataURL(file);
+}
+}
+
+
 $(document).on("click", ".befores", function() {
 
     id = $(this).attr('id');
@@ -1192,23 +1083,61 @@ $(document).on("click", ".after", function() {
 var id;
 $(document).on("click", ".accdong", function() {
     id = $(this).parent().parent().attr('id');
+    Swal.fire({
+        title: 'Are you sure want to approve it?',
+        showCancelButton: true,
+        confirmButtonText: 'Save'
+    }).then((result) => {
+
+        if (result.isConfirmed) {
+            $.ajax({
+                url: "ajax/accPay.php",
+                type: "POST",
+                cache: false,
+                data: {
+                    id: id
+                },
+                success: function(dataResult) {
+                    alert(dataResult);
+                    if (dataResult == "failed") {
+                        swal.fire({
+                            title: "Error",
+                            text: "Error",
+                            icon: "error",
+                            confirmButtonText: "OK"
+                        });
+                    } else if (dataResult == "success") {
+                        swal.fire({
+                            title: "Success",
+                            text: "Success",
+                            icon: "success",
+                            confirmButtonText: "OK"
+                        })
+                       
+                    }
+                },
+            });
+
+
+
+        }
+    })
 
 });
 
-$(document).on("click", ".noresiInput", function() {
-    id = $(this).parent().parent().attr('id');
-
-});
-
-$("#send").on("click", function() {
+$("#pay").on("click", function() {
+    alert(id);
     var formData = new FormData();
-    var resi = $('#resi').val();
-    formData.append("resi", resi);
+    var telp = $('#telp').val();
+    var image = $('#uploadimg').prop('files')[0];
+    var ok = "";
+    formData.append("file", image);
     formData.append("id", id);
+    formData.append("telp", telp);
    
 
     $.ajax({
-        url: "ajax/resiInputDes.php",
+        url: "ajax/pay.php",
         type: "POST",
         data: formData,
         contentType: false,
@@ -1230,55 +1159,15 @@ $("#send").on("click", function() {
                     icon: "success",
                     confirmButtonText: "OK"
                 })
-                
-                $('#resi').val('');
+                $('#uploadimg').val('');
+                $('#telp').val('');
              
-                $("#closeResi").click();
+                $("#closeRe").click();
 
-               
+                previewImgDelete();
                
             }
         }
-    });
-});
-
-$(document).on("click", "#acc", function() {
-
-    var lama = $('#lama').val();
-    var biaya = $('#biaya').val();
-
-
-    $.ajax({
-        url: "ajax/accOrder.php",
-        type: "POST",
-        cache: false,
-        data: {
-            lama: lama,
-            biaya: biaya,
-            id: id
-        },
-        success: function(dataResult) {
-            alert(dataResult);
-            if (dataResult == "failed") {
-                swal.fire({
-                    title: "Error",
-                    text: "Error",
-                    icon: "error",
-                    confirmButtonText: "OK"
-                });
-            } else if (dataResult == "success") {
-                swal.fire({
-                    title: "Success",
-                    text: "Success",
-                    icon: "success",
-                    confirmButtonText: "OK"
-                })
-                $('#lama').val('');
-                $('#biaya').val('');
-                $("#closeAcc").click();
-                $("#action" + id).html('Accepted');
-            }
-        },
     });
 });
 
@@ -1292,101 +1181,7 @@ $(document).on("click", ".reject", function() {
 
         if (result.isConfirmed) {
             $.ajax({
-                url: "ajax/rejectOrder.php",
-                type: "POST",
-                cache: false,
-                data: {
-                    id: id
-                },
-                success: function(dataResult) {
-                    alert(dataResult);
-                    if (dataResult == "failed") {
-                        swal.fire({
-                            title: "Error",
-                            text: "Error",
-                            icon: "error",
-                            confirmButtonText: "OK"
-                        });
-                    } else if (dataResult == "success") {
-                        swal.fire({
-                            title: "Success",
-                            text: "Success",
-                            icon: "success",
-                            confirmButtonText: "OK"
-                        })
-                        $('#lama').val('');
-                        $('#biaya').val('');
-                        $("#closeAcc").click();
-                        $("#action" + id).html('Accepted');
-                    }
-                },
-            });
-
-
-
-        }
-    })
-});
-
-$(document).on("click", ".here", function() {
-  
-    id = $(this).parent().parent().attr('id');
-    Swal.fire({
-        title: 'Are you sure?',
-        showCancelButton: true,
-        confirmButtonText: 'Save'
-    }).then((result) => {
-
-        if (result.isConfirmed) {
-            $.ajax({
-                url: "ajax/doIt.php",
-                type: "POST",
-                cache: false,
-                data: {
-                    id: id
-                },
-                success: function(dataResult) {
-                    alert(dataResult);
-                    if (dataResult == "failed") {
-                        swal.fire({
-                            title: "Error",
-                            text: "Error",
-                            icon: "error",
-                            confirmButtonText: "OK"
-                        });
-                    } else if (dataResult == "success") {
-                        swal.fire({
-                            title: "Success",
-                            text: "Success",
-                            icon: "success",
-                            confirmButtonText: "OK"
-                        })
-                        $('#lama').val('');
-                        $('#biaya').val('');
-                        $("#closeAcc").click();
-                        $("#action" + id).html('Accepted');
-                    }
-                },
-            });
-
-
-
-        }
-    })
-});
-
-$(document).on("click", ".doneProcess", function() {
-    id = $(this).parent().parent().attr('id');
-    Swal.fire({
-        title: 'Are you sure?',
-        showCancelButton: true,
-        confirmButtonText: 'Save'
-    }).then((result) => {
-
-        if (result.isConfirmed) {
-           
-            $.ajax({
-                url: "ajax/doneprocess.php",
+                url: "ajax/rejectPay.php",
                 type: "POST",
                 cache: false,
                 data: {

@@ -603,6 +603,17 @@ while ($res= mysqli_fetch_assoc($result5)){
         text-decoration: underline;
     }
 
+    
+    .lal {
+        background-color: indigo;
+        color: white;
+        padding: 0.5rem;
+        font-family: sans-serif;
+        border-radius: 0.3rem;
+        cursor: pointer;
+        margin-top: 1rem;
+    }
+
     @media screen and (max-width: 580px) {}
     </style>
 </head>
@@ -753,8 +764,34 @@ while ($res= mysqli_fetch_assoc($result5)){
             </div>
 
             <div id="Ongoing Orders" class="tabcontent">
-                <h3>Ongoing Orders</h3>
-                <p>Ongoing Orders is the capital of Japan.</p>
+            <div class="container text-center mb-5">
+                    <br>
+                    <h3>Ongoing Orders</h3>
+                    <div class="table_wrapper mt-5" style="overflow-x: auto;">
+                        <table class="text-center" id="tableOngo">
+                            <thead>
+                                <tr>
+                                <th>No.</th>
+                                    <th>Tanggal Order</th>
+                                    <th>username</th>
+                                    <th>Name</th>
+                                    <th>Alamat</th>
+                                    <th>Jenis Baju</th>
+                                    <th>Work Day</th>
+                                    <th>Cost</th>
+                                    <th>Before Clothes</th>
+                                    <th>After Clothes</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
+
+                                </tr>
+                            </thead>
+                            <tbody id="daftarOngo">
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
 
             <div id="Completed Orders" class="tabcontent">
@@ -785,8 +822,30 @@ while ($res= mysqli_fetch_assoc($result5)){
             </div>
 
             <div id="Cancel Orders" class="tabcontent">
-                <h3>Accept Orders</h3>
-                <p>Accept Orders is the capital of France.</p>
+            <div class="container text-center mb-5">
+                    <br>
+                    <h3>Completed Orders</h3>
+                    <div class="table_wrapper mt-5" style="overflow-x: auto;">
+                        <table class="text-center" id="tableCan">
+                            <thead>
+                                <tr>
+                                    <th>No.</th>
+                                    <th>Tanggal Order</th>
+                                    <th>username</th>
+                                    <th>Name</th>
+                                    <th>Alamat</th>
+                                    <th>Jenis Baju</th>
+                                    <th>Before Clothes</th>
+                                    <th>After Clothes</th>
+
+                                </tr>
+                            </thead>
+                            <tbody id="daftarCan">
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
 
             <div id="Rejected Orders" class="tabcontent">
@@ -805,6 +864,7 @@ while ($res= mysqli_fetch_assoc($result5)){
                                     <th>Jenis Baju</th>
                                     <th>Before Clothes</th>
                                     <th>After Clothes</th>
+                                    <th>Status</th>
 
                                 </tr>
                             </thead>
@@ -862,14 +922,15 @@ while ($res= mysqli_fetch_assoc($result5)){
                 <div class="modal-body">
                     <div class="container login-box">
 
-                        <button type="button" style="float:right;" id="closeAcc" class="btn-close btn-close-white"
+                        <button type="button" style="float:right;" id="closeRe" class="btn-close btn-close-white"
                             data-bs-dismiss="modal" aria-label="Close"></button>
                         <h2 style="color:white; text-align:center;">Accept Order</h2>
                         <div class="txt_field">
-                            <input id="telp" type="text" required>
+                            <input id="telp" type="number" required>
                             <span></span>
-                            <label>No Telpon</label>
+                            <label>Telephone number</label>
                         </div>
+                       
                         <div class="image input" id="imageinput">
                             <img class="outputimg" align="center" id="outputImage">
                         </div>
@@ -877,17 +938,59 @@ while ($res= mysqli_fetch_assoc($result5)){
                             <input type="file" onchange="previewImg(this);" id="uploadimg" name="uploadimg"
                                 style="display:none;">
                             <span></span>
-                            <label for="uploadimg" class="lal">Input Before Picture</label>
+                            <label for="uploadimg" class="lal">Input Transfer Proof</label>
                         </div>
                         <div class="row">
                             <div class="col-4"></div>
                             <div class="col-4">
-                                <button id="acc" style="width: 100%; height:100%; overflow-y: hidden;"
+                                <button id="pay" style="width: 100%; height:100%; overflow-y: hidden;"
                                     class="button-82-pushable" role="button">
                                     <span class="button-82-shadow"></span>
                                     <span class="button-82-edge"></span>
                                     <span class="button-82-front text">
-                                        Accept
+                                        Pay
+                                    </span>
+                                </button>
+                            </div>
+                            <div class="col-4"></div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+    <div class="modal fade" id="modalResi" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content" style=" background: rgba(0,0,0,.7); backdrop-filter: blur(20px); 
+          box-shadow: 0 15px 25px rgba(0,0,0,.6);
+          border-radius: 10px; padding: 10px; ">
+
+                <div class="modal-body">
+                    <div class="container login-box">
+
+                        <button type="button" style="float:right;" id="closeResi" class="btn-close btn-close-white"
+                            data-bs-dismiss="modal" aria-label="Close"></button>
+                        <h2 style="color:white; text-align:center;">Accept Order</h2>
+                        <div class="txt_field">
+                            <input id="resi" type="text" required>
+                            <span></span>
+                            <label>Input Resi</label>
+                        </div>
+                       
+                        
+                        <div class="row">
+                            <div class="col-4"></div>
+                            <div class="col-4">
+                                <button id="send" style="width: 100%; height:100%; overflow-y: hidden;"
+                                    class="button-82-pushable" role="button">
+                                    <span class="button-82-shadow"></span>
+                                    <span class="button-82-edge"></span>
+                                    <span class="button-82-front text">
+                                        Send
                                     </span>
                                 </button>
                             </div>
@@ -958,12 +1061,21 @@ $(document).ready(function() {
     $('#tableAcc').DataTable({
         "ordering": false
     });
+    $('#tableOngo').DataTable({
+        "ordering": false
+    });
+    $('#tableCan').DataTable({
+        "ordering": false
+    });
 
 
     reqTable();
     comTable();
     rejTable();
     accTable();
+    ongoTable();
+    canTable();
+    
 
 
 });
@@ -980,6 +1092,19 @@ function reqTable() {
         },
         success: function(dataResult) {
             $("#daftarReq").html(dataResult);
+        },
+    });
+}
+function canTable() {
+    $.ajax({
+        url: "ajax/getTableCanCus.php",
+        type: "POST",
+        cache: false,
+        data: {
+
+        },
+        success: function(dataResult) {
+            $("#daftarCan").html(dataResult);
         },
     });
 }
@@ -1000,7 +1125,7 @@ function accTable() {
 
 function comTable() {
     $.ajax({
-        url: "ajax/getTableCompleted.php",
+        url: "ajax/getTableCompletedCus.php",
         type: "POST",
         cache: false,
         data: {
@@ -1008,6 +1133,20 @@ function comTable() {
         },
         success: function(dataResult) {
             $("#daftarCom").html(dataResult);
+        },
+    });
+}
+
+function ongoTable() {
+    $.ajax({
+        url: "ajax/getTableOnGo.php",
+        type: "POST",
+        cache: false,
+        data: {
+
+        },
+        success: function(dataResult) {
+            $("#daftarOngo").html(dataResult);
         },
     });
 }
@@ -1041,6 +1180,29 @@ $(document).ready(function() {
     });
 });
 
+
+
+function previewImgDelete(input) {
+
+$("#outputImage").hide();
+
+}
+
+function previewImg(input) {
+$("#outputImage").show();
+var file = $("#uploadimg").get(0).files[0];
+if (file) {
+    var reader = new FileReader();
+
+    reader.onload = function() {
+        $("#outputImage").attr("src", reader.result);
+    }
+
+    reader.readAsDataURL(file);
+}
+}
+
+
 $(document).on("click", ".befores", function() {
 
     id = $(this).attr('id');
@@ -1059,46 +1221,97 @@ $(document).on("click", ".accdong", function() {
     id = $(this).parent().parent().attr('id');
 
 });
+$(document).on("click", ".noresi", function() {
+    id = $(this).parent().parent().attr('id');
 
-$(document).on("click", "#acc", function() {
-
-    var lama = $('#lama').val();
-    var biaya = $('#biaya').val();
-
+});
+$("#pay").on("click", function() {
+    var formData = new FormData();
+    var telp = $('#telp').val();
+    var image = $('#uploadimg').prop('files')[0];
+    var ok = "";
+    formData.append("file", image);
+    formData.append("id", id);
+    formData.append("telp", telp);
+   
 
     $.ajax({
-        url: "ajax/accOrder.php",
+        url: "ajax/pay.php",
         type: "POST",
-        cache: false,
-        data: {
-            lama: lama,
-            biaya: biaya,
-            id: id
-        },
-        success: function(dataResult) {
-            alert(dataResult);
-            if (dataResult == "failed") {
+        data: formData,
+        contentType: false,
+        processData: false,
+        success: function(data) {
+
+            if (data == "failed") {
                 swal.fire({
                     title: "Error",
                     text: "Error",
                     icon: "error",
                     confirmButtonText: "OK"
                 });
-            } else if (dataResult == "success") {
+            } else if (data == "success") {
                 swal.fire({
                     title: "Success",
                     text: "Success",
                     icon: "success",
                     confirmButtonText: "OK"
                 })
-                $('#lama').val('');
-                $('#biaya').val('');
-                $("#closeAcc").click();
-                $("#action" + id).html('Accepted');
+                $('#uploadimg').val('');
+                $('#telp').val('');
+             
+                $("#closeRe").click();
+
+                previewImgDelete();
+               
             }
-        },
+        }
     });
 });
+
+$("#send").on("click", function() {
+    var formData = new FormData();
+    var resi = $('#resi').val();
+    formData.append("resi", resi);
+    formData.append("id", id);
+   
+
+    $.ajax({
+        url: "ajax/resiInput.php",
+        type: "POST",
+        data: formData,
+        contentType: false,
+        processData: false,
+        success: function(data) {
+            alert(data);
+
+            if (data == "failed") {
+                swal.fire({
+                    title: "Error",
+                    text: "Error",
+                    icon: "error",
+                    confirmButtonText: "OK"
+                });
+            } else if (data == "success") {
+                swal.fire({
+                    title: "Success",
+                    text: "Success",
+                    icon: "success",
+                    confirmButtonText: "OK"
+                })
+                
+                $('#resi').val('');
+             
+                $("#closeResi").click();
+
+               
+               
+            }
+        }
+    });
+});
+
+
 
 $(document).on("click", ".reject", function() {
     id = $(this).parent().parent().attr('id');
@@ -1110,7 +1323,53 @@ $(document).on("click", ".reject", function() {
 
         if (result.isConfirmed) {
             $.ajax({
-                url: "ajax/rejectOrder.php",
+                url: "ajax/rejectCost.php",
+                type: "POST",
+                cache: false,
+                data: {
+                    id: id
+                },
+                success: function(dataResult) {
+                    alert(dataResult);
+                    if (dataResult == "failed") {
+                        swal.fire({
+                            title: "Error",
+                            text: "Error",
+                            icon: "error",
+                            confirmButtonText: "OK"
+                        });
+                    } else if (dataResult == "success") {
+                        swal.fire({
+                            title: "Success",
+                            text: "Success",
+                            icon: "success",
+                            confirmButtonText: "OK"
+                        })
+                        $('#lama').val('');
+                        $('#biaya').val('');
+                        $("#closeAcc").click();
+                        $("#action" + id).html('Accepted');
+                    }
+                },
+            });
+
+
+
+        }
+    })
+});
+$(document).on("click", ".konfirm", function() {
+    id = $(this).parent().parent().attr('id');
+
+    Swal.fire({
+        title: 'Are you sure?',
+        showCancelButton: true,
+        confirmButtonText: 'Save'
+    }).then((result) => {
+
+        if (result.isConfirmed) {
+            $.ajax({
+                url: "ajax/kofirm.php",
                 type: "POST",
                 cache: false,
                 data: {

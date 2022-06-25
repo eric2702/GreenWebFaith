@@ -5,7 +5,7 @@ include "../connection.php";
                     $find = mysqli_fetch_assoc($getID);
                     $id_user = $find["id"];
                     $output = "";
-                    $list = "SELECT orders.id,orders.alamat,orders.nama,orders.jenis,orders.imgBefore,orders.imgAfter,orders.status, user_data.username, orders.tglOrder FROM `orders` JOIN user_data ON user_data.id = orders.idUser WHERE idDesigner = '$id_user' AND status = -1";
+                    $list = "SELECT orders.id,orders.alamat,orders.nama,orders.jenis,orders.imgBefore,orders.imgAfter,orders.status, user_data.username, orders.tglOrder FROM `orders` JOIN user_data ON user_data.id = orders.idUser WHERE idDesigner = '$id_user' AND (status = -2 OR status = -3)";
                     $action = mysqli_query($con, $list);
                     $i = 1;
                     while ($result = mysqli_fetch_assoc($action)){
@@ -24,9 +24,32 @@ include "../connection.php";
      
 
                        
+                        ';
+                        if($result['status'] == -2){
+                            $output .= 
+                        '
+                        
+                        <td class="text-center">Customer Reject</td>
+                        
+     
+
+                       
                         </tr> 
                         ';
-                        $i++;    
+                        }else if($result['status'] == -3){
+                            $output .= 
+                        '
+                        
+                        <td class="text-center">Bukti tf ditolak</td>
+                        
+     
+
+                       
+                        </tr> 
+                        ';
+                        }
+                        $i++;   
+                         
                     }
 
                     echo $output;?>

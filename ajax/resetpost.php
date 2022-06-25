@@ -107,25 +107,25 @@
 
                 ".$option;
 
- if ($resultudahlike->num_rows > 0) {
+                if ($resultudahlike->num_rows > 0) {
 
-            $continue .= "
+                    $continue .= "
 
-            <div  align='right' class='col-12'>
-            <i style='cursor:pointer; color:red' id='like-".$result['idPost']."' class='far fa-heart maulike'></i><p id='likenih-".$result['idPost']."' style='display:inline'> ".$result['total_like']." Likes</p>
+                    <div  align='right' class='col-12'>
+                    <i style='cursor:pointer;' id='like-".$result['idPost']."' class='fa-solid fa-bookmark maulike'></i><p id='likenih-".$result['idPost']."' style='display:inline'> ".$result['total_like']." Saved</p>
 
-            </div>";
+                    </div>";
 
-        }else{
+                }else{
 
-            $continue .= "
+                    $continue .= "
 
-            <div  align='right' class='col-12'>
-            <i style='cursor:pointer;' id='like-".$result['idPost']."' class='far fa-heart maulike'></i><p id='likenih-".$result['idPost']."' style='display:inline'> ".$result['total_like']." Likes</p>
+                    <div  align='right' class='col-12'>
+                    <i style='cursor:pointer;' id='like-".$result['idPost']."' class='fa-regular fa-bookmark maulike'></i><p id='likenih-".$result['idPost']."' style='display:inline'> ".$result['total_like']." Saved</p>
 
-            </div>";
+                    </div>";
 
-        }
+                }
 
          $continue .= "
 
