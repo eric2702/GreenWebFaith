@@ -180,6 +180,12 @@ while ($res= mysqli_fetch_assoc($result5)){
     .autocom-box2 li:hover {
         background: #efefef;
     }
+    body{
+        background-color: #fff8f1;
+opacity: 1;
+background-image: radial-gradient(#094b65 0.75px, #fff8f1 0.75px);
+background-size: 15px 15px;
+    }
     </style>
 </head>
 <!--Coded With Love By Mutiullah Samim-->

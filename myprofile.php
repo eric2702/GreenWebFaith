@@ -29,16 +29,18 @@ if (!isset($_SESSION['email'])) {
 }
 
 
-$sql2 = "SELECT email FROM user_data";
+$sql2 = "SELECT username,email FROM user_data";
 $result2 = mysqli_query($con, $sql2);
 
 $arr = [];
 while ($res= mysqli_fetch_assoc($result2)){
-    $temp = $res['email'];
+    $temp = $res['username'];
+    $temp2 = $res['email'];
     array_push($arr,$temp);
+    array_push($arr,$temp2);
 }
 
-$sql3 = "SELECT id FROM text_post WHERE id_user='$id'";
+$sql3 = "SELECT id FROM orders WHERE idDesigner= '$id' AND (status=9 OR status=7)";
 $result3 = mysqli_query($con, $sql3);
 
 $countpost = 0;
@@ -436,6 +438,9 @@ background-size: 15px 15px;
                         <li class="nav-item">
                             <a class="nav-link" href="orders.php"><i class="far fa-clipboard"></i></a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="myprofile.php"><i class="fas fa-user-circle"></i></a>
+                        </li>
                         <?php } ?>
                         <?php if ($_SESSION['role'] == '0') { ?>
                         <li class="nav-item">
@@ -490,20 +495,9 @@ if ($_SESSION['role'] == '2') { ?>
                     </div>
                     <div class="col-2"></div>
                     <div class="row">
-                        <div class="col-3 col-md-3 special_justify">
+                        <div class="col-12 col-md-12 special_justify">
                             <br>
-                            <p class="main_heading" id="countPost" align="left"><?php echo $countpost?> post</p>
-                        </div>
-                        <div class="col-5 col-md-4 special_justify">
-                            <br>
-                            <p style="cursor:pointer" id="bykfollowing" class="main_heading" align="left">
-                                <?php echo $following?> following</p>
-                        </div>
-                        <div class="col-4 col-md-4 special_justify">
-                            <br>
-                            <p style="cursor:pointer" id="bykfollower" class="main_heading" align="left">
-                                <?php echo $followers?> followers</p>
-
+                            <p class="main_heading" id="countPost" align="left">Completed Order : <?php echo $countpost?></p>
                         </div>
                     </div>
                 </div>

@@ -30,13 +30,15 @@ if (!isset($_SESSION['email'])) {
 }
 
 
-$sql2 = "SELECT email FROM user_data";
+$sql2 = "SELECT username,email FROM user_data";
 $result2 = mysqli_query($con, $sql2);
 
 $arr = [];
 while ($res= mysqli_fetch_assoc($result2)){
-    $temp = $res['email'];
+    $temp = $res['username'];
+    $temp2 = $res['email'];
     array_push($arr,$temp);
+    array_push($arr,$temp2);
 }
 
 $sql3 = "SELECT id FROM text_post WHERE id_user='$id'";
@@ -465,7 +467,7 @@ background-size: 15px 15px;
 
     <div class="row">
         <div class="col-12">
-            <br><br>
+            <h3 style="text-align:center">Explore</h3>
         </div>
 
 
