@@ -51,8 +51,9 @@ if (isset($_SESSION['id_user'])) {
 
 body {
     overflow-x: hidden;
-    background: #fff;
+    /* background: #fff; */
     min-height: 100vh;
+    background-color: #fff8f1;
 }
 
 nav {
@@ -453,7 +454,7 @@ section::-webkit-scrollbar-corner {
         <h2 id="text"><span>Recycle Your<br></span>Old Clothes</h2>
         <img src="assets/bird1.png" id=bird1>
         <img src="assets/bird2.png" id=bird2>
-        <img style="z-index: -40;" src="assets/forest.jpg" id=forest>
+        <img style="z-index: -40;" src="assets/forest.png" id=forest>
         <a href="#about" id="btn">About</a>
         <img style="z-index: 500;" src="assets/sew.png" id=rocks>
         <img src="assets/water.png" id=water>

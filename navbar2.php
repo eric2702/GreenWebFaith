@@ -7,35 +7,11 @@ input:-webkit-autofill:focus {
 input[data-autocompleted] {
     background-color: transparent !important;
 }
-nav {
-    z-index: 550;
-}
-
-
-.navbar-brand {
-    color: #094b65 !important;
-    font-weight: 700;
-    font-size: 2em;
-    text-decoration: none;
-}
-
-nav ul li a {
-    text-decoration: none !important;
-    padding: 6px 15px;
-    color: #094b65 !important;
-    border-radius: 20px;
-    cursor: pointer;
-}
-
-nav ul li a:hover {
-    background: #094b65;
-    color: white !important;
-}
 	</style>
 
-	<nav class="navbar navbar-expand-lg navbar-light" >
+	<nav class="navbar navbar-expand-lg navbar-light">
 	    <div class="container-fluid">
-	        <a class="navbar-brand" href="#">Eco Fit</a>
+	        <a class="navbar-brand" href="#">Clothes</a>
 	        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
 	            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 	            <span class="navbar-toggler-icon"></span>

@@ -20,13 +20,37 @@
     <link href="tutorialDIY.css" rel="stylesheet" >
     <title>Tutorial DIY</title>
 </head>
+<style>
+    .effect {
+    text-shadow: 0px 0px 15px #70a99d, 0px 0px 17px #70a99d;
+    font-family: 'Rancho', cursive;
+    text-align: center;
+    color: white;
+    font-size: 100px;
+}
+    body {
+    /* background-color: #094b65; */
+    background-image: url("assets/bg.png");
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-repeat: no-repeat;
+background-attachment: fixed;
+background-size: cover;
+    /*display: flex;*/
+}
+</style>
 <body>
 <?php include('navbar.php'); ?>
 
-<img class="bg" src="assets/forest.jpg" alt="">
+<!-- <img class="bg" src="assets/forest.jpg" alt=""> -->
 <section>
 <div class="container d-flex justify-content-center">
-    <p style="padding-top:20px; color: #094b65 !important;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas veniam animi dolorem velit sed numquam quaerat temporibus at, quae iusto corrupti unde atque fuga sequi provident, reiciendis nulla suscipit nisi.</p>
+<div class="row">
+            <div class="col-12">
+                <h1 class="effect">Tutorial</h1>
+            </div>
+        </div>
 </div>
 <div class="container">
   <h2 style="display: flex; justify-content: center; padding-top: 8%; color: #094b65 !important;"><b>Here Is A Few DIY Tutorial To Follow!</b></h2>
