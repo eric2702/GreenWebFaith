@@ -609,6 +609,13 @@ while ($res= mysqli_fetch_assoc($result5)){
         white-space: nowrap;
     }
 
+    body{
+        background-color: #fff8f1;
+opacity: 1;
+background-image: radial-gradient(#094b65 0.75px, #fff8f1 0.75px);
+background-size: 15px 15px;
+    }
+
 
     @media screen and (max-width: 580px) {}
     </style>
@@ -748,12 +755,14 @@ while ($res= mysqli_fetch_assoc($result5)){
                             <table class="text-center" id="tableAcc">
                                 <thead>
                                     <tr>
-                                        <th>No.</th>
+                                    <th>No.</th>
                                         <th>Tanggal Order</th>
                                         <th>username</th>
                                         <th>Name</th>
                                         <th>Alamat</th>
                                         <th>Jenis Baju</th>
+                                        <th>Work Day</th>
+                                        <th>Cost</th>
                                         <th>Before Clothes</th>
                                         <th>After Clothes</th>
                                         <th>Status</th>
@@ -785,6 +794,8 @@ while ($res= mysqli_fetch_assoc($result5)){
                                         <th>Cost</th>
                                         <th>Before Clothes</th>
                                         <th>After Clothes</th>
+                                        <th>No resi Customer</th>
+                                        <th>No resi Designer</th>
                                         <th>Status</th>
                                         <th>Action</th>
 
@@ -812,6 +823,8 @@ while ($res= mysqli_fetch_assoc($result5)){
                                         <th>Name</th>
                                         <th>Alamat</th>
                                         <th>Jenis Baju</th>
+                                        <th>Work Day</th>
+                                        <th>Cost</th>
                                         <th>Before Clothes</th>
                                         <th>After Clothes</th>
                                         <th>Status</th>
@@ -861,12 +874,14 @@ while ($res= mysqli_fetch_assoc($result5)){
                             <table class="text-center" id="tableReject">
                                 <thead>
                                     <tr>
-                                        <th>No.</th>
+                                    <th>No.</th>
                                         <th>Tanggal Order</th>
                                         <th>username</th>
                                         <th>Name</th>
                                         <th>Alamat</th>
                                         <th>Jenis Baju</th>
+                                        <th>Work Day</th>
+                                        <th>Cost</th>
                                         <th>Before Clothes</th>
                                         <th>After Clothes</th>
                                         <th>Status</th>

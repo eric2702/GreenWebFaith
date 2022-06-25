@@ -5,7 +5,7 @@ include "../connection.php";
                     $find = mysqli_fetch_assoc($getID);
                     $id_user = $find["id"];
                     $output = "";
-                    $list = "SELECT orders.id,orders.alamat,orders.nama,orders.jenis,orders.imgBefore,orders.imgAfter,orders.status, user_data.username, orders.tglOrder, order_details.longHours,order_details.cost FROM `orders` JOIN user_data ON user_data.id = orders.idDesigner JOIN order_details ON orders.id = order_details.idOrder WHERE idDesigner = '$id_user' AND (status = 2 OR status = 3 OR status = 4 OR status = 5 OR status = 6 OR status = 8)";
+                    $list = "SELECT orders.id,orders.alamat,orders.nama,orders.jenis,orders.imgBefore,orders.imgAfter,orders.status, user_data.username, orders.tglOrder, order_details.longHours,order_details.cost, noresides.noresi AS noresides ,noresicus.noresi AS noresicus FROM `orders` JOIN user_data ON user_data.id = orders.idDesigner JOIN order_details ON orders.id = order_details.idOrder LEFT JOIN noresicus ON noresicus.idOrder = orders.id LEFT JOIN noresides ON noresides.idOrder = orders.id WHERE idDesigner = '$id_user' AND (status = 2 OR status = 3 OR status = 4 OR status = 5 OR status = 6 OR status = 8)";
                     $action = mysqli_query($con, $list);
                     $i = 1;
                     while ($result = mysqli_fetch_assoc($action)){
@@ -28,6 +28,55 @@ include "../connection.php";
                    
 
                         ';
+                        if($result['noresicus'] == ""){
+                            $output.=
+
+                            '
+                            
+                            <td class="text-center"><i class="fa-solid fa-xmark"></i></td>
+                                                 
+                                 
+                            
+                            
+                            ';
+                        }else{
+                            $output.=
+
+                            '
+                            
+                            <td class="text-center">'.$result['noresicus'].'</td>
+                                                 
+                                 
+                            
+                            
+                            ';
+                        }
+
+                        if($result['noresides'] == ""){
+                            $output.=
+
+                            '
+                            
+                            <td class="text-center"><i class="fa-solid fa-xmark"></i></td>
+                                                 
+                                 
+                            
+                            
+                            ';
+                        }else{
+                            $output.=
+
+                            '
+                            
+                            <td class="text-center">'.$result['noresides'].'</td>
+                                                 
+                                 
+                            
+                            
+                            ';
+                        }
+
+
                         if($result['status'] == 2){
                             $output.=
 
