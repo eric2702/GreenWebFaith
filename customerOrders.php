@@ -1173,9 +1173,13 @@ while ($res= mysqli_fetch_assoc($result5)){
             cache: false,
             data: {
 
+
             },
             success: function(dataResult) {
                 $("#daftarRejected").html(dataResult);
+               previewImgDelete();
+                ongoTable();
+                accTable();
                 $('#tableReject').DataTable({
                     "ordering": false
                 });
@@ -1211,9 +1215,11 @@ while ($res= mysqli_fetch_assoc($result5)){
     });
 
 
+
     function previewImgDelete(input) {
 
         $("#outputImage").hide();
+
 
     }
 
@@ -1253,6 +1259,7 @@ while ($res= mysqli_fetch_assoc($result5)){
     $(document).on("click", ".noresi", function() {
         id = $(this).parent().parent().attr('id');
 
+
     });
     $("#pay").on("click", function() {
         var formData = new FormData();
@@ -1262,6 +1269,7 @@ while ($res= mysqli_fetch_assoc($result5)){
         formData.append("file", image);
         formData.append("id", id);
         formData.append("telp", telp);
+
 
 
         $.ajax({
@@ -1293,10 +1301,58 @@ while ($res= mysqli_fetch_assoc($result5)){
 
                     previewImgDelete();
 
+
+        }
+    })
+});
+$(document).on("click", ".konfirm", function() {
+    id = $(this).parent().parent().attr('id');
+
+    Swal.fire({
+        title: 'Are you sure?',
+        showCancelButton: true,
+        confirmButtonText: 'Save'
+    }).then((result) => {
+
+        if (result.isConfirmed) {
+            $.ajax({
+                url: "ajax/kofirm.php",
+                type: "POST",
+                cache: false,
+                data: {
+                    id: id
+                },
+                success: function(dataResult) {
+                    alert(dataResult);
+                    if (dataResult == "failed") {
+                        swal.fire({
+                            title: "Error",
+                            text: "Error",
+                            icon: "error",
+                            confirmButtonText: "OK"
+                        });
+                    } else if (dataResult == "success") {
+                        swal.fire({
+                            title: "Success",
+                            text: "Success",
+                            icon: "success",
+                            confirmButtonText: "OK"
+                        })
+                        $('#lama').val('');
+                        $('#biaya').val('');
+                        $("#closeAcc").click();
+                        $("#action" + id).html('Accepted');
+                        ongoTable();
+                        comTable();
+                    }
+                },
+            });
+
                 }
             }
         });
     });
+
 
     $("#send").on("click", function() {
         var formData = new FormData();
@@ -1332,7 +1388,8 @@ while ($res= mysqli_fetch_assoc($result5)){
                     $('#resi').val('');
 
                     $("#closeResi").click();
-
+                    
+                    ongoTable();
 
 
                 }
@@ -1350,39 +1407,42 @@ while ($res= mysqli_fetch_assoc($result5)){
             confirmButtonText: 'Save'
         }).then((result) => {
 
-            if (result.isConfirmed) {
-                $.ajax({
-                    url: "ajax/rejectCost.php",
-                    type: "POST",
-                    cache: false,
-                    data: {
-                        id: id
-                    },
-                    success: function(dataResult) {
-                        alert(dataResult);
-                        if (dataResult == "failed") {
-                            swal.fire({
-                                title: "Error",
-                                text: "Error",
-                                icon: "error",
-                                confirmButtonText: "OK"
-                            });
-                        } else if (dataResult == "success") {
-                            swal.fire({
-                                title: "Success",
-                                text: "Success",
-                                icon: "success",
-                                confirmButtonText: "OK"
-                            })
-                            $('#lama').val('');
-                            $('#biaya').val('');
-                            $("#closeAcc").click();
-                            $("#action" + id).html('Accepted');
-                        }
-                    },
-                });
-
-
+            
+              
+              if (result.isConfirmed) {
+            $.ajax({
+                url: "ajax/rejectCost.php",
+                type: "POST",
+                cache: false,
+                data: {
+                    id: id
+                },
+                success: function(dataResult) {
+                    alert(dataResult);
+                    if (dataResult == "failed") {
+                        swal.fire({
+                            title: "Error",
+                            text: "Error",
+                            icon: "error",
+                            confirmButtonText: "OK"
+                        });
+                    } else if (dataResult == "success") {
+                        swal.fire({
+                            title: "Success",
+                            text: "Success",
+                            icon: "success",
+                            confirmButtonText: "OK"
+                        })
+                        // $('#lama').val('');
+                        // $('#biaya').val('');
+                        // $("#closeAcc").click();
+                        // $("#action" + id).html('Accepted');
+                        canTable();
+                        accTable();
+                    }
+                },
+            });
+              
 
             }
         })

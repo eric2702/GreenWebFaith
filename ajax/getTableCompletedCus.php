@@ -5,7 +5,7 @@ include "../connection.php";
                     $find = mysqli_fetch_assoc($getID);
                     $id_user = $find["id"];
                     $output = "";
-                    $list = "SELECT orders.id,orders.alamat,orders.nama,orders.jenis,orders.imgBefore,orders.imgAfter,orders.status, user_data.username, orders.tglOrder FROM `orders` JOIN user_data ON user_data.id = orders.idUser WHERE idUser = '$id_user' AND status = 7";
+                    $list = "SELECT orders.id,orders.alamat,orders.nama,orders.jenis,orders.imgBefore,orders.imgAfter,orders.status, user_data.username, orders.tglOrder FROM `orders` JOIN user_data ON user_data.id = orders.idUser WHERE idUser = '$id_user' AND (status = 7 OR status = 9)";
                     $action = mysqli_query($con, $list);
                     $i = 1;
                     while ($result = mysqli_fetch_assoc($action)){

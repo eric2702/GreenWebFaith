@@ -714,8 +714,8 @@ while ($res= mysqli_fetch_assoc($result5)){
                     Order</button>
                 <button class="tablinks" onclick="openCategory(event, 'Approved Orders')">Approved Orders</button>
                 <button class="tablinks" onclick="openCategory(event, 'Rejected Orders')">Rejected Orders</button>
-                <!-- <button class="tablinks" onclick="openCategory(event, 'Completed Orders')">Completed Orders</button>
-                <button class="tablinks" onclick="openCategory(event, 'Cancel Orders')">Cancel Orders</button>
+                <button class="tablinks" onclick="openCategory(event, 'Completed Orders')">Completed Orders</button>
+                <!-- <button class="tablinks" onclick="openCategory(event, 'Cancel Orders')">Cancel Orders</button>
                 <button class="tablinks" onclick="openCategory(event, 'Rejected Orders')">Rejected Orders</button> -->
             </div>
 
@@ -801,9 +801,32 @@ while ($res= mysqli_fetch_assoc($result5)){
             </div>
 
 
-            <div id="Cancel Orders" class="tabcontent">
-                <h3>Accept Orders</h3>
-                <p>Accept Orders is the capital of France.</p>
+            <div id="Completed Orders" class="tabcontent">
+            <div class="container text-center mb-5">
+                    <br>
+                    <h3>Completed Orders</h3>
+                    <div class="table_wrapper mt-5" style="overflow-x: auto;">
+                        <table class="text-center" id="tableComplete">
+                            <thead>
+                                <tr>
+                                    <th>No.</th>
+                                    <th>Tanggal Order</th>
+                                    <th>username</th>
+                                    <th>Name</th>
+                                    <th>Long Working (days)</th>
+                                    <th>Cost</th>
+
+                                    <th>Transfer Proof</th>
+                                    <th>Status</th>
+
+                                </tr>
+                            </thead>
+                            <tbody id="daftarComplete">
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
 
             <div id="Rejected Orders" class="tabcontent">
@@ -881,12 +904,8 @@ while ($res= mysqli_fetch_assoc($result5)){
 
                         <button type="button" style="float:right;" id="closeRe" class="btn-close btn-close-white"
                             data-bs-dismiss="modal" aria-label="Close"></button>
-                        <h2 style="color:white; text-align:center;">Accept Order</h2>
-                        <div class="txt_field">
-                            <input id="telp" type="number" required>
-                            <span></span>
-                            <label>Telephone number</label>
-                        </div>
+                        <h2 style="color:white; text-align:center;">Pay to designer</h2>
+                       
 
                         <div class="image input" id="imageinput">
                             <img class="outputimg" align="center" id="outputImage">
@@ -970,15 +989,33 @@ $(document).ready(function() {
 
 
 
+
+
     reqTable();
     comTable();
     rejTable();
     accTable();
+    completeTable();
+
 
 
 });
 
 
+function completeTable() {
+    $.ajax({
+        url: "ajax/getTableCompPending.php",
+        type: "POST",
+        cache: false,
+        data: {
+
+        },
+        success: function(dataResult) {
+            
+            $("#daftarComplete").html(dataResult);
+        },
+    });
+}
 
 function reqTable() {
     $.ajax({
@@ -998,6 +1035,7 @@ function reqTable() {
 }
 
 function accTable() {
+   
     $.ajax({
         url: "ajax/getTableAccPaid.php",
         type: "POST",
@@ -1111,6 +1149,9 @@ $(document).on("click", ".after", function() {
     $("#modalAfter").modal("show");
 });
 var id;
+$(document).on("click", ".pay", function() {
+    id = $(this).parent().parent().attr('id');
+});
 $(document).on("click", ".accdong", function() {
     id = $(this).parent().parent().attr('id');
     Swal.fire({
@@ -1144,6 +1185,9 @@ $(document).on("click", ".accdong", function() {
                             confirmButtonText: "OK"
                         })
 
+                        accTable();
+                        reqTable();
+
                     }
                 },
             });
@@ -1167,7 +1211,7 @@ $("#pay").on("click", function() {
 
 
     $.ajax({
-        url: "ajax/pay.php",
+        url: "ajax/payToDesigner.php",
         type: "POST",
         data: formData,
         contentType: false,
@@ -1190,9 +1234,9 @@ $("#pay").on("click", function() {
                     confirmButtonText: "OK"
                 })
                 $('#uploadimg').val('');
-                $('#telp').val('');
 
                 $("#closeRe").click();
+                completeTable();
 
                 previewImgDelete();
 
@@ -1233,10 +1277,12 @@ $(document).on("click", ".reject", function() {
                             icon: "success",
                             confirmButtonText: "OK"
                         })
-                        $('#lama').val('');
-                        $('#biaya').val('');
-                        $("#closeAcc").click();
-                        $("#action" + id).html('Accepted');
+                        // $('#lama').val('');
+                        // $('#biaya').val('');
+                        // $("#closeAcc").click();
+                        // $("#action" + id).html('Accepted');
+                        reqTable();
+                        comTable();
                     }
                 },
             });
