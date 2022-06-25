@@ -376,12 +376,12 @@ while ($res= mysqli_fetch_assoc($result5)){
     } */
 
 
-    .topDes:hover{
+    .topDes:hover {
         transform: scale(1.05);
-        cursor:pointer;
+        cursor: pointer;
     }
 
-    body{
+    body {
 
         background-color: #fff8f1;
         opacity: 1;
@@ -397,7 +397,7 @@ while ($res= mysqli_fetch_assoc($result5)){
     <div class="special-autocom">
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container-fluid">
-                <a class="navbar-brand" href="Home.php"><img src="assets\logo.png" alt="" width="30" height="24"
+                <a class="navbar-brand" href="Home.php"><img src="assets\logo2.png" alt="" width="30" height="24"
                         class="d-inline-block align-text-top">EcoFit</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -478,7 +478,7 @@ while ($res= mysqli_fetch_assoc($result5)){
 
     <div class="row">
         <div class="col-12">
-        <br>  <br><br>
+            <br> <br><br>
             <h3 style="text-align:center">Top Designer</h3>
         </div>
 
@@ -486,11 +486,11 @@ while ($res= mysqli_fetch_assoc($result5)){
     </div>
 
     <div class="col-12">
-       
-            <div class="row justify-content-md-center" align="center" id="topdesign">
+
+        <div class="row justify-content-md-center" align="center" id="topdesign">
             <p>Masih Tidak ada</p>
-               
-                <!-- <div class="col-md-3 col-4">
+
+            <!-- <div class="col-md-3 col-4">
                     <img class="profileimg" src="<?php echo $profileImg?>" alt="">
                     <p>Yuhuu</p>
                 </div>
@@ -502,10 +502,10 @@ while ($res= mysqli_fetch_assoc($result5)){
                     <img class="profileimg" src="<?php echo $profileImg?>" alt="">
                     <p>Yuhuu</p>
                 </div> -->
-               
-            </div>
 
         </div>
+
+    </div>
 
     <div class="row">
         <div class="col-12">
@@ -605,7 +605,6 @@ $("#savetext").on("click", function() {
         contentType: false,
         processData: false,
         success: function(data) {
-            alert(data);
 
             if (data == "failed") {
                 swal.fire({
@@ -672,17 +671,17 @@ function viewProfile(email) {
 
 function topdesigner() {
 
-$.ajax({
-    url: "ajax/topdesigner.php",
-    type: "POST",
-    cache: false,
-    data: {
+    $.ajax({
+        url: "ajax/topdesigner.php",
+        type: "POST",
+        cache: false,
+        data: {
 
-    },
-    success: function(dataResult) {
-        $("#topdesign").html(dataResult);
-    },
-});
+        },
+        success: function(dataResult) {
+            $("#topdesign").html(dataResult);
+        },
+    });
 
 }
 
@@ -799,10 +798,7 @@ $(document).on("click", "#saveUpdate", function() {
             if (dataResult == "success") {
                 reset();
                 $("#closeedit").click();
-                alert('sukses');
-            } else {
-                alert('gagal');
-            }
+            } else {}
         },
     });
 });

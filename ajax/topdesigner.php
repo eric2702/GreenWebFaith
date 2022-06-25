@@ -36,7 +36,7 @@
                 $result= mysqli_fetch_assoc($action);
                 $continue.='
                 <div class="col-md-3 col-4 topDes">
-                    <img class="profileimg" src="'.$result['profileImg'].'" alt="">
+                    <img onclick="viewProfile(\'' . $result["username"] . '\')" class="profileimg" src="'.$result['profileImg'].'" alt="">
                     <p>'.$result['username'].'</p>
                 </div>
                 

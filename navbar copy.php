@@ -250,9 +250,7 @@ $("#login").click(function() {
                         icon: 'error',
                         confirmButtonText: 'Ok'
                     })
-                } else {
-                    alert(result);
-                }
+                } else {}
             },
         });
 

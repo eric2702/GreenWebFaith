@@ -46,10 +46,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $mail->SMTPAuth = true;
                 $mail->SMTPSecure = "tls";
                 $mail->Port = 587;
-                $mail->Username = "twister.web.official@gmail.com";
-                $mail->Password = "alosxuagfkibccor";
+                $mail->Username = "ecofit.web@gmail.com";
+                $mail->Password = "mbxnnucuwgiysfog";
                 $mail->Subject = "Email Activation";
-                $mail->setFrom("twister.web.official@gmail.com");
+                $mail->setFrom("ecofit.web@gmail.com");
                 $mail->isHTML(true);
                 $mail->Body = "<div><h2>This will be valid for 5 minutes</h2><h1>Your special code is: <span style='color: #fc9803'>$random_number</span></h1></div>";
                 $mail->addAddress($email);

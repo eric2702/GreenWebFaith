@@ -614,12 +614,13 @@ while ($res= mysqli_fetch_assoc($result5)){
         margin-top: 1rem;
     }
 
-    body{
+    body {
         background-color: #fff8f1;
-opacity: 1;
-background-image: radial-gradient(#094b65 0.75px, #fff8f1 0.75px);
-background-size: 15px 15px;
+        opacity: 1;
+        background-image: radial-gradient(#094b65 0.75px, #fff8f1 0.75px);
+        background-size: 15px 15px;
     }
+
     @media screen and (max-width: 580px) {}
     </style>
 </head>
@@ -628,7 +629,7 @@ background-size: 15px 15px;
     <div class="special-autocom">
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container-fluid">
-                <a class="navbar-brand" href="Home.php"><img src="assets\logo.png" alt="" width="30" height="24"
+                <a class="navbar-brand" href="Home.php"><img src="assets\logo2.png" alt="" width="30" height="24"
                         class="d-inline-block align-text-top">EcoFit</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -823,7 +824,7 @@ background-size: 15px 15px;
                         <table class="text-center" id="tableComp">
                             <thead>
                                 <tr>
-                                <th>No.</th>
+                                    <th>No.</th>
                                     <th>Tanggal Order</th>
                                     <th>username</th>
                                     <th>Name</th>
@@ -955,7 +956,7 @@ background-size: 15px 15px;
                             <span></span>
                             <label>Telephone number</label>
                         </div>
-
+                        <p>BCA: 8651728</p>
                         <div class="image input" id="imageinput">
                             <img class="outputimg" align="center" id="outputImage">
                         </div>
@@ -1348,7 +1349,6 @@ background-size: 15px 15px;
                         id: id
                     },
                     success: function(dataResult) {
-                        alert(dataResult);
                         if (dataResult == "failed") {
                             swal.fire({
                                 title: "Error",
@@ -1392,7 +1392,6 @@ background-size: 15px 15px;
             contentType: false,
             processData: false,
             success: function(data) {
-                alert(data);
 
                 if (data == "failed") {
                     swal.fire({
@@ -1442,7 +1441,6 @@ background-size: 15px 15px;
                         id: id
                     },
                     success: function(dataResult) {
-                        alert(dataResult);
                         if (dataResult == "failed") {
                             swal.fire({
                                 title: "Error",
@@ -1489,7 +1487,6 @@ background-size: 15px 15px;
                         id: id
                     },
                     success: function(dataResult) {
-                        alert(dataResult);
                         if (dataResult == "failed") {
                             swal.fire({
                                 title: "Error",
@@ -1533,7 +1530,6 @@ background-size: 15px 15px;
             contentType: false,
             processData: false,
             success: function(data) {
-                alert(data);
 
                 if (data == "failed") {
                     swal.fire({
@@ -1696,10 +1692,7 @@ background-size: 15px 15px;
                 if (dataResult == "success") {
                     reset();
                     $("#closeedit").click();
-                    alert('sukses');
-                } else {
-                    alert('gagal');
-                }
+                } else {}
             },
         });
     });

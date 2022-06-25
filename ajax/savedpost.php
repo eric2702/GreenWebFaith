@@ -19,7 +19,7 @@
 
 
 
-            $post = "SELECT text_post.id as idPost, total_like,text_content, image, date(date_uploaded) as date_only, username, name FROM like_post JOIN text_post ON like_post.id_post = text_post.id JOIN user_data  ON user_data.id = text_post.id_user WHERE like_post.id_user= '$id' ";
+            $post = "SELECT user_data.profileImg, text_post.id as idPost, total_like,text_content, image, date(date_uploaded) as date_only, username, name FROM like_post JOIN text_post ON like_post.id_post = text_post.id JOIN user_data  ON user_data.id = text_post.id_user WHERE like_post.id_user= '$id' ";
 
             $code = '';
             $continue = '';
@@ -80,7 +80,7 @@
                 <div class='row' align='center'>
 
                 <div style=''>
-                <img style='width: 40px;float:left' class='post_img' src='".$row['profileImg']."' alt=''>
+                <img style='width: 40px;float:left' class='post_img' src='".$result['profileImg']."' alt=''>
                 <p class='main_heading' align='left'>&nbsp&nbsp&nbsp&nbsp".$result['username']."</p>
                 
                 </div>

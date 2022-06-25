@@ -10,7 +10,7 @@
                     $row = mysqli_fetch_assoc($result);
                     $nama = $row['name'];
                     $id = $row['id'];
-                    $profileImg = $row['profileImg'];
+                    
                 } else {
                     echo "<script>alert('Email atau password Anda salah. Silahkan coba lagi!')</script>";
                 }
@@ -19,7 +19,7 @@
 
 
 
-            $post = "SELECT text_post.id as idPost, total_like,text_content, image, date(date_uploaded) as date_only, username, name FROM text_post JOIN user_data  ON user_data.id = text_post.id_user ORDER BY RAND()";
+            $post = "SELECT user_data.profileImg, text_post.id as idPost, total_like,text_content, image, date(date_uploaded) as date_only, username, name FROM text_post JOIN user_data  ON user_data.id = text_post.id_user ORDER BY RAND()";
 
             $code = '';
             $continue = '';
@@ -27,7 +27,6 @@
             $action = mysqli_query($con, $post);
             $i = 1;
             while ($result= mysqli_fetch_assoc($action)){
-
 
 
                 if ($result['image'] != '' && $result['text_content'] == ''){
@@ -80,7 +79,7 @@
                 <div class="row" align="center">
 
                 <div style="">
-                <img onclick="viewProfile(\'' . $result["username"] . '\')" style="width: 40px;float:left" class="post_img" src="'.$row["profileImg"].'" alt="">
+                <img onclick="viewProfile(\'' . $result["username"] . '\')" style="width: 40px;float:left" class="post_img" src="'.$result["profileImg"].'" alt="">
                 <p class="main_heading" align="left">&nbsp&nbsp&nbsp&nbsp'.$result["username"].'</p>
                 
                 </div>

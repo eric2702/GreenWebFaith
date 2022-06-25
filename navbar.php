@@ -37,7 +37,7 @@ nav ul li a:hover {
 	<nav class="navbar navbar-expand-lg navbar-light">
 	    <div class="container-fluid">
 
-	        <a class="navbar-brand" href="#"><img src="assets/logo2.png" style="width:64px; height: 64px;">Eco Fit</a>
+	        <a class="navbar-brand" href="#"><img src="assets/logo2.png" style="width:64px; height: 64px;">EcoFit</a>
 
 	        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
 	            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -199,9 +199,15 @@ $("#turnSignUp").click(function() {
     $("#logInModal").modal('hide');
     $("#createAccModal").modal('show');
 });
+
+$(".btn-close").click(function() {
+    $(".modal-backdrop.show").removeClass("show");
+
+});
 $("#turnLogin").click(function() {
-    $("#logInModal").modal('show');
     $("#createAccModal").modal('hide');
+    $("#logInModal").modal('show');
+
 });
 
 $("#logout").click(function() {
@@ -277,9 +283,7 @@ $("#login").click(function() {
                         icon: 'error',
                         confirmButtonText: 'Ok'
                     })
-                } else {
-                    alert(result);
-                }
+                } else {}
             },
         });
 
@@ -318,9 +322,7 @@ $("#req").click(function() {
                     icon: "success",
                     confirmButtonText: "OK"
                 })
-            } else {
-                alert(parsed.message);
-            }
+            } else {}
         }
     });
 });
@@ -328,7 +330,6 @@ $("#req").click(function() {
 
 
 $('#create').on('click', function() {
-    alert('yes');
     var name = $('#name').val();
     var username = $('#username').val();
     var conPass = $('#conPass').val();
@@ -357,7 +358,6 @@ $('#create').on('click', function() {
                 special_code: special_code
             },
             success: function(result) {
-                alert(result);
                 if (result == 200) {
                     Swal.fire({
                         title: 'Register success !',
@@ -425,9 +425,7 @@ $('#create').on('click', function() {
                         icon: 'error',
                         confirmButtonText: 'Ok'
                     })
-                } else {
-                    alert(result);
-                }
+                } else {}
 
             },
         });

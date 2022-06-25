@@ -21,7 +21,7 @@
 
 
 	# Find designer ID
-	$getID2 = mysqli_query($con, "SELECT `id`, `name` FROM user_data WHERE email='$profile'");
+	$getID2 = mysqli_query($con, "SELECT `id`, `name` FROM user_data WHERE username='$profile'");
     $find2 = mysqli_fetch_assoc($getID2);
     $id_designer = $find2["id"];
 	

@@ -7,9 +7,15 @@
   font-family: "Poppins", sans-serif;
 }
 body {
-  overflow-x: hidden;
-  background: #fff;
+  /* background-color: #094b65; */
+  background-image: url("assets/bg.png");
+  justify-content: center;
+  align-items: center;
   min-height: 100vh;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  /*display: flex;*/
 }
 nav {
   z-index: 550;

@@ -389,7 +389,7 @@ while ($res= mysqli_fetch_assoc($result5)){
     <div class="special-autocom">
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container-fluid">
-                <a class="navbar-brand" href="Home.php"><img src="assets\logo.png" alt="" width="30" height="24"
+                <a class="navbar-brand" href="Home.php"><img src="assets\logo2.png" alt="" width="30" height="24"
                         class="d-inline-block align-text-top">EcoFit</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -826,7 +826,6 @@ $("#savetext").on("click", function() {
         contentType: false,
         processData: false,
         success: function(data) {
-            alert(data);
 
             if (data == "failed") {
                 swal.fire({
@@ -1007,10 +1006,7 @@ $(document).on("click", "#saveUpdate", function() {
             if (dataResult == "success") {
                 reset();
                 $("#closeedit").click();
-                alert('sukses');
-            } else {
-                alert('gagal');
-            }
+            } else {}
         },
     });
 });

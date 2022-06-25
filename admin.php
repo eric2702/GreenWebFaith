@@ -617,11 +617,11 @@ while ($res= mysqli_fetch_assoc($result5)){
         margin-top: 1rem;
     }
 
-    body{
+    body {
         background-color: #fff8f1;
-opacity: 1;
-background-image: radial-gradient(#094b65 0.75px, #fff8f1 0.75px);
-background-size: 15px 15px;
+        opacity: 1;
+        background-image: radial-gradient(#094b65 0.75px, #fff8f1 0.75px);
+        background-size: 15px 15px;
     }
 
     @media screen and (max-width: 580px) {}
@@ -632,7 +632,7 @@ background-size: 15px 15px;
     <div class="special-autocom">
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container-fluid">
-                <a class="navbar-brand" href="Home.php"><img src="assets\logo.png" alt="" width="30" height="24"
+                <a class="navbar-brand" href="Home.php"><img src="assets\logo2.png" alt="" width="30" height="24"
                         class="d-inline-block align-text-top">EcoFit</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -742,7 +742,7 @@ background-size: 15px 15px;
                                     <th>Tanggal Order</th>
                                     <th>username Customer</th>
                                     <th>Username Designer</th>
-                                    
+
                                     <th>Cost</th>
 
                                     <th>Transfer Proof</th>
@@ -765,11 +765,11 @@ background-size: 15px 15px;
                         <table class="text-center" id="tableAcc">
                             <thead>
                                 <tr>
-                                <th>No.</th>
+                                    <th>No.</th>
                                     <th>Tanggal Order</th>
                                     <th>username Customer</th>
                                     <th>Username Designer</th>
-                                    
+
                                     <th>Cost</th>
 
                                     <th>Transfer Proof</th>
@@ -791,11 +791,11 @@ background-size: 15px 15px;
                         <table class="text-center" id="tableComp">
                             <thead>
                                 <tr>
-                                <th>No.</th>
+                                    <th>No.</th>
                                     <th>Tanggal Order</th>
                                     <th>username Customer</th>
                                     <th>Username Designer</th>
-                                    
+
                                     <th>Cost</th>
 
                                     <th>Transfer Proof</th>
@@ -823,7 +823,7 @@ background-size: 15px 15px;
                                     <th>Tanggal Order</th>
                                     <th>username Customer</th>
                                     <th>Username Designer</th>
-                                    
+                                    <th>Account No. Designer</th>
                                     <th>Cost</th>
 
                                     <th>Transfer Proof</th>
@@ -996,11 +996,22 @@ $(document).ready(function() {
 
 
 
+    $('#tableComplete').DataTable({
+        "ordering": false
+    });
+    $('#tableReq').DataTable({
+        "ordering": false
+    });
 
-
-
-
-
+    $('#tableAcc').DataTable({
+        "ordering": false
+    });
+    $('#tableComp').DataTable({
+        "ordering": false
+    });
+    $('#tableReject').DataTable({
+        "ordering": false
+    });
     reqTable();
     comTable();
     rejTable();
@@ -1023,9 +1034,7 @@ function completeTable() {
         success: function(dataResult) {
 
             $("#daftarComplete").html(dataResult);
-            $('#tableComplete').DataTable({
-                "ordering": false
-            });
+
         },
     });
 }
@@ -1040,9 +1049,7 @@ function reqTable() {
         },
         success: function(dataResult) {
             $("#daftarReq").html(dataResult);
-            $('#tableReq').DataTable({
-                "ordering": false
-            });
+
         },
     });
 }
@@ -1058,9 +1065,7 @@ function accTable() {
         },
         success: function(dataResult) {
             $("#daftarAcc").html(dataResult);
-            $('#tableAcc').DataTable({
-                "ordering": false
-            });
+
         },
     });
 }
@@ -1075,9 +1080,7 @@ function comTable() {
         },
         success: function(dataResult) {
             $("#daftarCom").html(dataResult);
-            $('#tableComp').DataTable({
-                "ordering": false
-            });
+
         },
     });
 }
@@ -1092,9 +1095,7 @@ function rejTable() {
         },
         success: function(dataResult) {
             $("#daftarRejected").html(dataResult);
-            $('#tableReject').DataTable({
-                "ordering": false
-            });
+
         },
     });
 }
@@ -1182,7 +1183,6 @@ $(document).on("click", ".accdong", function() {
                     id: id
                 },
                 success: function(dataResult) {
-                    alert(dataResult);
                     if (dataResult == "failed") {
                         swal.fire({
                             title: "Error",
@@ -1213,7 +1213,6 @@ $(document).on("click", ".accdong", function() {
 });
 
 $("#pay").on("click", function() {
-    alert(id);
     var formData = new FormData();
     var telp = $('#telp').val();
     var image = $('#uploadimg').prop('files')[0];
@@ -1230,7 +1229,6 @@ $("#pay").on("click", function() {
         contentType: false,
         processData: false,
         success: function(data) {
-            alert(data);
 
             if (data == "failed") {
                 swal.fire({
@@ -1275,7 +1273,6 @@ $(document).on("click", ".reject", function() {
                     id: id
                 },
                 success: function(dataResult) {
-                    alert(dataResult);
                     if (dataResult == "failed") {
                         swal.fire({
                             title: "Error",
@@ -1321,7 +1318,6 @@ $("#savetext").on("click", function() {
         contentType: false,
         processData: false,
         success: function(data) {
-            alert(data);
 
             if (data == "failed") {
                 swal.fire({
@@ -1484,10 +1480,7 @@ $(document).on("click", "#saveUpdate", function() {
             if (dataResult == "success") {
                 reset();
                 $("#closeedit").click();
-                alert('sukses');
-            } else {
-                alert('gagal');
-            }
+            } else {}
         },
     });
 });

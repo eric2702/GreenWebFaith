@@ -609,11 +609,11 @@ while ($res= mysqli_fetch_assoc($result5)){
         white-space: nowrap;
     }
 
-    body{
+    body {
         background-color: #fff8f1;
-opacity: 1;
-background-image: radial-gradient(#094b65 0.75px, #fff8f1 0.75px);
-background-size: 15px 15px;
+        opacity: 1;
+        background-image: radial-gradient(#094b65 0.75px, #fff8f1 0.75px);
+        background-size: 15px 15px;
     }
 
 
@@ -625,7 +625,7 @@ background-size: 15px 15px;
     <div class="special-autocom">
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container-fluid">
-                <a class="navbar-brand" href="Home.php"><img src="assets\logo.png" alt="" width="30" height="24"
+                <a class="navbar-brand" href="Home.php"><img src="assets\logo2.png" alt="" width="30" height="24"
                         class="d-inline-block align-text-top">EcoFit</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -758,7 +758,7 @@ background-size: 15px 15px;
                             <table class="text-center" id="tableAcc">
                                 <thead>
                                     <tr>
-                                    <th>No.</th>
+                                        <th>No.</th>
                                         <th>Tanggal Order</th>
                                         <th>username</th>
                                         <th>Name</th>
@@ -877,7 +877,7 @@ background-size: 15px 15px;
                             <table class="text-center" id="tableReject">
                                 <thead>
                                     <tr>
-                                    <th>No.</th>
+                                        <th>No.</th>
                                         <th>Tanggal Order</th>
                                         <th>username</th>
                                         <th>Name</th>
@@ -1260,7 +1260,6 @@ $("#send").on("click", function() {
         contentType: false,
         processData: false,
         success: function(data) {
-            alert(data);
 
             if (data == "failed") {
                 swal.fire({
@@ -1305,7 +1304,6 @@ $(document).on("click", "#acc", function() {
             id: id
         },
         success: function(dataResult) {
-            alert(dataResult);
             if (dataResult == "failed") {
                 swal.fire({
                     title: "Error",
@@ -1348,7 +1346,6 @@ $(document).on("click", ".reject", function() {
                     id: id
                 },
                 success: function(dataResult) {
-                    alert(dataResult);
                     if (dataResult == "failed") {
                         swal.fire({
                             title: "Error",
@@ -1398,7 +1395,6 @@ $(document).on("click", ".here", function() {
                     id: id
                 },
                 success: function(dataResult) {
-                    alert(dataResult);
                     if (dataResult == "failed") {
                         swal.fire({
                             title: "Error",
@@ -1443,7 +1439,6 @@ $(document).on("click", ".doneProcess", function() {
                     id: id
                 },
                 success: function(dataResult) {
-                    alert(dataResult);
                     if (dataResult == "failed") {
                         swal.fire({
                             title: "Error",
@@ -1484,7 +1479,6 @@ $("#savetext").on("click", function() {
         contentType: false,
         processData: false,
         success: function(data) {
-            alert(data);
 
             if (data == "failed") {
                 swal.fire({
@@ -1647,10 +1641,7 @@ $(document).on("click", "#saveUpdate", function() {
             if (dataResult == "success") {
                 reset();
                 $("#closeedit").click();
-                alert('sukses');
-            } else {
-                alert('gagal');
-            }
+            } else {}
         },
     });
 });

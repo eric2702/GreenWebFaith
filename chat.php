@@ -82,8 +82,9 @@ while ($res= mysqli_fetch_assoc($result5)){
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <link rel="stylesheet" href="assets/css/chat.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
-        integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+        integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <!-- SWEET ALERT -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
@@ -266,7 +267,8 @@ while ($res= mysqli_fetch_assoc($result5)){
     </div> -->
     <div class="special-autocom">
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="#">EcoFit</a>
+            <a class="navbar-brand" href="myprofile.php"><img src="assets\logo2.png" alt="" width="30" height="24"
+                    class="d-inline-block align-text-top">EcoFit</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -348,14 +350,14 @@ while ($res= mysqli_fetch_assoc($result5)){
         <div class="row justify-content-center h-100">
             <div class="col col-sm-12 col-12 col-md-4 col-xl-3 chat">
                 <div class="card mb-sm-3 mb-md-0 contacts_card">
-                    <div class="card-header">
+                    <!-- <div class="card-header">
                         <div class="input-group">
                             <input type="text" placeholder="Search..." name="" class="form-control search">
                             <div class="input-group-prepend">
                                 <span class="input-group-text search_btn"><i class="fas fa-search"></i></span>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                     <div class="card-body contacts_body">
                         <ui id="contact-box" class="contacts">
                             <!-- <li class="active">

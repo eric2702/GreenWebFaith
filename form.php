@@ -32,7 +32,7 @@ $rekening = $row2['bankAccount'];
     <title>Image Preview and Upload PHP</title>
     <!-- JQuery -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
     </script>
     <!-- AJAX -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -49,8 +49,8 @@ $rekening = $row2['bankAccount'];
     <!-- SWEET ALERT -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
-    
-</script>
+
+    </script>
 </head>
 
 <body>
@@ -73,8 +73,8 @@ $rekening = $row2['bankAccount'];
                             </div>
                             <img src="<?php echo $profileImg ?>" onClick="triggerClick()" id="profileDisplay">
                         </span>
-                        <input type="file" name="profileImage" accept="image/png, image/gif, image/jpeg" onChange="displayImage(this)" id="profileImage"
-                            class="form-control" style="display: none;">
+                        <input type="file" name="profileImage" accept="image/png, image/gif, image/jpeg"
+                            onChange="displayImage(this)" id="profileImage" class="form-control" style="display: none;">
                         <label>Profile Image</label>
                     </div>
                     <div class="form-group">
@@ -84,8 +84,10 @@ $rekening = $row2['bankAccount'];
                     <div class="form-group mt-3">
                         <button type="submit" name="save_profile" class="btn btn-primary btn-block">Save User</button>
                     </div>
-                    <button type="button" id ="btnpost" data-bs-toggle="modal" data-bs-target="#myModal" name="upgrade" class="btn btn-primary mt-3">Be A Designer</button>
-                    <button type="button" id="btnpre" data-bs-toggle="modal" data-bs-target="#myModal2" class="btn btn-primary mt-3">Edit Data</button>
+                    <button type="button" id="btnpost" data-bs-toggle="modal" data-bs-target="#myModal" name="upgrade"
+                        class="btn btn-primary mt-3">Be A Designer</button>
+                    <button type="button" id="btnpre" data-bs-toggle="modal" data-bs-target="#myModal2"
+                        class="btn btn-primary mt-3">Edit Data</button>
 
                 </form>
             </div>
@@ -94,78 +96,80 @@ $rekening = $row2['bankAccount'];
     </div>
 
 
-<div class="modal" id="myModal">
-  <div class="modal-dialog">
-    <div class="modal-content">
+    <div class="modal" id="myModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
 
-      <!-- Modal Header -->
-      <div class="modal-header">
-        <h4 class="modal-title">Upgrade Form</h4>
-        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-      </div>
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Upgrade Form</h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
 
-      <!-- Modal body -->
-      <div class="modal-body">
-        <div class="form-group">
-          <label>Phone Number</label>
-          <textarea id="telpon" name="nohp" class="form-control" placeholder="Phone Numbe..."></textarea>
-          <label>Address</label>
-          <textarea id="address" name="alamat" class="form-control" placeholder="Address..."></textarea>
-          <label>Bank Name</label>
-          <textarea id="bankname" name="namabank" class="form-control" placeholder="Bank Name..."></textarea>
-          <label>Bank Account</label>
-          <textarea id="bankacc" name="rekening" class="form-control" placeholder="Bank Account..."></textarea>
-          <div class="form-group mt-3">
-                <button type="submit" id="req_dsgn" class="btn btn-primary btn-block">Submit</button>
-          </div>
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label>Phone Number</label>
+                        <textarea id="telpon" name="nohp" class="form-control" placeholder="Phone Numbe..."></textarea>
+                        <label>Address</label>
+                        <textarea id="address" name="alamat" class="form-control" placeholder="Address..."></textarea>
+                        <label>Bank Name</label>
+                        <textarea id="bankname" name="namabank" class="form-control"
+                            placeholder="Bank Name..."></textarea>
+                        <label>Bank Account</label>
+                        <textarea id="bankacc" name="rekening" class="form-control"
+                            placeholder="Bank Account..."></textarea>
+                        <div class="form-group mt-3">
+                            <button type="submit" id="req_dsgn" class="btn btn-primary btn-block">Submit</button>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
         </div>
-                    
-      </div>
-
     </div>
-  </div>
-</div>
 
-<div class="modal" id="myModal2">
-  <div class="modal-dialog">
-    <div class="modal-content">
+    <div class="modal" id="myModal2">
+        <div class="modal-dialog">
+            <div class="modal-content">
 
-      <!-- Modal Header -->
-      <div class="modal-header">
-        <h4 class="modal-title">Edit Form</h4>
-        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-      </div>
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Edit Form</h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
 
-      <!-- Modal body -->
-      <div class="modal-body">
-        <div class="form-group">
-          <label>Phone Number</label>
-          <textarea id="telpon2" name="nohp" class="form-control"></textarea>
-          <label>Address</label>
-          <textarea id="address2" name="alamat" class="form-control" ></textarea>
-          <label>Bank Name</label>
-          <textarea id="bankname2" name="namabank" class="form-control"></textarea>
-          <label>Bank Account</label>
-          <textarea id="bankacc2" name="rekening" class="form-control"></textarea>
-          <div class="form-group mt-3">
-                <button type="submit" id="update" class="btn btn-primary btn-block">Save</button>
-          </div>
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label>Phone Number</label>
+                        <textarea id="telpon2" name="nohp" class="form-control"></textarea>
+                        <label>Address</label>
+                        <textarea id="address2" name="alamat" class="form-control"></textarea>
+                        <label>Bank Name</label>
+                        <textarea id="bankname2" name="namabank" class="form-control"></textarea>
+                        <label>Bank Account</label>
+                        <textarea id="bankacc2" name="rekening" class="form-control"></textarea>
+                        <div class="form-group mt-3">
+                            <button type="submit" id="update" class="btn btn-primary btn-block">Save</button>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
         </div>
-                    
-      </div>
-
     </div>
-  </div>
-</div>
 </body>
 
 </html>
 
 <script>
-    var a = '<?php echo $hp ?>';
-    var b = '<?php echo $address ?>';
-    var c = '<?php echo $bank ?>';
-    var d = '<?php echo $rekening ?>';
+var a = '<?php echo $hp ?>';
+var b = '<?php echo $address ?>';
+var c = '<?php echo $bank ?>';
+var d = '<?php echo $rekening ?>';
 $(document).ready(function() {
     var bio = '<?php echo $bio ?>';
 
@@ -183,100 +187,94 @@ $(document).ready(function() {
 var role = <?php echo $role ?>
 
 
-window.onload = function(){
-  if (role == 2) {
-    document.getElementById('btnpre').style.display = "block";
-    document.getElementById('btnpost').style.display = "none";
-  } else if (role == 0) {
-    document.getElementById('btnpre').style.display = "none";
-    document.getElementById('btnpost').style.display = "block";
-  }
-  else{
-    x.style.display = "none";
-    y.style.display = "none";
-  }
+window.onload = function() {
+    if (role == 2) {
+        document.getElementById('btnpre').style.display = "block";
+        document.getElementById('btnpost').style.display = "none";
+    } else if (role == 0) {
+        document.getElementById('btnpre').style.display = "none";
+        document.getElementById('btnpost').style.display = "block";
+    } else {
+        x.style.display = "none";
+        y.style.display = "none";
+    }
 }
 
-$('#update').on('click', function ()  { 
-      var email = '<?php echo $email; ?>';
-      var nohp =  $('#telpon2').val();
-      var alamat = $('#address2').val();
-      var namabank = $('#bankname2').val();
-      var rekening = $('#bankacc2').val();
-      $.ajax({
-			url: "getUpdate.php",
-			type: "POST",
-			cache: false,
-			data:{
-				email: email,
-				nohp: nohp,
-                alamat: alamat,
-                namabank: namabank,
-                rekening: rekening
-			},
-			success: function(dataResult){
-                alert(dataResult);
-				if(dataResult == 1){
-          Swal.fire({
-            title: 'Success',
-            text: 'Data Telah Berhasil Diupdate!',
-            icon: 'success',
-            confirmButtonText: 'Ok'
-          });
-          $('#myModal').modal('hide');	
-				}
-        else{
-          Swal.fire({
-            title: 'Fail',
-            text: 'Data Gagal Diupdate!',
-            icon: 'error',
-            confirmButtonText: 'Ok'
-          });		
-        }
-			},
-		  })
-	}); 
+$('#update').on('click', function() {
+    var email = '<?php echo $email; ?>';
+    var nohp = $('#telpon2').val();
+    var alamat = $('#address2').val();
+    var namabank = $('#bankname2').val();
+    var rekening = $('#bankacc2').val();
+    $.ajax({
+        url: "getUpdate.php",
+        type: "POST",
+        cache: false,
+        data: {
+            email: email,
+            nohp: nohp,
+            alamat: alamat,
+            namabank: namabank,
+            rekening: rekening
+        },
+        success: function(dataResult) {
+            if (dataResult == 1) {
+                Swal.fire({
+                    title: 'Success',
+                    text: 'Data Telah Berhasil Diupdate!',
+                    icon: 'success',
+                    confirmButtonText: 'Ok'
+                });
+                $('#myModal').modal('hide');
+            } else {
+                Swal.fire({
+                    title: 'Fail',
+                    text: 'Data Gagal Diupdate!',
+                    icon: 'error',
+                    confirmButtonText: 'Ok'
+                });
+            }
+        },
+    })
+});
 
-$('#req_dsgn').on('click', function ()  { 
-  alert(role);
-      var email = '<?php echo $email; ?>';
-      var nohp =  $('#telpon').val();
-      var alamat = $('#address').val();
-      var namabank = $('#bankname').val();
-      var rekening = $('#bankacc').val();
-      $.ajax({
-			url: "getUpgrade.php",
-			type: "POST",
-			cache: false,
-			data:{
-				email: email,
-				nohp: nohp,
-                alamat: alamat,
-                namabank: namabank,
-                rekening: rekening
-			},
-			success: function(dataResult){
-                alert(dataResult);
-				if(dataResult == 1){
-          Swal.fire({
-            title: 'Success',
-            text: 'Data Telah Berhasil Diupdate!',
-            icon: 'success',
-            confirmButtonText: 'Ok'
-          });
-          $('#myModal').modal('hide');	
-				}
-        else{
-          Swal.fire({
-            title: 'Fail',
-            text: 'Data Gagal Diupdate!',
-            icon: 'error',
-            confirmButtonText: 'Ok'
-          });		
-        }
-			},
-		  })
-	}); 
+$('#req_dsgn').on('click', function() {
+    var email = '<?php echo $email; ?>';
+    var nohp = $('#telpon').val();
+    var alamat = $('#address').val();
+    var namabank = $('#bankname').val();
+    var rekening = $('#bankacc').val();
+    $.ajax({
+        url: "getUpgrade.php",
+        type: "POST",
+        cache: false,
+        data: {
+            email: email,
+            nohp: nohp,
+            alamat: alamat,
+            namabank: namabank,
+            rekening: rekening
+        },
+        success: function(dataResult) {
+            if (dataResult == 1) {
+                Swal.fire({
+                    title: 'Success',
+                    text: 'Data Telah Berhasil Diupdate!',
+                    icon: 'success',
+                    confirmButtonText: 'Ok'
+                });
+                $('#myModal').modal('hide');
+            } else {
+                Swal.fire({
+                    title: 'Fail',
+                    text: 'Data Gagal Diupdate!',
+                    icon: 'error',
+                    confirmButtonText: 'Ok'
+                });
+            }
+        },
+    })
+});
 
 
 function triggerClick(e) {

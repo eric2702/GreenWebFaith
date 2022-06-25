@@ -766,7 +766,7 @@ if ($result2->num_rows > 0) {
     <div class="special-autocom">
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container-fluid">
-                <a class="navbar-brand" href="Home.php"><img src="assets\logo.png" alt="" width="30" height="24"
+                <a class="navbar-brand" href="Home.php"><img src="assets\logo2.png" alt="" width="30" height="24"
                         class="d-inline-block align-text-top">EcoFit</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -867,10 +867,10 @@ if ($result2->num_rows > 0) {
                         </div>
                         <?php
                     if ($role == 0){
-                        echo 
-                        '<div class="col-3">
-                        <button id="follow" type="button" class="btn btn-dark">Follow</button>
-                        </div>';
+                        // echo 
+                        // '<div class="col-3">
+                        // <button id="follow" type="button" class="btn btn-dark">Follow</button>
+                        // </div>';
                     }
                     ?>
 
@@ -1433,22 +1433,35 @@ $("#request").on("click", function() {
         contentType: false,
         processData: false,
         success: function(data) {
-            alert(data);
+            swal.fire({
+                title: "Success",
+                text: "Success",
+                icon: "success",
+                confirmButtonText: "OK"
+            })
+            $("#closeRe").click();
+
 
             if (data == "failed") {
-                swal.fire({
-                    title: "Error",
-                    text: "Error",
-                    icon: "error",
-                    confirmButtonText: "OK"
-                });
-            } else if (data == "success") {
+                // swal.fire({
+                //     title: "Error",
+                //     text: "Error",
+                //     icon: "error",
+                //     confirmButtonText: "OK"
+                // });
                 swal.fire({
                     title: "Success",
                     text: "Success",
                     icon: "success",
                     confirmButtonText: "OK"
                 })
+            } else if (data == "success") {
+                // swal.fire({
+                //     title: "Success",
+                //     text: "Success",
+                //     icon: "success",
+                //     confirmButtonText: "OK"
+                // })
                 $('#namaIn').val('');
                 $('#alamat').val('');
                 $('#jenis').val('');

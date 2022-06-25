@@ -42,7 +42,7 @@ require_once("connection.php");
 					$password = password_hash($password, PASSWORD_DEFAULT);
 					// $insert_query = "INSERT INTO user_data (name, email, password) VALUES ('$name', '$email', '$password');";
 					// $result = mysqli_query($con, $insert_query);
-					$q = mysqli_query($con, "INSERT INTO `user_data`(`id`, `name`, `username`, `role`, `email`, `password`, `profileImg`, `bio`) VALUES (null, '$name',	'$username', 0, '$email', '$password','../assets/profiledefault.png',' ')"); 
+					$q = mysqli_query($con, "INSERT INTO `user_data`(`id`, `name`, `username`, `role`, `email`, `password`, `profileImg`, `bio`) VALUES (null, '$name',	'$username', 0, '$email', '$password','images/profiledefault.png',' ')"); 
 					echo "200"; //registered successfully
 					return;
 				} else {
