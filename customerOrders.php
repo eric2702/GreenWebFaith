@@ -614,6 +614,12 @@ while ($res= mysqli_fetch_assoc($result5)){
         margin-top: 1rem;
     }
 
+    body{
+        background-color: #fff8f1;
+opacity: 1;
+background-image: radial-gradient(#094b65 0.75px, #fff8f1 0.75px);
+background-size: 15px 15px;
+    }
     @media screen and (max-width: 580px) {}
     </style>
 </head>
@@ -791,6 +797,8 @@ while ($res= mysqli_fetch_assoc($result5)){
                                     <th>Cost</th>
                                     <th>Before Clothes</th>
                                     <th>After Clothes</th>
+                                    <th>No Resi Customer</th>
+                                    <th>No Resi Designer</th>
                                     <th>Status</th>
                                     <th>Action</th>
 
@@ -812,12 +820,14 @@ while ($res= mysqli_fetch_assoc($result5)){
                         <table class="text-center" id="tableComp">
                             <thead>
                                 <tr>
-                                    <th>No.</th>
+                                <th>No.</th>
                                     <th>Tanggal Order</th>
                                     <th>username</th>
                                     <th>Name</th>
                                     <th>Alamat</th>
                                     <th>Jenis Baju</th>
+                                    <th>Work Day</th>
+                                    <th>Cost</th>
                                     <th>Before Clothes</th>
                                     <th>After Clothes</th>
 
@@ -834,7 +844,7 @@ while ($res= mysqli_fetch_assoc($result5)){
             <div id="Cancel Orders" class="tabcontent">
                 <div class="container text-center mb-5">
                     <br>
-                    <h3>Completed Orders</h3>
+                    <h3>Cancel Orders</h3>
                     <div class="table_wrapper mt-5" style="overflow-x: auto;">
                         <table class="text-center" id="tableCan">
                             <thead>
@@ -845,6 +855,8 @@ while ($res= mysqli_fetch_assoc($result5)){
                                     <th>Name</th>
                                     <th>Alamat</th>
                                     <th>Jenis Baju</th>
+                                    <th>Work Day</th>
+                                    <th>Cost</th>
                                     <th>Before Clothes</th>
                                     <th>After Clothes</th>
 
