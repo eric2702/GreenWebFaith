@@ -603,7 +603,7 @@ while ($res= mysqli_fetch_assoc($result5)){
         text-decoration: underline;
     }
 
-    
+
     .lal {
         background-color: indigo;
         color: white;
@@ -667,14 +667,26 @@ while ($res= mysqli_fetch_assoc($result5)){
                             <a class="nav-link" href="myprofile.php"><i class="fas fa-user-circle"></i></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="orders.php"><i class="fa-solid fa-clipboard-list"></i></a>
+                            <a class="nav-link" href="chat.php"><i class="fas fa-comment"></i></a>
                         </li>
+
+                        <?php if ($_SESSION['role'] == '2') { ?>
+                        <li class="nav-item">
+                            <a class="nav-link" href="orders.php"><i class="far fa-clipboard"></i></a>
+                        </li>
+                        <?php } ?>
+                        <?php if ($_SESSION['role'] == '0') { ?>
+                        <li class="nav-item">
+                            <a class="nav-link" href="customerOrders.php"><i class="far fa-clipboard"></i></a>
+                        </li>
+                        <?php } ?>
                         <?php if ($_SESSION['role'] == '1') { ?>
                         <li class="nav-item">
                             <a style="color: #4A4A4B; text-decoration: none;"
                                 class="btn btn-primary text-white mx-lg-1 mt-1 mt-lg-0" href="admin.php">Admin</a>
                         </li>
                         <?php } ?>
+
                         <li class="nav-item">
                             <button id="logout" class="btn bg-danger text-white mx-lg-1 mt-1 mt-lg-0">Logout</button>
                         </li>
@@ -764,14 +776,14 @@ while ($res= mysqli_fetch_assoc($result5)){
             </div>
 
             <div id="Ongoing Orders" class="tabcontent">
-            <div class="container text-center mb-5">
+                <div class="container text-center mb-5">
                     <br>
                     <h3>Ongoing Orders</h3>
                     <div class="table_wrapper mt-5" style="overflow-x: auto;">
                         <table class="text-center" id="tableOngo">
                             <thead>
                                 <tr>
-                                <th>No.</th>
+                                    <th>No.</th>
                                     <th>Tanggal Order</th>
                                     <th>username</th>
                                     <th>Name</th>
@@ -822,7 +834,7 @@ while ($res= mysqli_fetch_assoc($result5)){
             </div>
 
             <div id="Cancel Orders" class="tabcontent">
-            <div class="container text-center mb-5">
+                <div class="container text-center mb-5">
                     <br>
                     <h3>Completed Orders</h3>
                     <div class="table_wrapper mt-5" style="overflow-x: auto;">
@@ -930,7 +942,7 @@ while ($res= mysqli_fetch_assoc($result5)){
                             <span></span>
                             <label>Telephone number</label>
                         </div>
-                       
+
                         <div class="image input" id="imageinput">
                             <img class="outputimg" align="center" id="outputImage">
                         </div>
@@ -980,8 +992,8 @@ while ($res= mysqli_fetch_assoc($result5)){
                             <span></span>
                             <label>Input Resi</label>
                         </div>
-                       
-                        
+
+
                         <div class="row">
                             <div class="col-4"></div>
                             <div class="col-4">
@@ -1075,7 +1087,7 @@ $(document).ready(function() {
     accTable();
     ongoTable();
     canTable();
-    
+
 
 
 });
@@ -1095,6 +1107,7 @@ function reqTable() {
         },
     });
 }
+
 function canTable() {
     $.ajax({
         url: "ajax/getTableCanCus.php",
@@ -1165,41 +1178,52 @@ function rejTable() {
     });
 }
 
-$(document).ready(function() {
-    $("#logout").click(function() {
-        $.ajax({
-            url: "ajax/logout.php",
-            type: "POST",
-            data: {
-                logout: 1
-            },
-            success: function(data) {
-                window.location.href = "login.php";
-            }
-        });
-    });
-});
+$("#logout").click(function() {
+    //swal logout
+    swal.fire({
+        title: 'Are you sure?',
+        text: "You want to logout?",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#d33',
+        confirmButtonText: 'Yes, logout!'
+    }).then((result) => {
+        if (result.value) {
+            $.ajax({
+                url: "logout.php",
+                type: "POST",
+                data: {
+                    logout: 1
+                },
+                success: function(data) {
+                    window.location.href = "home.php";
+                }
+            });
+        }
+    })
 
+
+});
 
 
 function previewImgDelete(input) {
 
-$("#outputImage").hide();
+    $("#outputImage").hide();
 
 }
 
 function previewImg(input) {
-$("#outputImage").show();
-var file = $("#uploadimg").get(0).files[0];
-if (file) {
-    var reader = new FileReader();
+    $("#outputImage").show();
+    var file = $("#uploadimg").get(0).files[0];
+    if (file) {
+        var reader = new FileReader();
 
-    reader.onload = function() {
-        $("#outputImage").attr("src", reader.result);
+        reader.onload = function() {
+            $("#outputImage").attr("src", reader.result);
+        }
+
+        reader.readAsDataURL(file);
     }
-
-    reader.readAsDataURL(file);
-}
 }
 
 
@@ -1233,7 +1257,7 @@ $("#pay").on("click", function() {
     formData.append("file", image);
     formData.append("id", id);
     formData.append("telp", telp);
-   
+
 
     $.ajax({
         url: "ajax/pay.php",
@@ -1259,11 +1283,11 @@ $("#pay").on("click", function() {
                 })
                 $('#uploadimg').val('');
                 $('#telp').val('');
-             
+
                 $("#closeRe").click();
 
                 previewImgDelete();
-               
+
             }
         }
     });
@@ -1274,7 +1298,7 @@ $("#send").on("click", function() {
     var resi = $('#resi').val();
     formData.append("resi", resi);
     formData.append("id", id);
-   
+
 
     $.ajax({
         url: "ajax/resiInput.php",
@@ -1299,13 +1323,13 @@ $("#send").on("click", function() {
                     icon: "success",
                     confirmButtonText: "OK"
                 })
-                
+
                 $('#resi').val('');
-             
+
                 $("#closeResi").click();
 
-               
-               
+
+
             }
         }
     });

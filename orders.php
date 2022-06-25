@@ -663,17 +663,26 @@ while ($res= mysqli_fetch_assoc($result5)){
                             <a class="nav-link" href="myprofile.php"><i class="fas fa-user-circle"></i></a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link" href="chat.php"><i class="fas fa-comment"></i></a>
+                        </li>
+
+                        <?php if ($_SESSION['role'] == '2') { ?>
+                        <li class="nav-item">
                             <a class="nav-link" href="orders.php"><i class="far fa-clipboard"></i></a>
                         </li>
+                        <?php } ?>
+                        <?php if ($_SESSION['role'] == '0') { ?>
+                        <li class="nav-item">
+                            <a class="nav-link" href="customerOrders.php"><i class="far fa-clipboard"></i></a>
+                        </li>
+                        <?php } ?>
                         <?php if ($_SESSION['role'] == '1') { ?>
                         <li class="nav-item">
                             <a style="color: #4A4A4B; text-decoration: none;"
                                 class="btn btn-primary text-white mx-lg-1 mt-1 mt-lg-0" href="admin.php">Admin</a>
                         </li>
                         <?php } ?>
-                        <li class="nav-item">
-                            <a class="nav-link" href="chat.php"><i class="fas fa-comment"></i></a>
-                        </li>
+
                         <li class="nav-item">
                             <button id="logout" class="btn bg-danger text-white mx-lg-1 mt-1 mt-lg-0">Logout</button>
                         </li>
@@ -761,34 +770,34 @@ while ($res= mysqli_fetch_assoc($result5)){
                 </div>
 
                 <div id="Ongoing Orders" class="tabcontent">
-                <div class="container text-center mb-5">
-                    <br>
-                    <h3>Ongoing Orders</h3>
-                    <div class="table_wrapper mt-5" style="overflow-x: auto;">
-                        <table class="text-center" id="tableOngo">
-                            <thead>
-                                <tr>
-                                <th>No.</th>
-                                    <th>Tanggal Order</th>
-                                    <th>username</th>
-                                    <th>Name</th>
-                                    <th>Alamat</th>
-                                    <th>Jenis Baju</th>
-                                    <th>Work Day</th>
-                                    <th>Cost</th>
-                                    <th>Before Clothes</th>
-                                    <th>After Clothes</th>
-                                    <th>Status</th>
-                                    <th>Action</th>
+                    <div class="container text-center mb-5">
+                        <br>
+                        <h3>Ongoing Orders</h3>
+                        <div class="table_wrapper mt-5" style="overflow-x: auto;">
+                            <table class="text-center" id="tableOngo">
+                                <thead>
+                                    <tr>
+                                        <th>No.</th>
+                                        <th>Tanggal Order</th>
+                                        <th>username</th>
+                                        <th>Name</th>
+                                        <th>Alamat</th>
+                                        <th>Jenis Baju</th>
+                                        <th>Work Day</th>
+                                        <th>Cost</th>
+                                        <th>Before Clothes</th>
+                                        <th>After Clothes</th>
+                                        <th>Status</th>
+                                        <th>Action</th>
 
-                                </tr>
-                            </thead>
-                            <tbody id="daftarOngo">
+                                    </tr>
+                                </thead>
+                                <tbody id="daftarOngo">
 
-                            </tbody>
-                        </table>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
-                </div>
                 </div>
 
                 <div id="Completed Orders" class="tabcontent">
@@ -819,7 +828,7 @@ while ($res= mysqli_fetch_assoc($result5)){
                 </div>
 
                 <div id="Cancel Orders" class="tabcontent">
-                <div class="container text-center mb-5">
+                    <div class="container text-center mb-5">
                         <br>
                         <h3>Completed Orders</h3>
                         <div class="table_wrapper mt-5" style="overflow-x: auto;">
@@ -874,7 +883,7 @@ while ($res= mysqli_fetch_assoc($result5)){
                 </div>
 
 
-               
+
             </div>
 
         </div>
@@ -977,8 +986,8 @@ while ($res= mysqli_fetch_assoc($result5)){
                             <span></span>
                             <label>Input Resi</label>
                         </div>
-                       
-                        
+
+
                         <div class="row">
                             <div class="col-4"></div>
                             <div class="col-4">
@@ -1092,6 +1101,7 @@ function ongoTable() {
         },
     });
 }
+
 function canTable() {
     $.ajax({
         url: "ajax/getTableCanDesigner.php",
@@ -1105,6 +1115,7 @@ function canTable() {
         },
     });
 }
+
 function reqTable() {
     $.ajax({
         url: "ajax/getTable.php",
@@ -1161,19 +1172,31 @@ function rejTable() {
     });
 }
 
-$(document).ready(function() {
-    $("#logout").click(function() {
-        $.ajax({
-            url: "ajax/logout.php",
-            type: "POST",
-            data: {
-                logout: 1
-            },
-            success: function(data) {
-                window.location.href = "login.php";
-            }
-        });
-    });
+$("#logout").click(function() {
+    //swal logout
+    swal.fire({
+        title: 'Are you sure?',
+        text: "You want to logout?",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#d33',
+        confirmButtonText: 'Yes, logout!'
+    }).then((result) => {
+        if (result.value) {
+            $.ajax({
+                url: "logout.php",
+                type: "POST",
+                data: {
+                    logout: 1
+                },
+                success: function(data) {
+                    window.location.href = "home.php";
+                }
+            });
+        }
+    })
+
+
 });
 
 $(document).on("click", ".befores", function() {
@@ -1205,7 +1228,7 @@ $("#send").on("click", function() {
     var resi = $('#resi').val();
     formData.append("resi", resi);
     formData.append("id", id);
-   
+
 
     $.ajax({
         url: "ajax/resiInputDes.php",
@@ -1230,13 +1253,13 @@ $("#send").on("click", function() {
                     icon: "success",
                     confirmButtonText: "OK"
                 })
-                
+
                 $('#resi').val('');
-             
+
                 $("#closeResi").click();
 
-               
-               
+
+
             }
         }
     });
@@ -1329,7 +1352,7 @@ $(document).on("click", ".reject", function() {
 });
 
 $(document).on("click", ".here", function() {
-  
+
     id = $(this).parent().parent().attr('id');
     Swal.fire({
         title: 'Are you sure?',
@@ -1384,7 +1407,7 @@ $(document).on("click", ".doneProcess", function() {
     }).then((result) => {
 
         if (result.isConfirmed) {
-           
+
             $.ajax({
                 url: "ajax/doneprocess.php",
                 type: "POST",

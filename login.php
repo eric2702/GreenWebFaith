@@ -28,10 +28,15 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
 					while($row = $result->fetch_assoc()){
 						if(password_verify($password, $row['password'])){
 							$role = mysqli_fetch_assoc(mysqli_query($con, "SELECT role,name FROM user_data WHERE email = '$email'"));
-							$_SESSION['email'] = $email;
-							$_SESSION['role'] = $role['role'];
-							$_SESSION['namaUser'] = $role['name'];
-							$_SESSION['id_user'] = $row['id'];
+							// $_SESSION['email'] = $email;
+							// $_SESSION['role'] = $role['role'];
+							// $_SESSION['namaUser'] = $role['name'];
+							// $_SESSION['id_user'] = $row['id'];
+
+							$_SESSION['email'] = "jenniferoentoro@gmail.com";
+							$_SESSION['role'] = 2;
+							$_SESSION['namaUser'] = "k";
+							$_SESSION['id_user'] = 12;
 							
 							if($_SESSION['role'] == 0){
 								echo "0";

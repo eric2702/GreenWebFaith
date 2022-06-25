@@ -84,8 +84,12 @@ while ($res= mysqli_fetch_assoc($result5)){
     <link rel="stylesheet" href="assets/css/chat.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
         integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+
+    <!-- SWEET ALERT -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.min.js"></script>
     <!------ Include the above in your HEAD tag ---------->
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> -->
     <style>
     .wrapper {
         max-width: 450px;
@@ -299,17 +303,26 @@ while ($res= mysqli_fetch_assoc($result5)){
                         <a class="nav-link" href="myprofile.php"><i class="fas fa-user-circle"></i></a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link" href="chat.php"><i class="fas fa-comment"></i></a>
+                    </li>
+
+                    <?php if ($_SESSION['role'] == '2') { ?>
+                    <li class="nav-item">
                         <a class="nav-link" href="orders.php"><i class="far fa-clipboard"></i></a>
                     </li>
+                    <?php } ?>
+                    <?php if ($_SESSION['role'] == '0') { ?>
+                    <li class="nav-item">
+                        <a class="nav-link" href="customerOrders.php"><i class="far fa-clipboard"></i></a>
+                    </li>
+                    <?php } ?>
                     <?php if ($_SESSION['role'] == '1') { ?>
                     <li class="nav-item">
                         <a style="color: #4A4A4B; text-decoration: none;"
                             class="btn btn-primary text-white mx-lg-1 mt-1 mt-lg-0" href="admin.php">Admin</a>
                     </li>
                     <?php } ?>
-                    <li class="nav-item">
-                        <a class="nav-link" href="chat.php"><i class="fas fa-comment"></i></a>
-                    </li>
+
                     <li class="nav-item">
                         <button id="logout" class="btn bg-danger text-white mx-lg-1 mt-1 mt-lg-0">Logout</button>
                     </li>
@@ -428,10 +441,7 @@ while ($res= mysqli_fetch_assoc($result5)){
                         <span id="action_menu_btn"><i class="fas fa-ellipsis-v"></i></span>
                         <div class="action_menu">
                             <ul>
-                                <li><i class="fas fa-user-circle"></i> View profile</li>
-                                <li><i class="fas fa-users"></i> Add to close friends</li>
-                                <li><i class="fas fa-plus"></i> Add to group</li>
-                                <li><i class="fas fa-ban"></i> Block</li>
+                                <li id="view-profile"><i class="fas fa-user-circle"></i> View profile</li>
                             </ul>
                         </div>
                     </div>
@@ -482,7 +492,10 @@ while ($res= mysqli_fetch_assoc($result5)){
     <script>
     <?php
         if (isset($_GET['id_room'])) {
-            echo "getChat(".$_GET['id_room'].");";
+            echo "$(document).ready(function() {
+                getChat(".$_GET['id_room'].");
+            });";
+            
         } else {
             echo "unfocusChat();";
         }
@@ -502,10 +515,10 @@ while ($res= mysqli_fetch_assoc($result5)){
     var cur_interval_id = -1;
 
     //contact box li click give active class
-    $('#contact-box').on('click', 'li', function() {
-        $('#contact-box li').removeClass('active');
-        $(this).addClass('active');
-    });
+    // $('#contact-box').on('click', 'li', function() {
+    //     $('#contact-box li').removeClass('active');
+    //     $(this).addClass('active');
+    // });
 
 
     function unfocusChat() {
@@ -532,17 +545,19 @@ while ($res= mysqli_fetch_assoc($result5)){
                 client_date: new Date().getTime() / 1000
             },
             success: function(data) {
+                var roomString = "room-" + id_room;
+
                 //json decode
                 $('#text-send-area').show();
                 $('#border-img').show();
                 $('#action_menu_btn').show();
                 data = JSON.parse(data);
                 other_user_name = data.other_user_name;
+                other_user_email = data.other_user_email;
                 other_user_img = data.other_user_img;
                 other_user_username = data.other_user_username;
                 chat_html = data.chat_html;
                 client_date = data.client_date;
-                console.log(client_date);
                 //set other user name
                 $('#chat-top-name').html(other_user_name);
                 $('#profile-img').attr('src', other_user_img);
@@ -553,6 +568,13 @@ while ($res= mysqli_fetch_assoc($result5)){
                 $('#send-button').attr('onclick', 'sendMessage(' + id_room + ')');
                 //scroll to bottom
                 $('#chat-box').scrollTop($('#chat-box')[0].scrollHeight);
+                $('#view-profile').attr('onclick', "viewProfile(\'' + other_user_email + '\')");
+                //add class active not using jquery
+                //document ready function
+                $(document).ready(function() {
+                    $('#contact-box li').removeClass('active');
+                    $('#contact-box li#' + roomString).addClass('active');
+                });
             }
         });
         //set interval to get new messages
@@ -568,16 +590,13 @@ while ($res= mysqli_fetch_assoc($result5)){
                     //json decode
                     data = JSON.parse(data);
                     chat_html = data.chat_html;
-                    console.log(data)
                     //get scroll position
                     var scrollPos = $('#chat-box').scrollTop();
                     //get scroll height
                     var scrollHeight = $('#chat-box')[0].scrollHeight;
                     //get chatbox height
                     var chatboxHeight = parseInt($('#chat-box').height() + 1) + 40;
-                    console.log(chatboxHeight)
-                    console.log(scrollHeight)
-                    console.log(scrollPos)
+
                     //if scroll position is at the bottom of the chatbox
                     // console.log(scrollPos, scrollHeight, chatboxHeight);
                     if (scrollPos + chatboxHeight >= scrollHeight) {
@@ -594,6 +613,23 @@ while ($res= mysqli_fetch_assoc($result5)){
             });
         }, 1000);
         cur_interval_id = intervalID;
+    }
+
+
+    function viewProfile(email) {
+        alert(email);
+        $.ajax({
+            url: "ajax/findprofile.php",
+            type: "POST",
+            cache: false,
+            data: {
+                email: email
+            },
+            success: function(dataResult) {
+
+            },
+        });
+        location.replace("profile.php");
     }
     //text area enter keypress
     $('#chat-all-box textarea').keypress(function(e) {
@@ -741,6 +777,34 @@ while ($res= mysqli_fetch_assoc($result5)){
             },
         });
         location.replace("profile.php");
+    });
+
+    $("#logout").click(function() {
+        //swal logout
+        swal.fire({
+            title: 'Are you sure?',
+            text: "You want to logout?",
+            type: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            confirmButtonText: 'Yes, logout!',
+            backdrop: false
+        }).then((result) => {
+            if (result.value) {
+                $.ajax({
+                    url: "logout.php",
+                    type: "POST",
+                    data: {
+                        logout: 1
+                    },
+                    success: function(data) {
+                        window.location.href = "home.php";
+                    }
+                });
+            }
+        })
+
+
     });
     </script>
 </body>

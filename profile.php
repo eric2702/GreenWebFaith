@@ -807,17 +807,26 @@ if ($result2->num_rows > 0) {
                             <a class="nav-link" href="myprofile.php"><i class="fas fa-user-circle"></i></a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link" href="chat.php"><i class="fas fa-comment"></i></a>
+                        </li>
+
+                        <?php if ($_SESSION['role'] == '2') { ?>
+                        <li class="nav-item">
                             <a class="nav-link" href="orders.php"><i class="far fa-clipboard"></i></a>
                         </li>
+                        <?php } ?>
+                        <?php if ($_SESSION['role'] == '0') { ?>
+                        <li class="nav-item">
+                            <a class="nav-link" href="customerOrders.php"><i class="far fa-clipboard"></i></a>
+                        </li>
+                        <?php } ?>
                         <?php if ($_SESSION['role'] == '1') { ?>
                         <li class="nav-item">
                             <a style="color: #4A4A4B; text-decoration: none;"
                                 class="btn btn-primary text-white mx-lg-1 mt-1 mt-lg-0" href="admin.php">Admin</a>
                         </li>
                         <?php } ?>
-                        <li class="nav-item">
-                            <a class="nav-link" href="chat.php"><i class="fas fa-comment"></i></a>
-                        </li>
+
                         <li class="nav-item">
                             <button id="logout" class="btn bg-danger text-white mx-lg-1 mt-1 mt-lg-0">Logout</button>
                         </li>
@@ -1098,7 +1107,7 @@ if ($result2->num_rows > 0) {
 
 
 
-       
+
 
                             <div>
                                 <input type="file" onchange="previewImg2(this);" id="uploadimg2" name="uploadimg2"
@@ -1211,19 +1220,31 @@ if ($result2->num_rows > 0) {
 var position;
 
 
-$(document).ready(function() {
-    $("#logout").click(function() {
-        $.ajax({
-            url: "../api/logout.php",
-            type: "POST",
-            data: {
-                logout: 1
-            },
-            success: function(data) {
-                window.location.href = "login.php";
-            }
-        });
-    });
+$("#logout").click(function() {
+    //swal logout
+    swal.fire({
+        title: 'Are you sure?',
+        text: "You want to logout?",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#d33',
+        confirmButtonText: 'Yes, logout!'
+    }).then((result) => {
+        if (result.value) {
+            $.ajax({
+                url: "logout.php",
+                type: "POST",
+                data: {
+                    logout: 1
+                },
+                success: function(data) {
+                    window.location.href = "home.php";
+                }
+            });
+        }
+    })
+
+
 });
 
 function previewImgDelete(input) {
@@ -1445,13 +1466,13 @@ $("#request").on("click", function() {
 
 
 
-    const searchWrapper = document.querySelector(".search-input");
-    const inputBox = searchWrapper.querySelector("input");
-    const suggBox = searchWrapper.querySelector(".autocom-box");
-    const suggBox2 = document.querySelector(".autocom-box2");
-    const icon = searchWrapper.querySelector(".icon");
-    let linkTag = searchWrapper.querySelector("a");
-    let webLink;
+const searchWrapper = document.querySelector(".search-input");
+const inputBox = searchWrapper.querySelector("input");
+const suggBox = searchWrapper.querySelector(".autocom-box");
+const suggBox2 = document.querySelector(".autocom-box2");
+const icon = searchWrapper.querySelector(".icon");
+let linkTag = searchWrapper.querySelector("a");
+let webLink;
 
 
 

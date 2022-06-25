@@ -424,7 +424,10 @@ while ($res= mysqli_fetch_assoc($result5)){
                         <li class="nav-item">
                             <a class="nav-link" href="myprofile.php"><i class="fas fa-user-circle"></i></a>
                         </li>
-                        
+                        <li class="nav-item">
+                            <a class="nav-link" href="chat.php"><i class="fas fa-comment"></i></a>
+                        </li>
+
                         <?php if ($_SESSION['role'] == '2') { ?>
                         <li class="nav-item">
                             <a class="nav-link" href="orders.php"><i class="far fa-clipboard"></i></a>
@@ -441,9 +444,7 @@ while ($res= mysqli_fetch_assoc($result5)){
                                 class="btn btn-primary text-white mx-lg-1 mt-1 mt-lg-0" href="admin.php">Admin</a>
                         </li>
                         <?php } ?>
-                        <li class="nav-item">
-                            <a class="nav-link" href="chat.php"><i class="fas fa-comment"></i></a>
-                        </li>
+
                         <li class="nav-item">
                             <button id="logout" class="btn bg-danger text-white mx-lg-1 mt-1 mt-lg-0">Logout</button>
                         </li>
@@ -613,14 +614,14 @@ if ($_SESSION['role'] == '2') { ?>
 
         <div class="row">
             <h3 style="text-align:center">Saved Portofolio</h3>
-        <div class="col-12">
-            <div class="row" style="justify-content: center;" id="tampilansaved">
+            <div class="col-12">
+                <div class="row" style="justify-content: center;" id="tampilansaved">
 
+                </div>
             </div>
+
+
         </div>
-
-
-    </div>
 
 
         <?php } ?>
@@ -779,19 +780,31 @@ $(document).ready(function() {
 
 });
 
-$(document).ready(function() {
-    $("#logout").click(function() {
-        $.ajax({
-            url: "logout.php",
-            type: "POST",
-            data: {
-                logout: 1
-            },
-            success: function(data) {
-                window.location.href = "home.php";
-            }
-        });
-    });
+$("#logout").click(function() {
+    //swal logout
+    swal.fire({
+        title: 'Are you sure?',
+        text: "You want to logout?",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#d33',
+        confirmButtonText: 'Yes, logout!'
+    }).then((result) => {
+        if (result.value) {
+            $.ajax({
+                url: "logout.php",
+                type: "POST",
+                data: {
+                    logout: 1
+                },
+                success: function(data) {
+                    window.location.href = "home.php";
+                }
+            });
+        }
+    })
+
+
 });
 
 $("#ongoing").click(function() {
@@ -871,22 +884,23 @@ $("#savetext").on("click", function() {
 
 
 });
+
 function saved() {
-   
 
-$.ajax({
-    url: "ajax/savedpost.php",
-    type: "POST",
-    cache: false,
-    data: {
 
-    },
-    success: function(dataResult) {
-     
+    $.ajax({
+        url: "ajax/savedpost.php",
+        type: "POST",
+        cache: false,
+        data: {
 
-        $("#tampilansaved").html(dataResult);
-    },
-});
+        },
+        success: function(dataResult) {
+
+
+            $("#tampilansaved").html(dataResult);
+        },
+    });
 
 }
 

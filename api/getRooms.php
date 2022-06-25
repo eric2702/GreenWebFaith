@@ -24,7 +24,7 @@ foreach ($result as $row) {
     $other_user_img = $result2[0]['profileImg'];
     $message="hello";
     //echo as clickable buttons
-    echo "<li style='cursor: pointer' onclick='getChat(".$row['id_room'].")' class=''>
+    echo "<li style='cursor: pointer' onclick='getChat(".$row['id_room'].")' class='' id=room-".$row['id_room'].">
     <div class='d-flex bd-highlight'>
         <div class='img_cont'>
             <img src='$other_user_img'

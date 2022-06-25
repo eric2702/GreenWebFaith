@@ -603,7 +603,7 @@ while ($res= mysqli_fetch_assoc($result5)){
         text-decoration: underline;
     }
 
-    
+
     .lal {
         background-color: indigo;
         color: white;
@@ -667,14 +667,26 @@ while ($res= mysqli_fetch_assoc($result5)){
                             <a class="nav-link" href="myprofile.php"><i class="fas fa-user-circle"></i></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="orders.php"><i class="fa-solid fa-clipboard-list"></i></a>
+                            <a class="nav-link" href="chat.php"><i class="fas fa-comment"></i></a>
                         </li>
+
+                        <?php if ($_SESSION['role'] == '2') { ?>
+                        <li class="nav-item">
+                            <a class="nav-link" href="orders.php"><i class="far fa-clipboard"></i></a>
+                        </li>
+                        <?php } ?>
+                        <?php if ($_SESSION['role'] == '0') { ?>
+                        <li class="nav-item">
+                            <a class="nav-link" href="customerOrders.php"><i class="far fa-clipboard"></i></a>
+                        </li>
+                        <?php } ?>
                         <?php if ($_SESSION['role'] == '1') { ?>
                         <li class="nav-item">
                             <a style="color: #4A4A4B; text-decoration: none;"
                                 class="btn btn-primary text-white mx-lg-1 mt-1 mt-lg-0" href="admin.php">Admin</a>
                         </li>
                         <?php } ?>
+
                         <li class="nav-item">
                             <button id="logout" class="btn bg-danger text-white mx-lg-1 mt-1 mt-lg-0">Logout</button>
                         </li>
@@ -697,7 +709,8 @@ while ($res= mysqli_fetch_assoc($result5)){
         <div class="col-10" align="center">
             <br> <br>
             <div class="tab">
-                <button class="tablinks" onclick="openCategory(event, 'Paid Orders')" id="defaultOpen">Paid Order</button>
+                <button class="tablinks" onclick="openCategory(event, 'Paid Orders')" id="defaultOpen">Paid
+                    Order</button>
                 <button class="tablinks" onclick="openCategory(event, 'Approved Orders')">Approved Orders</button>
                 <button class="tablinks" onclick="openCategory(event, 'Rejected Orders')">Rejected Orders</button>
                 <!-- <button class="tablinks" onclick="openCategory(event, 'Completed Orders')">Completed Orders</button>
@@ -740,13 +753,13 @@ while ($res= mysqli_fetch_assoc($result5)){
                         <table class="text-center" id="tableAcc">
                             <thead>
                                 <tr>
-                                <th>No.</th>
+                                    <th>No.</th>
                                     <th>Tanggal Order</th>
                                     <th>username</th>
                                     <th>Name</th>
                                     <th>Long Working (days)</th>
                                     <th>Cost</th>
-                                    
+
                                     <th>Transfer Proof</th>
                                 </tr>
                             </thead>
@@ -759,7 +772,7 @@ while ($res= mysqli_fetch_assoc($result5)){
             </div>
 
             <div id="Rejected Orders" class="tabcontent">
-            <div class="container text-center mb-5">
+                <div class="container text-center mb-5">
                     <br>
                     <h3>Ongoing Orders</h3>
                     <div class="table_wrapper mt-5" style="overflow-x: auto;">
@@ -772,7 +785,7 @@ while ($res= mysqli_fetch_assoc($result5)){
                                     <th>Name</th>
                                     <th>Long Working (days)</th>
                                     <th>Cost</th>
-                                    
+
                                     <th>Transfer Proof</th>
 
                                 </tr>
@@ -872,7 +885,7 @@ while ($res= mysqli_fetch_assoc($result5)){
                             <span></span>
                             <label>Telephone number</label>
                         </div>
-                       
+
                         <div class="image input" id="imageinput">
                             <img class="outputimg" align="center" id="outputImage">
                         </div>
@@ -1028,42 +1041,53 @@ function rejTable() {
         },
     });
 }
+$("#logout").click(function() {
+    //swal logout
+    swal.fire({
+        title: 'Are you sure?',
+        text: "You want to logout?",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#d33',
+        confirmButtonText: 'Yes, logout!'
+    }).then((result) => {
+        if (result.value) {
+            $.ajax({
+                url: "logout.php",
+                type: "POST",
+                data: {
+                    logout: 1
+                },
+                success: function(data) {
+                    window.location.href = "home.php";
+                }
+            });
+        }
+    })
 
-$(document).ready(function() {
-    $("#logout").click(function() {
-        $.ajax({
-            url: "ajax/logout.php",
-            type: "POST",
-            data: {
-                logout: 1
-            },
-            success: function(data) {
-                window.location.href = "login.php";
-            }
-        });
-    });
+
 });
 
 
 
 function previewImgDelete(input) {
 
-$("#outputImage").hide();
+    $("#outputImage").hide();
 
 }
 
 function previewImg(input) {
-$("#outputImage").show();
-var file = $("#uploadimg").get(0).files[0];
-if (file) {
-    var reader = new FileReader();
+    $("#outputImage").show();
+    var file = $("#uploadimg").get(0).files[0];
+    if (file) {
+        var reader = new FileReader();
 
-    reader.onload = function() {
-        $("#outputImage").attr("src", reader.result);
+        reader.onload = function() {
+            $("#outputImage").attr("src", reader.result);
+        }
+
+        reader.readAsDataURL(file);
     }
-
-    reader.readAsDataURL(file);
-}
 }
 
 
@@ -1113,7 +1137,7 @@ $(document).on("click", ".accdong", function() {
                             icon: "success",
                             confirmButtonText: "OK"
                         })
-                       
+
                     }
                 },
             });
@@ -1134,7 +1158,7 @@ $("#pay").on("click", function() {
     formData.append("file", image);
     formData.append("id", id);
     formData.append("telp", telp);
-   
+
 
     $.ajax({
         url: "ajax/pay.php",
@@ -1161,11 +1185,11 @@ $("#pay").on("click", function() {
                 })
                 $('#uploadimg').val('');
                 $('#telp').val('');
-             
+
                 $("#closeRe").click();
 
                 previewImgDelete();
-               
+
             }
         }
     });
