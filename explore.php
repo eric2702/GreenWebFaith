@@ -375,7 +375,14 @@ while ($res= mysqli_fetch_assoc($result5)){
         cursor: pointer;
     } */
 
-    body {
+
+    .topDes:hover{
+        transform: scale(1.05);
+        cursor:pointer;
+    }
+
+    body{
+
         background-color: #fff8f1;
         opacity: 1;
         background-image: radial-gradient(#094b65 0.75px, #fff8f1 0.75px);
@@ -471,6 +478,37 @@ while ($res= mysqli_fetch_assoc($result5)){
 
     <div class="row">
         <div class="col-12">
+        <br>  <br><br>
+            <h3 style="text-align:center">Top Designer</h3>
+        </div>
+
+
+    </div>
+
+    <div class="col-12">
+       
+            <div class="row justify-content-md-center" align="center" id="topdesign">
+            <p>Masih Tidak ada</p>
+               
+                <!-- <div class="col-md-3 col-4">
+                    <img class="profileimg" src="<?php echo $profileImg?>" alt="">
+                    <p>Yuhuu</p>
+                </div>
+                <div class="col-md-3 col-4">
+                    <img class="profileimg" src="<?php echo $profileImg?>" alt="">
+                    <p>Yuhuu</p>
+                </div>
+                <div class="col-md-3 col-4">
+                    <img class="profileimg" src="<?php echo $profileImg?>" alt="">
+                    <p>Yuhuu</p>
+                </div> -->
+               
+            </div>
+
+        </div>
+
+    <div class="row">
+        <div class="col-12">
             <h3 style="text-align:center">Explore</h3>
         </div>
 
@@ -516,7 +554,7 @@ var position;
 
 $(document).ready(function() {
     showExplore();
-
+    topdesigner();
 
 
 });
@@ -631,6 +669,22 @@ function viewProfile(email) {
     location.replace("profile.php");
 }
 
+
+function topdesigner() {
+
+$.ajax({
+    url: "ajax/topdesigner.php",
+    type: "POST",
+    cache: false,
+    data: {
+
+    },
+    success: function(dataResult) {
+        $("#topdesign").html(dataResult);
+    },
+});
+
+}
 
 function previewImgDelete(input) {
 
