@@ -14,6 +14,7 @@ if (isset($_SESSION['email'])) {
     $result = mysqli_query($con, $sql);
     if ($result->num_rows > 0) {
         $row = mysqli_fetch_assoc($result);
+        $namabeneran = $row['name'];
         $nama = $row['username'];
         $id = $row['id'];
         $profileImg = $row['profileImg'];
@@ -35,9 +36,9 @@ $result2 = mysqli_query($con, $sql2);
 $arr = [];
 while ($res= mysqli_fetch_assoc($result2)){
     $temp = $res['username'];
-    $temp2 = $res['email'];
+    // $temp2 = $res['email'];
     array_push($arr,$temp);
-    array_push($arr,$temp2);
+    // array_push($arr,$temp2);
 }
 
 $sql3 = "SELECT id FROM orders WHERE idDesigner= '$id' AND (status=9 OR status=7)";
@@ -373,11 +374,11 @@ while ($res= mysqli_fetch_assoc($result5)){
         color: #644bff;
         cursor: pointer;
     } */
-    body{
+    body {
         background-color: #fff8f1;
-opacity: 1;
-background-image: radial-gradient(#094b65 0.75px, #fff8f1 0.75px);
-background-size: 15px 15px;
+        opacity: 1;
+        background-image: radial-gradient(#094b65 0.75px, #fff8f1 0.75px);
+        background-size: 15px 15px;
     }
 
     @media screen and (max-width: 580px) {}
@@ -389,7 +390,7 @@ background-size: 15px 15px;
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container-fluid">
                 <a class="navbar-brand" href="Home.php"><img src="assets\logo.png" alt="" width="30" height="24"
-                        class="d-inline-block align-text-top">Eco Fit</a>
+                        class="d-inline-block align-text-top">EcoFit</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="Toggle navigation">
@@ -483,22 +484,30 @@ if ($_SESSION['role'] == '2') { ?>
                     <div class="row">
                         <div class="col-md-7 col-9">
                             <b>
-                                <p class="main_heading" align="left"><?php echo $nama?></p>
+                                <p class="main_heading" align="left"><?php echo $namabeneran?></p>
                             </b>
-                            <p class="main_heading" align="left"><?php echo $email?></p>
+                            <p class="main_heading" align="left"><?php echo $nama?></p>
                             <p class="main_heading" align="left"><i><?php echo $bio?></i></p>
                         </div>
                         <div class="col-3">
                             <a href="form.php" style="text-decoration: none;" type="button"><i
-                                    style="background: transparent; color: black;" class="fas fa-cog fa-lg"></i></a>
+                                    style="background: transparent; color: black;" class="fas fa-cog"></i></a>
                         </div>
                     </div>
-                    <div class="col-2"></div>
+                    <!-- <div class="col-2"></div> -->
                     <div class="row">
-                        <div class="col-12 col-md-12 special_justify">
+                        <?php 
+                            if ($_SESSION['role'] == 2) {
+                        
+                            echo "<div class='col-12 col-md-12 special_justify'>
                             <br>
-                            <p class="main_heading" id="countPost" align="left">Completed Order : <?php echo $countpost?></p>
-                        </div>
+
+                            <p class='main_heading' id='countPost' align='left'>Completed Order :
+                                ".$countpost."</p>
+                    </div>";
+                    }
+                    ?>
+
                     </div>
                 </div>
             </div>
@@ -557,34 +566,18 @@ if ($_SESSION['role'] == '2') { ?>
                     <div class="row">
                         <div class="col-md-7 col-9">
                             <b>
-                                <p class="main_heading" align="left"><?php echo $nama?></p>
+                                <p class="main_heading" align="left"><?php echo $namabeneran?></p>
                             </b>
-                            <p class="main_heading" align="left"><?php echo $email?></p>
+                            <p class="main_heading" align="left"><?php echo $nama?></p>
                             <p class="main_heading" align="left"><i><?php echo $bio?></i></p>
                         </div>
                         <div class="col-3">
                             <a href="form.php" style="text-decoration: none;" type="button"><i
-                                    style="background: transparent; color: black;" class="fas fa-cog fa-lg"></i></a>
+                                    style="background: transparent; color: black;" class="fas fa-cog"></i></a>
                         </div>
                     </div>
                     <div class="col-2"></div>
-                    <div class="row">
-                        <div class="col-3 col-md-3 special_justify">
-                            <br>
-                            <p class="main_heading" id="countPost" align="left"><?php echo $countpost?> post</p>
-                        </div>
-                        <div class="col-5 col-md-4 special_justify">
-                            <br>
-                            <p style="cursor:pointer" id="bykfollowing" class="main_heading" align="left">
-                                <?php echo $following?> following</p>
-                        </div>
-                        <div class="col-4 col-md-4 special_justify">
-                            <br>
-                            <p style="cursor:pointer" id="bykfollower" class="main_heading" align="left">
-                                <?php echo $followers?> followers</p>
 
-                        </div>
-                    </div>
                 </div>
             </div>
 
@@ -806,29 +799,11 @@ $("#logout").click(function() {
 });
 
 $("#ongoing").click(function() {
-    $.ajax({
-        url: "logout.php",
-        type: "POST",
-        data: {
-            logout: 1
-        },
-        success: function(data) {
-            window.location.href = "home.php";
-        }
-    });
+    window.location.href = "customerOrders.php?tab=ongoing";
 });
 
 $("#history").click(function() {
-    $.ajax({
-        url: "logout.php",
-        type: "POST",
-        data: {
-            logout: 1
-        },
-        success: function(data) {
-            window.location.href = "home.php";
-        }
-    });
+    window.location.href = "customerOrders.php?tab=history";
 });
 
 

@@ -75,23 +75,23 @@
 
 
 
-                $continue .= "
-                <div style='width: 400px; height:auto; cursor: pointer; margin-top:10px; margin-right:5px; ' id='card-".$result['idPost']."' class='card'>
-                <div class='row' align='center'>
+                $continue .= '
+                <div style="width: 400px; height:auto; cursor: pointer; margin-top:10px; margin-right:5px; " id="card-'.$result["idPost"].'" class="card">
+                <div class="row" align="center">
 
-                <div style=''>
-                <img style='width: 40px;float:left' class='post_img' src='".$row['profileImg']."' alt=''>
-                <p class='main_heading' align='left'>&nbsp&nbsp&nbsp&nbsp".$result['username']."</p>
+                <div style="">
+                <img onclick="viewProfile(\'' . $result["username"] . '\')" style="width: 40px;float:left" class="post_img" src="'.$row["profileImg"].'" alt="">
+                <p class="main_heading" align="left">&nbsp&nbsp&nbsp&nbsp'.$result["username"].'</p>
                 
                 </div>
                 </div>
 
 
-                <div class='row' align='center'>
+                <div class="row" align="center">
 
-                ".$code."
+                '.$code.'
 
-                ".$option;
+                '.$option;
 
                 if ($resultudahlike->num_rows > 0) {
 

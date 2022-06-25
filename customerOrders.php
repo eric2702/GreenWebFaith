@@ -30,12 +30,12 @@ if (!isset($_SESSION['email'])) {
 }
 
 
-$sql2 = "SELECT email FROM user_data";
+$sql2 = "SELECT username FROM user_data";
 $result2 = mysqli_query($con, $sql2);
 
 $arr = [];
 while ($res= mysqli_fetch_assoc($result2)){
-    $temp = $res['email'];
+    $temp = $res['username'];
     array_push($arr,$temp);
 }
 
@@ -629,7 +629,7 @@ background-size: 15px 15px;
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container-fluid">
                 <a class="navbar-brand" href="Home.php"><img src="assets\logo.png" alt="" width="30" height="24"
-                        class="d-inline-block align-text-top">Eco Fit</a>
+                        class="d-inline-block align-text-top">EcoFit</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="Toggle navigation">
@@ -677,6 +677,9 @@ background-size: 15px 15px;
                         <?php if ($_SESSION['role'] == '2') { ?>
                         <li class="nav-item">
                             <a class="nav-link" href="orders.php"><i class="far fa-clipboard"></i></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="myprofile.php"><i class="fas fa-user-circle"></i></a>
                         </li>
                         <?php } ?>
                         <?php if ($_SESSION['role'] == '0') { ?>
@@ -1043,6 +1046,7 @@ background-size: 15px 15px;
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js">
     </script>
 
+
     <script>
     var position;
 
@@ -1087,6 +1091,14 @@ background-size: 15px 15px;
 
 
     });
+
+    function openCategory2() {
+        openCategory(event, 'Completed Orders')
+    }
+
+    function openCategory1() {
+        openCategory(event, 'Ongoing Orders')
+    }
 
 
 
@@ -1914,6 +1926,25 @@ background-size: 15px 15px;
             },
         });
     });
+    </script>
+
+    <script>
+    <?php
+    if (isset($_GET['tab'])) {
+        if ($_GET['tab'] == "history") {
+            echo "$(document).ready(function() {
+                openCategory2();
+            });";
+            
+        }
+        if ($_GET['tab'] == "ongoing") {
+            echo "$(document).ready(function() {
+                openCategory1();
+            });";
+
+        }
+    }
+    ?>
     </script>
 </body>
 

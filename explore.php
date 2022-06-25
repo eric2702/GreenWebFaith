@@ -36,9 +36,9 @@ $result2 = mysqli_query($con, $sql2);
 $arr = [];
 while ($res= mysqli_fetch_assoc($result2)){
     $temp = $res['username'];
-    $temp2 = $res['email'];
+    // $temp2 = $res['email'];
     array_push($arr,$temp);
-    array_push($arr,$temp2);
+    // array_push($arr,$temp2);
 }
 
 $sql3 = "SELECT id FROM text_post WHERE id_user='$id'";
@@ -375,17 +375,20 @@ while ($res= mysqli_fetch_assoc($result5)){
         cursor: pointer;
     } */
 
+
     .topDes:hover{
         transform: scale(1.05);
         cursor:pointer;
     }
 
     body{
+
         background-color: #fff8f1;
-opacity: 1;
-background-image: radial-gradient(#094b65 0.75px, #fff8f1 0.75px);
-background-size: 15px 15px;
+        opacity: 1;
+        background-image: radial-gradient(#094b65 0.75px, #fff8f1 0.75px);
+        background-size: 15px 15px;
     }
+
     @media screen and (max-width: 580px) {}
     </style>
 </head>
@@ -395,7 +398,7 @@ background-size: 15px 15px;
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container-fluid">
                 <a class="navbar-brand" href="Home.php"><img src="assets\logo.png" alt="" width="30" height="24"
-                        class="d-inline-block align-text-top">Eco Fit</a>
+                        class="d-inline-block align-text-top">EcoFit</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="Toggle navigation">
@@ -443,6 +446,9 @@ background-size: 15px 15px;
                         <?php if ($_SESSION['role'] == '2') { ?>
                         <li class="nav-item">
                             <a class="nav-link" href="orders.php"><i class="far fa-clipboard"></i></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="myprofile.php"><i class="fas fa-user-circle"></i></a>
                         </li>
                         <?php } ?>
                         <?php if ($_SESSION['role'] == '0') { ?>
@@ -646,6 +652,21 @@ function showExplore() {
         },
     });
 
+}
+
+function viewProfile(email) {
+    $.ajax({
+        url: "ajax/findprofile.php",
+        type: "POST",
+        cache: false,
+        data: {
+            email: email
+        },
+        success: function(dataResult) {
+
+        },
+    });
+    location.replace("profile.php");
 }
 
 
