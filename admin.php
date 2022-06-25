@@ -617,6 +617,13 @@ while ($res= mysqli_fetch_assoc($result5)){
         margin-top: 1rem;
     }
 
+    body{
+        background-color: #fff8f1;
+opacity: 1;
+background-image: radial-gradient(#094b65 0.75px, #fff8f1 0.75px);
+background-size: 15px 15px;
+    }
+
     @media screen and (max-width: 580px) {}
     </style>
 </head>
@@ -730,9 +737,9 @@ while ($res= mysqli_fetch_assoc($result5)){
                                 <tr>
                                     <th>No.</th>
                                     <th>Tanggal Order</th>
-                                    <th>username</th>
-                                    <th>Name</th>
-                                    <th>Long Working (days)</th>
+                                    <th>username Customer</th>
+                                    <th>Username Designer</th>
+                                    
                                     <th>Cost</th>
 
                                     <th>Transfer Proof</th>
@@ -755,11 +762,11 @@ while ($res= mysqli_fetch_assoc($result5)){
                         <table class="text-center" id="tableAcc">
                             <thead>
                                 <tr>
-                                    <th>No.</th>
+                                <th>No.</th>
                                     <th>Tanggal Order</th>
-                                    <th>username</th>
-                                    <th>Name</th>
-                                    <th>Long Working (days)</th>
+                                    <th>username Customer</th>
+                                    <th>Username Designer</th>
+                                    
                                     <th>Cost</th>
 
                                     <th>Transfer Proof</th>
@@ -781,11 +788,11 @@ while ($res= mysqli_fetch_assoc($result5)){
                         <table class="text-center" id="tableComp">
                             <thead>
                                 <tr>
-                                    <th>No.</th>
+                                <th>No.</th>
                                     <th>Tanggal Order</th>
-                                    <th>username</th>
-                                    <th>Name</th>
-                                    <th>Long Working (days)</th>
+                                    <th>username Customer</th>
+                                    <th>Username Designer</th>
+                                    
                                     <th>Cost</th>
 
                                     <th>Transfer Proof</th>
@@ -811,9 +818,9 @@ while ($res= mysqli_fetch_assoc($result5)){
                                 <tr>
                                     <th>No.</th>
                                     <th>Tanggal Order</th>
-                                    <th>username</th>
-                                    <th>Name</th>
-                                    <th>Long Working (days)</th>
+                                    <th>username Customer</th>
+                                    <th>Username Designer</th>
+                                    
                                     <th>Cost</th>
 
                                     <th>Transfer Proof</th>
@@ -1013,6 +1020,9 @@ function completeTable() {
         success: function(dataResult) {
             
             $("#daftarComplete").html(dataResult);
+            $('#tableComplete').DataTable({
+                "ordering": false
+            });
         },
     });
 }
