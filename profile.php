@@ -1433,35 +1433,22 @@ $("#request").on("click", function() {
         contentType: false,
         processData: false,
         success: function(data) {
-            swal.fire({
-                title: "Success",
-                text: "Success",
-                icon: "success",
-                confirmButtonText: "OK"
-            })
-            $("#closeRe").click();
-
+            // alert('success')
 
             if (data == "failed") {
-                // swal.fire({
-                //     title: "Error",
-                //     text: "Error",
-                //     icon: "error",
-                //     confirmButtonText: "OK"
-                // });
+                swal.fire({
+                    title: "Error",
+                    text: "Error",
+                    icon: "error",
+                    confirmButtonText: "OK"
+                });
+            } else if (data == "success") {
                 swal.fire({
                     title: "Success",
                     text: "Success",
                     icon: "success",
                     confirmButtonText: "OK"
                 })
-            } else if (data == "success") {
-                // swal.fire({
-                //     title: "Success",
-                //     text: "Success",
-                //     icon: "success",
-                //     confirmButtonText: "OK"
-                // })
                 $('#namaIn').val('');
                 $('#alamat').val('');
                 $('#jenis').val('');

@@ -369,6 +369,7 @@ $('#create').on('click', function() {
                     $('#emailReg').val('');
                     $('#pwReg').val('');
                     $('#special_code').val('');
+                    location.reload();
                 } else if (result == 0) {
                     Swal.fire({
                         title: 'Register Failed !',
